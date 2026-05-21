@@ -75,10 +75,16 @@ const jsonLd = {
 
           {guide.intro && <p class="guide-intro">{guide.intro}</p>}
 
-          <p class="guide-updated">
-            <i class="ti ti-clock" aria-hidden="true"></i>
-            최근 업데이트: {guide.updatedAt.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </p>
+          <div class="guide-meta-bottom">
+            <p class="guide-updated">
+              <i class="ti ti-clock" aria-hidden="true"></i>
+              최근 업데이트: {guide.updatedAt.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+            <button class="share-btn" id="guide-share-btn" aria-label="공유하기">
+              <i class="ti ti-share" aria-hidden="true"></i>
+              공유하기
+            </button>
+          </div>
         </header>
 
         <slot />
@@ -95,6 +101,32 @@ const jsonLd = {
 
   <Footer />
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('guide-share-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', async function () {
+      var url = window.location.href;
+      var title = document.title;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: title, url: url });
+        } catch (e) {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(url);
+          btn.innerHTML = '<i class="ti ti-check"></i> 복사 완료';
+          setTimeout(function () {
+            btn.innerHTML = '<i class="ti ti-share"></i> 공유하기';
+          }, 2000);
+        } catch (e) {}
+      }
+    });
+  })();
+</script>
 
 <style>
   .guide-page {
@@ -144,12 +176,41 @@ const jsonLd = {
     border-left: 4px solid var(--color-primary);
   }
 
+  .guide-meta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
   .guide-updated {
     font-size: var(--text-sm);
     color: var(--color-text-light);
     display: flex;
     align-items: center;
     gap: var(--space-2);
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: white;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: inherit;
+  }
+  .share-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
   }
 
   /* 사이드바 */

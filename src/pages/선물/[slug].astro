@@ -19,14 +19,21 @@ const [{ html: content, headings }, products] = await Promise.all([
   getProducts(guide.id),
 ]);
 
-// 연관 가이드: 같은 상황 or 나이 그룹
+// 연관 가이드: 상황·관계·나이·예산 점수 기반 매칭
 const related = allGuides
   .filter(g => g.slug !== guide.slug)
-  .filter(g =>
-    g.occasion.some(o => guide.occasion.includes(o)) ||
-    g.ageGroup.some(a => guide.ageGroup.includes(a))
-  )
-  .slice(0, 3);
+  .map(g => {
+    let score = 0;
+    if (g.occasion.some(o => guide.occasion.includes(o))) score += 3;
+    if (g.relation.some(r => guide.relation.includes(r))) score += 2;
+    if (g.ageGroup.some(a => guide.ageGroup.includes(a))) score += 2;
+    if (g.budgetTag.some(b => guide.budgetTag.includes(b))) score += 1;
+    return { g, score };
+  })
+  .filter(({ score }) => score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3)
+  .map(({ g }) => g);
 ---
 
 <GuideLayout guide={guide} headings={headings} products={products}>
