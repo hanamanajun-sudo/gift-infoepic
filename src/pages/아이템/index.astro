@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GiftCard from '../../components/GiftCard.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+const itemGuides = guides.filter(g => g.slug.endsWith('-선물-추천'));
+
+const breadcrumbs = [
+  { label: '홈', href: '/' },
+  { label: '아이템별 선물', href: '' },
+];
+
+const items = [
+  { label: '지갑', icon: '👜', href: '/선물/지갑-선물-추천/' },
+  { label: '향수', icon: '🌸', href: '/선물/향수-선물-추천/' },
+  { label: '텀블러', icon: '☕', href: '/선물/텀블러-선물-추천/' },
+  { label: '귀걸이', icon: '💎', href: '/선물/귀걸이-선물-추천/' },
+  { label: '스킨케어', icon: '🧴', href: '/선물/스킨케어-선물-추천/' },
+  { label: '캔들', icon: '🕯️', href: '/선물/캔들-선물-추천/' },
+  { label: '가방', icon: '👝', href: '/선물/가방-선물-추천/' },
+];
+---
+
+<BaseLayout
+  title="아이템별 선물 추천 — 지갑·향수·텀블러·귀걸이 선물 가이드"
+  description="지갑, 향수, 텀블러, 귀걸이, 스킨케어, 캔들, 가방 등 아이템별 선물 추천 가이드. 누구에게, 어떤 예산으로 사야 할지 한번에 정리해드립니다."
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/아이템/" />
+    <Breadcrumb items={breadcrumbs} />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        아이템별 <span class="title-sub">선물 추천 가이드</span>
+      </h1>
+      <p class="page-desc">선물 아이템을 먼저 떠올리셨나요? 누구에게, 어떤 가격대로 사야 할지 정리해드립니다.</p>
+    </header>
+
+    <div class="item-chips">
+      {items.map(item => (
+        <a href={item.href} class="item-chip">
+          <span aria-hidden="true">{item.icon}</span>
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    {itemGuides.length > 0 ? (
+      <div class="guide-grid">
+        {itemGuides.map(guide => <GiftCard guide={guide} />)}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <i class="ti ti-gift-off" aria-hidden="true"></i>
+        <p>준비 중입니다. 곧 업데이트될 예정이에요.</p>
+        <a href="/" class="btn btn-outline">홈으로 돌아가기</a>
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-6); }
+  .page-title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-3);
+  }
+  .title-sub { color: var(--color-text-muted); font-weight: var(--font-weight-medium); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .item-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+  }
+  .item-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: white;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  .item-chip:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  @media (min-width: 480px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-16) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .empty-state i { font-size: 3rem; color: var(--color-text-light); }
+  .empty-state p { font-size: var(--text-lg); color: var(--color-text-muted); }
+</style>

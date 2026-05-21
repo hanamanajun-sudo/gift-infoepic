@@ -9,16 +9,17 @@ import { getGiftGuides } from '../lib/notion';
 
 const guides = await getGiftGuides();
 const sorted = [...guides].sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+const featured = sorted.slice(0, 12);
 
 const quickLinks = [
   { label: '13세 여아 선물', href: '/선물/13세-여자아이-생일선물/' },
   { label: '남자친구 선물', href: '/선물/남자친구-생일선물/' },
-  { label: '크리스마스 선물', href: '/선물/크리스마스-선물-추천/' },
-  { label: '어린이날 선물', href: '/선물/7세-남자아이-어린이날선물/' },
-  { label: '졸업선물', href: '/선물/졸업선물-추천/' },
-  { label: '30대 엄마 선물', href: '/선물/30대-엄마-생일선물/' },
-  { label: '초등학생 선물', href: '/선물/초등학생-생일선물/' },
   { label: '여자친구 선물', href: '/선물/여자친구-생일선물/' },
+  { label: '크리스마스 선물', href: '/선물/크리스마스-선물/' },
+  { label: '어버이날 선물', href: '/선물/어버이날-선물/' },
+  { label: '졸업선물', href: '/선물/졸업선물/' },
+  { label: '엄마 생일선물', href: '/선물/엄마-생일선물/' },
+  { label: '5만원이하 선물', href: '/선물/5만원이하-선물/' },
 ];
 
 const jsonLd = {
@@ -81,11 +82,11 @@ const jsonLd = {
             <i class="ti ti-star" aria-hidden="true"></i>
             인기 선물 가이드
           </h2>
-          <span class="section-count">{guides.length}개 가이드</span>
+          <a href="/선물/" class="section-more">전체 {guides.length}개 보기 →</a>
         </div>
 
         <div class="guide-grid">
-          {sorted.map(guide => (
+          {featured.map(guide => (
             <GiftCard guide={guide} />
           ))}
         </div>
@@ -143,6 +144,34 @@ const jsonLd = {
             </a>
           ))}
         </div>
+      </div>
+    </section>
+
+    <!-- ── 아이템별 ── -->
+    <section class="section item-section">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="ti ti-shopping-bag" aria-hidden="true"></i>
+          아이템별로 찾기
+        </h2>
+        <p class="section-desc">선물 아이템을 먼저 떠올리셨나요? 누구에게, 어떤 가격대로 사야 할지 정리해드립니다.</p>
+        <div class="item-list">
+          {[
+            { label: '지갑', href: '/선물/지갑-선물-추천/', emoji: '👜' },
+            { label: '향수', href: '/선물/향수-선물-추천/', emoji: '🌸' },
+            { label: '텀블러', href: '/선물/텀블러-선물-추천/', emoji: '☕' },
+            { label: '귀걸이', href: '/선물/귀걸이-선물-추천/', emoji: '💎' },
+            { label: '스킨케어', href: '/선물/스킨케어-선물-추천/', emoji: '🧴' },
+            { label: '캔들', href: '/선물/캔들-선물-추천/', emoji: '🕯️' },
+            { label: '가방', href: '/선물/가방-선물-추천/', emoji: '👝' },
+          ].map(item => (
+            <a href={item.href} class="occasion-chip">
+              <span aria-hidden="true">{item.emoji}</span>
+              {item.label}
+            </a>
+          ))}
+        </div>
+        <a href="/아이템/" class="item-more-link">아이템별 가이드 전체 보기 →</a>
       </div>
     </section>
   </main>
@@ -239,6 +268,19 @@ const jsonLd = {
     border-radius: var(--radius-full);
     border: 1px solid var(--color-border);
   }
+  .section-more {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+  }
+  .section-more:hover { text-decoration: underline; }
+  .section-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    margin-top: var(--space-1);
+  }
 
   /* ── 가이드 그리드 ── */
   .guide-grid {
@@ -281,6 +323,26 @@ const jsonLd = {
   .age-tile-icon { font-size: 1.6rem; color: var(--color-primary); }
   .age-tile-label { font-size: var(--text-sm); font-weight: var(--font-weight-semibold); color: var(--color-text); }
   .age-tile-sub { font-size: var(--text-xs); color: var(--color-text-light); }
+
+  /* ── 아이템별 ── */
+  .item-section { background: var(--color-bg-subtle); }
+  .item-section .section-title { margin-bottom: 0; }
+  .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .item-more-link {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    margin-top: var(--space-2);
+  }
+  .item-more-link:hover { text-decoration: underline; }
 
   /* ── 상황별 ── */
   .occasion-list {
