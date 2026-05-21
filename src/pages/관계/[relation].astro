@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GiftCard from '../../components/GiftCard.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+export const getStaticPaths = async () => {
+  const guides = await getGiftGuides();
+  const relations = [...new Set(guides.flatMap(g => g.relation))].filter(Boolean);
+  return relations.map(relation => ({
+    params: { relation },
+    props: {
+      relation,
+      guides: guides.filter(g => g.relation.includes(relation)),
+    },
+  }));
+};
+
+const { relation, guides } = Astro.props;
+
+const breadcrumbs = [
+  { label: '홈', href: '/' },
+  { label: '관계별 선물', href: '/관계/' },
+  { label: `${relation} 선물`, href: '' },
+];
+---
+
+<BaseLayout
+  title={`${relation} 선물 추천 가이드 — 선물추천 가이드`}
+  description={`${relation}에게 드릴 선물을 찾고 계신가요? 직접 써보거나 실제 후기를 확인한 선물 가이드 ${guides.length}개를 모았습니다.`}
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/관계/" />
+    <Breadcrumb items={breadcrumbs} />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        {relation} <span class="title-sub">선물 추천 가이드</span>
+      </h1>
+      <p class="page-desc">{guides.length}개 가이드에서 {relation}에게 딱 맞는 선물을 찾아보세요.</p>
+    </header>
+
+    {guides.length > 0 ? (
+      <div class="guide-grid">
+        {guides.map(guide => <GiftCard guide={guide} />)}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <i class="ti ti-gift-off" aria-hidden="true"></i>
+        <p>준비 중입니다. 곧 업데이트될 예정이에요.</p>
+        <a href="/관계/" class="btn btn-outline">다른 관계 보기</a>
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-8); }
+  .page-title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    font-weight: var(--font-weight-bold); margin-bottom: var(--space-3);
+  }
+  .title-sub { color: var(--color-text-muted); font-weight: var(--font-weight-medium); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .guide-grid {
+    display: grid; grid-template-columns: 1fr; gap: var(--space-5);
+  }
+  @media (min-width: 480px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .empty-state {
+    text-align: center; padding: var(--space-16) 0;
+    display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
+  }
+  .empty-state i { font-size: 3rem; color: var(--color-text-light); }
+  .empty-state p { font-size: var(--text-lg); color: var(--color-text-muted); }
+</style>

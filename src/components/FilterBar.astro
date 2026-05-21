@@ -1,0 +1,169 @@
+---
+const ages = ['7세', '10세', '12세', '13세', '14세', '15세', '16세', '20대', '30대', '40대', '50대', '초등학생', '중학생', '고등학생'];
+const occasions = ['생일', '크리스마스', '어린이날', '어버이날', '졸업', '입학', '스승의날', '발렌타인', '화이트데이', '돌잔치', '집들이'];
+const relations = ['남자친구', '여자친구', '엄마', '아빠', '딸', '아들', '조카', '친구', '직장동료', '선생님'];
+const budgets = ['1만원이하', '3만원이하', '5만원이하', '10만원이하', '20만원이하', '20만원이상'];
+---
+
+<section class="filter-bar" aria-label="선물 필터">
+  <div class="filter-inner">
+    <h2 class="filter-title">
+      <i class="ti ti-filter-search" aria-hidden="true"></i>
+      어떤 선물을 찾고 계세요?
+    </h2>
+
+    <form id="gift-filter-form" class="filter-form" novalidate>
+      <div class="filter-selects">
+        <label class="filter-label">
+          <span class="filter-label-text">
+            <i class="ti ti-users" aria-hidden="true"></i> 나이
+          </span>
+          <select name="age" class="filter-select">
+            <option value="">나이 선택</option>
+            {ages.map(a => <option value={a}>{a}</option>)}
+          </select>
+        </label>
+
+        <label class="filter-label">
+          <span class="filter-label-text">
+            <i class="ti ti-calendar" aria-hidden="true"></i> 상황
+          </span>
+          <select name="occasion" class="filter-select">
+            <option value="">상황 선택</option>
+            {occasions.map(o => <option value={o}>{o}</option>)}
+          </select>
+        </label>
+
+        <label class="filter-label">
+          <span class="filter-label-text">
+            <i class="ti ti-heart" aria-hidden="true"></i> 관계
+          </span>
+          <select name="relation" class="filter-select">
+            <option value="">관계 선택</option>
+            {relations.map(r => <option value={r}>{r}</option>)}
+          </select>
+        </label>
+
+        <label class="filter-label">
+          <span class="filter-label-text">
+            <i class="ti ti-wallet" aria-hidden="true"></i> 예산
+          </span>
+          <select name="budget" class="filter-select">
+            <option value="">예산 선택</option>
+            {budgets.map(b => <option value={b}>{b}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary filter-submit">
+        <i class="ti ti-search" aria-hidden="true"></i>
+        선물 찾기
+      </button>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  document.getElementById('gift-filter-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var age      = this.age.value;
+    var occasion = this.occasion.value;
+    var relation = this.relation.value;
+    var budget   = this.budget.value;
+
+    // 우선순위: 나이 > 관계 > 상황 > 예산
+    var url =
+      age      ? '/나이/'  + age      + '/' :
+      relation ? '/관계/'  + relation + '/' :
+      occasion ? '/상황/'  + occasion + '/' :
+      budget   ? '/예산/'  + budget   + '/' :
+      null;
+
+    if (url) {
+      window.location.href = url;
+    } else {
+      var submitBtn = this.querySelector('[type="submit"]');
+      submitBtn.textContent = '선택해 주세요';
+      setTimeout(function () {
+        submitBtn.innerHTML = '<i class="ti ti-search"></i> 선물 찾기';
+      }, 1500);
+    }
+  });
+</script>
+
+<style>
+  .filter-bar {
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-accent-light) 100%);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8) var(--space-8);
+    margin: var(--space-8) 0;
+  }
+
+  .filter-inner { max-width: 800px; margin: 0 auto; }
+
+  .filter-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-5);
+  }
+
+  .filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .filter-selects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  @media (min-width: 640px) {
+    .filter-selects { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .filter-label { display: flex; flex-direction: column; gap: var(--space-1); }
+
+  .filter-label-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .filter-select {
+    width: 100%;
+    padding: var(--space-3) var(--space-3);
+    border: 1.5px solid var(--color-primary-light);
+    border-radius: var(--radius-md);
+    background: white;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+    appearance: auto;
+  }
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  }
+
+  .filter-submit {
+    align-self: flex-start;
+    padding: var(--space-3) var(--space-8);
+    font-size: var(--text-base);
+  }
+  @media (max-width: 480px) {
+    .filter-submit { width: 100%; justify-content: center; }
+  }
+</style>

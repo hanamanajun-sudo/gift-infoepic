@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+const occMap = new Map<string, number>();
+guides.forEach(g => g.occasion.forEach(o => {
+  occMap.set(o, (occMap.get(o) ?? 0) + 1);
+}));
+
+const occasions = [...occMap.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([occasion, count]) => ({ occasion, count }));
+
+const EMOJIS: Record<string, string> = {
+  생일: '🎂', 크리스마스: '🎄', 어린이날: '🎡', 어버이날: '💐',
+  졸업: '🎓', 입학: '🎒', 스승의날: '📚', 집들이: '🏠',
+  발렌타인: '💝', 화이트데이: '🌸', 돌잔치: '👶',
+};
+---
+
+<BaseLayout
+  title="상황별 선물 추천 — 생일, 크리스마스, 졸업선물"
+  description="생일선물부터 크리스마스, 어버이날, 졸업선물까지. 상황에 맞는 선물 가이드를 바로 찾아보세요."
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/상황/" />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        <i class="ti ti-calendar-event" aria-hidden="true"></i>
+        상황별 선물 가이드
+      </h1>
+      <p class="page-desc">
+        어떤 자리에 드릴 선물인지 선택하면 딱 맞는 가이드를 볼 수 있어요.
+      </p>
+    </header>
+
+    <div class="filter-grid">
+      {occasions.map(({ occasion, count }) => (
+        <a href={`/상황/${occasion}/`} class="occasion-tile">
+          <span class="occ-emoji" aria-hidden="true">{EMOJIS[occasion] ?? '🎁'}</span>
+          <span class="occ-name">{occasion}선물</span>
+          <span class="occ-count">가이드 {count}개</span>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-8); }
+  .page-title {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-size: var(--text-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-3);
+  }
+  .page-title i { color: var(--color-primary); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .filter-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3);
+  }
+  @media (min-width: 480px) { .filter-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .filter-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .occasion-tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--space-2); padding: var(--space-5);
+    background: var(--color-bg); border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-xl); text-decoration: none; text-align: center;
+    transition: all var(--transition-fast);
+  }
+  .occasion-tile:hover {
+    border-color: var(--color-primary); background: var(--color-primary-light);
+    transform: translateY(-2px); box-shadow: var(--shadow-card);
+  }
+  .occ-emoji { font-size: 2rem; }
+  .occ-name { font-size: var(--text-base); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .occ-count { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .occasion-tile:hover .occ-name { color: var(--color-primary-dark); }
+</style>

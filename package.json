@@ -1,0 +1,23 @@
+{
+  "name": "gift-infoepic",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@notionhq/client": "^2.2.15",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^5.7.11",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
+  }
+}

@@ -1,0 +1,82 @@
+---
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  { label: '나이별 선물', href: '/나이/' },
+  { label: '상황별 선물', href: '/상황/' },
+  { label: '관계별 선물', href: '/관계/' },
+  { label: '예산별 선물', href: '/예산/' },
+  { label: '사이트 소개', href: '/about/' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <span class="footer-logo-icon"><i class="ti ti-gift"></i></span>
+        <span>선물추천 <strong>가이드</strong></span>
+      </a>
+      <p class="footer-tagline">나이, 관계, 예산으로 찾는 완벽한 선물</p>
+    </div>
+
+    <nav class="footer-links" aria-label="푸터 링크">
+      {footerLinks.map(link => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <p class="footer-copy">
+      &copy; {year} 선물추천 가이드 · <a href="/about/">이 사이트에 대해</a>
+    </p>
+    <p class="footer-disclaimer">
+      일부 링크는 제휴 파트너 링크로, 구매 시 소정의 수수료가 발생할 수 있습니다.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-20);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+    padding: var(--space-10) 0 var(--space-8);
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: var(--space-2); }
+  .footer-logo {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    text-decoration: none; color: var(--color-text);
+    font-size: var(--text-lg); font-weight: var(--font-weight-medium);
+  }
+  .footer-logo strong { color: var(--color-primary); font-weight: var(--font-weight-bold); }
+  .footer-logo-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; background: var(--color-primary);
+    border-radius: var(--radius-md); color: white; font-size: 0.9rem;
+  }
+  .footer-tagline { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  .footer-links {
+    display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+  }
+  .footer-link {
+    font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-link:hover { color: var(--color-primary); }
+
+  .footer-copy {
+    font-size: var(--text-sm); color: var(--color-text-light);
+  }
+  .footer-copy a { color: var(--color-text-muted); }
+  .footer-copy a:hover { color: var(--color-primary); }
+
+  .footer-disclaimer {
+    font-size: var(--text-xs); color: var(--color-text-light);
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import GiftCard from '../../components/GiftCard.astro';
+import { getGiftGuides, getGiftGuideBySlug, getGuideContent, getProducts } from '../../lib/notion';
+
+export const getStaticPaths = async () => {
+  const guides = await getGiftGuides();
+  return guides.map(guide => ({
+    params: { slug: guide.slug },
+    props: { guide, allGuides: guides },
+  }));
+};
+
+const { guide, allGuides } = Astro.props;
+
+const [{ html: content, headings }, products] = await Promise.all([
+  getGuideContent(guide.id),
+  getProducts(guide.id),
+]);
+
+// 연관 가이드: 같은 상황 or 나이 그룹
+const related = allGuides
+  .filter(g => g.slug !== guide.slug)
+  .filter(g =>
+    g.occasion.some(o => guide.occasion.includes(o)) ||
+    g.ageGroup.some(a => guide.ageGroup.includes(a))
+  )
+  .slice(0, 3);
+---
+
+<GuideLayout guide={guide} headings={headings} products={products}>
+  <!-- ── 추천 상품 섹션 ── -->
+  {products.length > 0 && (
+    <section class="products-section" aria-labelledby="products-heading">
+      <h2 id="products-heading" class="products-title">
+        <i class="ti ti-star-filled" aria-hidden="true"></i>
+        추천 선물 TOP{products.length}
+      </h2>
+      <div class="products-list">
+        {products.map((product, i) => (
+          <ProductCard product={product} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ── 본문 콘텐츠 (Notion 블록) ── -->
+  {content && (
+    <article class="guide-content" data-pagefind-body>
+      <div set:html={content} />
+    </article>
+  )}
+
+  <!-- ── 관심사 태그 ── -->
+  {guide.interests.length > 0 && (
+    <div class="interests-tags">
+      <span class="interests-label">관련 키워드</span>
+      {guide.interests.map(interest => (
+        <span class="badge badge-neutral">{interest}</span>
+      ))}
+      {guide.relation.map(rel => (
+        <span class="badge badge-neutral">{rel}</span>
+      ))}
+    </div>
+  )}
+
+  <!-- ── 연관 가이드 ── -->
+  {related.length > 0 && (
+    <section class="related-section" aria-labelledby="related-heading">
+      <h2 id="related-heading" class="related-title">
+        <i class="ti ti-arrow-right" aria-hidden="true"></i>
+        이런 선물 가이드도 있어요
+      </h2>
+      <div class="related-grid">
+        {related.map(g => <GiftCard guide={g} />)}
+      </div>
+    </section>
+  )}
+</GuideLayout>
+
+<style>
+  /* 추천 상품 */
+  .products-section { margin-bottom: var(--space-10); }
+  .products-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+  .products-title i { color: var(--color-accent); }
+  .products-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-top: var(--space-2);
+  }
+
+  /* 관심사 태그 */
+  .interests-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin: var(--space-8) 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+  .interests-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    margin-right: var(--space-2);
+  }
+
+  /* 연관 가이드 */
+  .related-section {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 2px solid var(--color-border-subtle);
+  }
+  .related-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-5);
+    color: var(--color-text);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

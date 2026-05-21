@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="선물 검색 — 선물추천 가이드"
+  description="원하는 선물 키워드를 검색해 보세요."
+  noindex={true}
+>
+  <Header />
+
+  <main class="container-narrow" style="padding-top:var(--space-12);padding-bottom:var(--space-16)">
+    <h1 style="font-size:var(--text-2xl);font-weight:var(--font-weight-bold);margin-bottom:var(--space-6)">
+      <i class="ti ti-search" style="color:var(--color-primary)"></i>
+      선물 검색
+    </h1>
+    <div id="search-results"></div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  if (typeof PagefindUI !== 'undefined') {
+    new PagefindUI({
+      element: '#search-results',
+      showSubResults: true,
+      translations: { placeholder: '검색어를 입력하세요 (예: 13세, 남자친구, 크리스마스)' },
+    });
+  }
+</script>

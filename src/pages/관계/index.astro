@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+const relMap = new Map<string, number>();
+guides.forEach(g => g.relation.forEach(r => {
+  relMap.set(r, (relMap.get(r) ?? 0) + 1);
+}));
+
+const relations = [...relMap.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([relation, count]) => ({ relation, count }));
+
+const ICONS: Record<string, string> = {
+  남자친구: 'ti-man', 여자친구: 'ti-woman', 엄마: 'ti-heart-handshake',
+  아빠: 'ti-briefcase', 딸: 'ti-girl', 아들: 'ti-boy', 조카: 'ti-users',
+  친구: 'ti-friends', 직장동료: 'ti-building', 선생님: 'ti-school',
+};
+---
+
+<BaseLayout
+  title="관계별 선물 추천 — 남자친구, 엄마, 친구 선물"
+  description="남자친구 생일선물, 엄마 선물, 친구 선물 등 관계별로 딱 맞는 선물 가이드를 찾아보세요."
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/관계/" />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        <i class="ti ti-heart" aria-hidden="true"></i>
+        관계별 선물 가이드
+      </h1>
+      <p class="page-desc">누구에게 드릴 선물인지 선택하면 딱 맞는 가이드를 볼 수 있어요.</p>
+    </header>
+
+    <div class="filter-grid">
+      {relations.map(({ relation, count }) => (
+        <a href={`/관계/${relation}/`} class="relation-tile">
+          <i class={`ti ${ICONS[relation] ?? 'ti-user'} rel-icon`} aria-hidden="true"></i>
+          <span class="rel-name">{relation} 선물</span>
+          <span class="rel-count">가이드 {count}개</span>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-8); }
+  .page-title {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-size: var(--text-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-3);
+  }
+  .page-title i { color: var(--color-primary); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .filter-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3);
+  }
+  @media (min-width: 480px) { .filter-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .filter-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .relation-tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--space-2); padding: var(--space-5);
+    background: var(--color-bg); border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-xl); text-decoration: none; text-align: center;
+    transition: all var(--transition-fast);
+  }
+  .relation-tile:hover {
+    border-color: var(--color-primary); background: var(--color-primary-light);
+    transform: translateY(-2px); box-shadow: var(--shadow-card);
+  }
+  .rel-icon { font-size: 1.8rem; color: var(--color-primary); }
+  .rel-name { font-size: var(--text-base); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .rel-count { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .relation-tile:hover .rel-name { color: var(--color-primary-dark); }
+</style>

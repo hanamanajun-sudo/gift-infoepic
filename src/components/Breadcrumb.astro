@@ -1,0 +1,89 @@
+---
+interface Item {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `https://gift.infoepic.com${item.href}` } : {}),
+  })),
+};
+---
+
+<nav class="breadcrumb" aria-label="현재 위치">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <ol class="breadcrumb-list">
+    {items.map((item, i) => {
+      const isLast = i === items.length - 1;
+      return (
+        <li class="breadcrumb-item">
+          {!isLast && item.href ? (
+            <a href={item.href} class="breadcrumb-link">{item.label}</a>
+          ) : (
+            <span class="breadcrumb-current" aria-current={isLast ? 'page' : undefined}>
+              {item.label}
+            </span>
+          )}
+          {!isLast && (
+            <i class="ti ti-chevron-right breadcrumb-sep" aria-hidden="true"></i>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb { margin-bottom: var(--space-5); }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .breadcrumb-link {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .breadcrumb-link:hover { color: var(--color-primary); }
+
+  .breadcrumb-current {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .breadcrumb-sep {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+  }
+</style>

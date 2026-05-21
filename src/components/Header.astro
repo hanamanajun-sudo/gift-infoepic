@@ -1,0 +1,200 @@
+---
+const navLinks = [
+  { label: '나이별', href: '/나이/', icon: 'ti-users' },
+  { label: '상황별', href: '/상황/', icon: 'ti-calendar' },
+  { label: '관계별', href: '/관계/', icon: 'ti-heart' },
+  { label: '예산별', href: '/예산/', icon: 'ti-wallet' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- 로고 -->
+    <a href="/" class="logo" aria-label="선물추천 가이드 홈">
+      <span class="logo-icon" aria-hidden="true"><i class="ti ti-gift"></i></span>
+      <span class="logo-text">선물추천 <strong>가이드</strong></span>
+    </a>
+
+    <!-- 데스크탑 네비게이션 -->
+    <nav class="nav-desktop" aria-label="주메뉴">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+        >
+          <i class={`ti ${link.icon}`} aria-hidden="true"></i>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- 검색 + 모바일 메뉴 -->
+    <div class="header-actions">
+      <button class="icon-btn" id="search-trigger" aria-label="검색">
+        <i class="ti ti-search"></i>
+      </button>
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="메뉴" aria-expanded="false">
+        <i class="ti ti-menu-2" id="menu-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 모바일 드롭다운 -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <nav aria-label="모바일 메뉴">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-nav-link">
+          <i class={`ti ${link.icon}`} aria-hidden="true"></i>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  var searchBtn = document.getElementById('search-trigger');
+  var menuBtn   = document.getElementById('mobile-menu-btn');
+  var mobileNav = document.getElementById('mobile-nav');
+  var menuIcon  = document.getElementById('menu-icon');
+
+  if (searchBtn) searchBtn.addEventListener('click', function () {
+    window.dispatchEvent(new Event('open-search'));
+  });
+
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', function () {
+      var open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+      menuIcon.className = open ? 'ti ti-x' : 'ti ti-menu-2';
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  /* 로고 */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+  .logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 1.1rem;
+  }
+  .logo-text {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.01em;
+  }
+  .logo-text strong {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* 데스크탑 네비 */
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  @media (min-width: 768px) {
+    .nav-desktop { display: flex; }
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  .nav-link:hover, .nav-link.active {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+  .nav-link i { font-size: 0.9em; }
+
+  /* 버튼 */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-md);
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .icon-btn:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+
+  .mobile-menu-btn { display: flex; }
+  @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+
+  /* 모바일 네비 */
+  .mobile-nav {
+    display: none;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+    padding: var(--space-3) var(--space-5) var(--space-5);
+  }
+  .mobile-nav.open { display: block; }
+  @media (min-width: 768px) { .mobile-nav { display: none !important; } }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+  .mobile-nav-link:last-child { border-bottom: none; }
+  .mobile-nav-link i { color: var(--color-primary); width: 20px; }
+</style>

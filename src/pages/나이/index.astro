@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+const ageMap = new Map<string, number>();
+guides.forEach(g => g.ageGroup.forEach(a => {
+  ageMap.set(a, (ageMap.get(a) ?? 0) + 1);
+}));
+
+const ageGroups = [...ageMap.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([age, count]) => ({ age, count }));
+
+const ORDER = ['유아', '7세', '8세', '9세', '10세', '11세', '12세', '13세', '14세', '15세', '16세', '17세', '18세',
+               '초등학생', '중학생', '고등학생', '20대', '30대', '40대', '50대'];
+ageGroups.sort((a, b) => {
+  const ia = ORDER.indexOf(a.age);
+  const ib = ORDER.indexOf(b.age);
+  if (ia >= 0 && ib >= 0) return ia - ib;
+  if (ia >= 0) return -1;
+  if (ib >= 0) return 1;
+  return a.age.localeCompare(b.age, 'ko');
+});
+---
+
+<BaseLayout
+  title="나이별 선물 추천 — 연령별 생일선물 가이드"
+  description="7세부터 50대까지, 나이에 딱 맞는 선물을 찾아보세요. 연령별 생일선물 추천 가이드 모음."
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/나이/" />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        <i class="ti ti-users" aria-hidden="true"></i>
+        나이별 선물 가이드
+      </h1>
+      <p class="page-desc">
+        받는 사람의 나이를 선택하면 딱 맞는 선물 가이드를 볼 수 있어요.
+      </p>
+    </header>
+
+    <div class="filter-grid">
+      {ageGroups.map(({ age, count }) => (
+        <a href={`/나이/${age}/`} class="filter-tile">
+          <span class="filter-tile-name">{age}</span>
+          <span class="filter-tile-count">가이드 {count}개</span>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header { margin-bottom: var(--space-8); }
+  .page-title {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-size: var(--text-3xl); font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-3);
+  }
+  .page-title i { color: var(--color-primary); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  @media (min-width: 480px) { .filter-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) { .filter-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .filter-tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--space-2); padding: var(--space-5);
+    background: var(--color-bg); border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-xl); text-decoration: none; text-align: center;
+    transition: all var(--transition-fast);
+  }
+  .filter-tile:hover {
+    border-color: var(--color-primary); background: var(--color-primary-light);
+    transform: translateY(-2px); box-shadow: var(--shadow-card);
+  }
+  .filter-tile-name {
+    font-size: var(--text-xl); font-weight: var(--font-weight-bold); color: var(--color-text);
+  }
+  .filter-tile-count {
+    font-size: var(--text-sm); color: var(--color-text-muted);
+  }
+  .filter-tile:hover .filter-tile-name { color: var(--color-primary-dark); }
+</style>
