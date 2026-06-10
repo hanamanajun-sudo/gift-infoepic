@@ -403,8 +403,45 @@ export async function getGuideContent(pageId: string): Promise<{ html: string; h
     };
   }
 
-  const response = await notion.blocks.children.list({ block_id: pageId });
-  return blocksToHtml(response.results);
+  // Retry up to 3 times with exponential backoff for rate limit resilience
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      if (attempt > 0) {
+        await new Promise(r => setTimeout(r, 1000 * attempt));
+      }
+      const response = await notion.blocks.children.list({ block_id: pageId });
+      if (response.results && response.results.length > 0) {
+        return blocksToHtml(response.results);
+      }
+      // Empty results: may need pagination or just empty page
+      // Try pagination if has_more
+      let allBlocks = [...response.results];
+      let cursor = response.next_cursor;
+      while (cursor) {
+        const next = await notion.blocks.children.list({
+          block_id: pageId,
+          start_cursor: cursor,
+        });
+        allBlocks = [...allBlocks, ...next.results];
+        cursor = next.next_cursor;
+      }
+      if (allBlocks.length > 0) {
+        return blocksToHtml(allBlocks);
+      }
+      // If still empty and not the last attempt, retry
+      if (attempt < 2) continue;
+      return { html: "", headings: [] };
+    } catch (err) {
+      lastError = err instanceof Error ? err : new Error(String(err));
+      if (attempt < 2) {
+        console.warn(`[Notion] getGuideContent retry ${attempt + 1} for ${pageId.slice(0, 12)}: ${lastError.message}`);
+        continue;
+      }
+    }
+  }
+  console.error(`[Notion] getGuideContent failed for ${pageId.slice(0, 12)}: ${lastError?.message}`);
+  return { html: "", headings: [] };
 }
 
 export async function getProducts(guideId: string): Promise<Product[]> {
