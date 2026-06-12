@@ -268,7 +268,7 @@ function richTextToHtml(richText: any[]): string {
     if (r.annotations?.bold) text = `<strong>${text}</strong>`;
     if (r.annotations?.italic) text = `<em>${text}</em>`;
     if (r.annotations?.code) text = `<code>${text}</code>`;
-    if (r.href) text = `<a href="${r.href}" rel="noopener noreferrer">${text}</a>`;
+    if (r.href) text = `<a href="${r.href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     return text;
   }).join("");
 }
