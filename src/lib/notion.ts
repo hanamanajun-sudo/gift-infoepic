@@ -248,7 +248,7 @@ function parseProduct(page: any): Product {
   const p = page.properties;
   return {
     id: page.id,
-    name: getTitle(p.Name),
+    name: getTitle(p.Title),
     price: getNumber(p.price),
     coupangUrl: getUrl(p.coupangUrl),
     naverUrl: getUrl(p.naverUrl),
