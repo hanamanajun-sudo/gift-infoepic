@@ -7,7 +7,7 @@ import { getGiftGuides } from '../../lib/notion';
 
 const guides = await getGiftGuides();
 
-const beginnerSlugs = ['틴트-처음-고르는-법'];
+const beginnerSlugs = ['틴트-처음-고르는-법', '향수-처음-고르는-법'];
 const beginnerGuides = guides.filter(g => beginnerSlugs.includes(g.slug));
 ---
 
@@ -43,7 +43,6 @@ const beginnerGuides = guides.filter(g => beginnerSlugs.includes(g.slug));
     <section style="margin-top:var(--space-16)">
       <h2>준비 중인 가이드</h2>
       <ul>
-        <li>향수 처음 고르는 법</li>
         <li>부모님 선물 고르는 법</li>
         <li>어린이 선물 안전하게 고르는 법</li>
         <li>커플 선물 고르는 법</li>
