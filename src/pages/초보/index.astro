@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+
+const beginnerSlugs = ['틴트-처음-고르는-법', '향수-처음-고르는-법', '부모님-선물-고르는-법', '어린이-선물-고르는-법', '커플-선물-고르는-법'];
+const beginnerGuides = guides.filter(g => beginnerSlugs.includes(g.slug));
+---
+
+<BaseLayout
+  title="초보 가이드 — 선물 처음 고르는 사람을 위한 팁"
+  description="선물 고르기가 막막한 초보자도 쉽게 따라할 수 있는 가이드입니다. 틴트, 향수, 부모님 선물 고르는 법."
+>
+  <Header />
+
+  <main class="container" style="padding-top:var(--space-10);padding-bottom:var(--space-16)">
+    <CategoryNav activeHref="/초보/" />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        <i class="ti ti-school" aria-hidden="true"></i>
+        초보 가이드
+      </h1>
+      <p class="page-desc">선물 고르기가 처음이라면? 초보자도 쉽게 따라할 수 있는 가이드입니다.</p>
+    </header>
+
+    <div class="guide-grid">
+      {beginnerGuides.map(guide => (
+        <a href={`/선물/${guide.slug}/`} class="guide-card">
+          <article>
+            <h2 class="guide-card-title">{guide.title}</h2>
+            {guide.intro && <p class="guide-card-desc">{guide.intro}</p>}
+            <span class="guide-card-link">자세히 보기 →</span>
+          </article>
+        </a>
+      ))}
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+  .guide-card {
+    display: block;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .guide-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .guide-card-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+  .guide-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+  .guide-card-link {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+</style>

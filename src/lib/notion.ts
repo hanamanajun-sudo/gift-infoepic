@@ -268,7 +268,7 @@ function richTextToHtml(richText: any[]): string {
     if (r.annotations?.bold) text = `<strong>${text}</strong>`;
     if (r.annotations?.italic) text = `<em>${text}</em>`;
     if (r.annotations?.code) text = `<code>${text}</code>`;
-    if (r.href) text = `<a href="${r.href}" rel="noopener noreferrer">${text}</a>`;
+    if (r.href) text = `<a href="${r.href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     return text;
   }).join("");
 }
@@ -416,8 +416,37 @@ export async function getGuideContent(pageId: string): Promise<{ html: string; h
     };
   }
 
-  const response = await notion.blocks.children.list({ block_id: pageId });
-  return blocksToHtml(response.results, notion);
+  // 레이트리밋 대비 최대 3회 재시도(지수 백오프) + 100개 초과 블록 대비 전체 페이지네이션
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      if (attempt > 0) {
+        await new Promise((r) => setTimeout(r, 1000 * attempt));
+      }
+
+      let allBlocks: any[] = [];
+      let cursor: string | undefined = undefined;
+      do {
+        const response = await notion.blocks.children.list({ block_id: pageId, start_cursor: cursor });
+        allBlocks = [...allBlocks, ...response.results];
+        cursor = response.next_cursor ?? undefined;
+      } while (cursor);
+
+      if (allBlocks.length > 0) {
+        return await blocksToHtml(allBlocks, notion);
+      }
+      if (attempt < 2) continue;
+      return { html: "", headings: [] };
+    } catch (err) {
+      lastError = err instanceof Error ? err : new Error(String(err));
+      if (attempt < 2) {
+        console.warn(`[Notion] getGuideContent retry ${attempt + 1} for ${pageId.slice(0, 12)}: ${lastError.message}`);
+        continue;
+      }
+    }
+  }
+  console.error(`[Notion] getGuideContent failed for ${pageId.slice(0, 12)}: ${lastError?.message}`);
+  return { html: "", headings: [] };
 }
 
 export async function getProducts(guideId: string): Promise<Product[]> {
