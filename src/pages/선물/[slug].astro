@@ -287,16 +287,18 @@ const pairedCount = Math.min(products.length, productSections.length);
   .rank-badge[aria-label="2위"] { background: #9CA3AF; }
   .rank-badge[aria-label="3위"] { background: #CD7C2F; }
 
-  /* 이미지 (20% 축소) */
+  /* 이미지 (전체 20% 축소, 비율 유지) */
   .product-hero-img {
-    width: 100%;
-    height: 320px;
+    width: 80%;
+    margin: var(--space-4) auto 0;
+    aspect-ratio: 16/9;
     overflow: hidden;
     background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
   }
   .product-hero-img img {
     width: 100%;
-    height: 320px;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
