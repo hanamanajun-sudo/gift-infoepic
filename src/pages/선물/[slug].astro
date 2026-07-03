@@ -27,7 +27,7 @@ const [{ html: content, headings }, products, coupangProducts] = await Promise.a
   searchCoupangProducts(coupangKeyword),
 ]);
 
-// 연관 가이드: 상황·관계·나이·예산 점수 기반 매칭
+// ── 연관 가이드 ──
 const related = allGuides
   .filter(g => g.slug !== guide.slug)
   .map(g => {
@@ -42,28 +42,142 @@ const related = allGuides
   .sort((a, b) => b.score - a.score)
   .slice(0, 3)
   .map(({ g }) => g);
+
+// ── 본문 HTML을 상품 섹션 + 나머지로 분리 ──
+// 큐레이션된 가이드는 본문 앞부분에 H3(효익+상품) + p(설명) 구조로 상품이 나열됨
+// 이 부분을 products 배열과 1:1 매칭해서 상품 카드 안에 넣는다
+type ProductSection = { h3: string; paragraph: string };
+let remainingHtml = content;
+const productSections: ProductSection[] = [];
+
+if (products.length > 0) {
+  const parts: string[] = [];
+  let rest = content;
+  for (let i = 0; i < products.length; i++) {
+    // 각 상품 설명 블록(H3 + 다음 P) 찾기
+    const h3Match = rest.match(/<h3[^>]*id="[^"]*"[^>]*>.*?<\/h3>/);
+    if (!h3Match) break;
+    const h3Start = h3Match.index!;
+    const h3End = h3Start + h3Match[0].length;
+    const h3Text = h3Match[0].replace(/<[^>]+>/g, '').trim();
+
+    // H3 직후의 P 찾기
+    const afterH3 = rest.slice(h3End);
+    const pMatch = afterH3.match(/^[\s\n]*<p>.*?<\/p>/);
+    let pText = '';
+    let sectionEnd = h3End;
+    if (pMatch) {
+      pText = pMatch[0].replace(/<[^>]+>/g, '').trim();
+      sectionEnd = h3End + pMatch.index! + pMatch[0].length;
+    }
+
+    // 이전까지의 내용을 parts에 저장
+    if (i === 0) {
+      // 첫 상품 앞부분 (TOP N 제목, 가격대별표 등)
+      parts.push(rest.slice(0, h3Start));
+    }
+
+    productSections.push({ h3: h3Text, paragraph: pText });
+    rest = rest.slice(sectionEnd);
+  }
+  // 남은 내용 (선택법, 사지마세요, FAQ 등)
+  remainingHtml = rest;
+}
+
+// 상품-설명 페어링 개수만큼만 상품 표시
+const pairedCount = Math.min(products.length, productSections.length);
 ---
 
 <GuideLayout guide={guide} headings={headings} products={products}>
-  <!-- ── 추천 상품 섹션 ── -->
-  {products.length > 0 && (
-    <section class="products-section" aria-labelledby="products-heading">
+
+  <!-- ── 추천 상품 섹션 (통합형) ── -->
+  {pairedCount > 0 && (
+    <section class="merged-products" aria-labelledby="products-heading">
       <h2 id="products-heading" class="products-title">
         <i class="ti ti-star-filled" aria-hidden="true"></i>
-        추천 선물 TOP{products.length}
+        추천 선물 TOP{pairedCount}
       </h2>
-      <div class="products-list">
-        {products.map((product, i) => (
-          <ProductCard product={product} index={i} />
-        ))}
+
+      <div class="product-flow">
+        {products.slice(0, pairedCount).map((product, i) => {
+          const section = productSections[i];
+          return (
+            <article class="merged-product-card" id={`product-${i + 1}`}>
+              <!-- 순위 배지 -->
+              <div class="rank-badge" aria-label={`${i + 1}위`}>{i + 1}</div>
+
+              <!-- 상품 이미지 (크게) -->
+              {product.imageUrl && (
+                <div class="product-hero-img">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </div>
+              )}
+
+              <!-- 상품 설명 (H3 문구) -->
+              {section.h3 && <h3 class="product-desc-heading">{section.h3}</h3>}
+
+              <!-- 상품 설명 (본문) -->
+              {section.paragraph && <p class="product-desc-text">{section.paragraph}</p>}
+
+              <!-- 상품 정보 카드 -->
+              <div class="product-meta">
+                <div class="product-meta-header">
+                  <h4 class="product-meta-name">{product.name}</h4>
+                  {product.price && (
+                    <span class="product-meta-price">
+                      {product.price.toLocaleString('ko-KR')}원
+                    </span>
+                  )}
+                </div>
+
+                {product.pros && (
+                  <p class="product-meta-pros">{product.pros}</p>
+                )}
+
+                <!-- 구매 링크 -->
+                {(product.naverUrl || product.coupangUrl) && (
+                  <div class="product-meta-links">
+                    {product.naverUrl && product.naverUrl !== '#' && (
+                      <a
+                        href={product.naverUrl}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        class="product-link-btn naver"
+                      >
+                        <i class="ti ti-external-link" aria-hidden="true"></i>
+                        네이버 쇼핑
+                      </a>
+                    )}
+                    {product.coupangUrl && product.coupangUrl !== '#' && (
+                      <a
+                        href={product.coupangUrl}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        class="product-link-btn coupang"
+                      >
+                        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+                        쿠팡에서 최저가 확인
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   )}
 
-  <!-- ── 본문 콘텐츠 (Notion 블록) ── -->
-  {content && (
+  <!-- ── 나머지 본문 (가격대별표, 선택법, 사지마세요, FAQ 등) ── -->
+  {remainingHtml && remainingHtml.trim() && (
     <article class="guide-content" data-pagefind-body>
-      <div set:html={content} />
+      <div set:html={remainingHtml} />
     </article>
   )}
 
@@ -125,26 +239,153 @@ const related = allGuides
 </GuideLayout>
 
 <style>
-  /* 추천 상품 */
-  .products-section { margin-bottom: var(--space-10); }
+  /* ── 통합 상품 카드 ── */
+  .merged-products { margin-bottom: var(--space-10); }
   .products-title {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
     color: var(--color-text);
   }
   .products-title i { color: var(--color-accent); }
-  .products-list {
+
+  .product-flow {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
-    padding-top: var(--space-2);
+    gap: var(--space-8);
   }
 
-  /* 관심사 태그 */
+  .merged-product-card {
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .rank-badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-bold);
+    color: white;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .rank-badge[aria-label="1위"] { background: #F59E0B; }
+  .rank-badge[aria-label="2위"] { background: #9CA3AF; }
+  .rank-badge[aria-label="3위"] { background: #CD7C2F; }
+
+  /* 이미지 (크게) */
+  .product-hero-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--color-bg-subtle);
+  }
+  .product-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 설명 H3 */
+  .product-desc-heading {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    padding: var(--space-5) var(--space-5) 0;
+    margin: 0;
+  }
+
+  .product-desc-text {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    padding: var(--space-3) var(--space-5) 0;
+    margin: 0;
+  }
+
+  /* 상품 정보 카드 (하단) */
+  .product-meta {
+    padding: var(--space-5);
+    margin: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+  }
+
+  .product-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .product-meta-name {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    flex: 1;
+    line-height: var(--leading-snug);
+    margin: 0;
+  }
+  .product-meta-price {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-dark);
+    white-space: nowrap;
+  }
+
+  .product-meta-pros {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    margin: var(--space-2) 0 0;
+  }
+
+  .product-meta-links {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .product-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  .product-link-btn.coupang {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+  .product-link-btn.coupang:hover { background: #F59E0B; color: white; }
+  .product-link-btn.naver {
+    background: #DCFCE7;
+    color: #14532D;
+  }
+  .product-link-btn.naver:hover { background: #16A34A; color: white; }
+
+  /* ── (기존 스타일 유지) ── */
   .interests-tags {
     display: flex;
     flex-wrap: wrap;
@@ -160,8 +401,6 @@ const related = allGuides
     color: var(--color-text-muted);
     margin-right: var(--space-2);
   }
-
-  /* 쿠팡 실시간 추천 */
   .coupang-section {
     margin: var(--space-12) 0;
     padding-top: var(--space-8);
@@ -189,7 +428,6 @@ const related = allGuides
   }
   @media (min-width: 640px) { .coupang-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 900px) { .coupang-grid { grid-template-columns: repeat(4, 1fr); } }
-
   .coupang-card {
     display: flex;
     flex-direction: column;
@@ -200,68 +438,16 @@ const related = allGuides
     color: inherit;
     transition: box-shadow var(--transition-fast), transform var(--transition-fast);
   }
-  .coupang-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-  .coupang-img-wrap {
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: var(--color-bg-subtle);
-  }
+  .coupang-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .coupang-img-wrap { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--color-bg-subtle); }
   .coupang-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-  .coupang-info {
-    padding: var(--space-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-  .coupang-name {
-    font-size: var(--text-xs);
-    color: var(--color-text);
-    line-height: var(--leading-snug);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .coupang-price {
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-primary-dark);
-  }
-  .rocket-badge {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: var(--radius-full);
-    background: #E4393C;
-    color: white;
-    font-weight: var(--font-weight-semibold);
-    width: fit-content;
-  }
-
-  /* 연관 가이드 */
-  .related-section {
-    margin-top: var(--space-12);
-    padding-top: var(--space-8);
-    border-top: 2px solid var(--color-border-subtle);
-  }
-  .related-title {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--space-5);
-    color: var(--color-text);
-  }
-  .related-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
+  .coupang-info { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+  .coupang-name { font-size: var(--text-xs); color: var(--color-text); line-height: var(--leading-snug); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .coupang-price { font-size: var(--text-sm); font-weight: var(--font-weight-bold); color: var(--color-primary-dark); }
+  .rocket-badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: var(--radius-full); background: #E4393C; color: white; font-weight: var(--font-weight-semibold); width: fit-content; }
+  .related-section { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 2px solid var(--color-border-subtle); }
+  .related-title { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-5); color: var(--color-text); }
+  .related-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
   @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 900px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>

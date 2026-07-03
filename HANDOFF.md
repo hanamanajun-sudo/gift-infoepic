@@ -183,6 +183,10 @@ fetch(url, {
 
 **제외한 후보와 그 이유도 같이 보여줄 것.** 이 단계가 "사람이 골랐다"는 느낌을 주는 핵심.
 
+> **⚠️ 승인 = 곧바로 배포까지 자동 진행**
+> 사용자가 승인하면 그 즉시 5-6(본문작성) → 5-7(검증) → 5-8(배포)까지 전부 실행한다.
+> "푸시할까요?" 같은 확인을 다시 묻지 않고 한 번에 끝까지 간다.
+
 ### 5-6. 본문 작성 + Notion 반영
 
 `scripts/content/guides/13세-여자아이-생일선물.mjs`를 열어 구조 참고해서 새 파일 생성:
@@ -201,12 +205,25 @@ export const products = [ ... ];    // { name, price, naverUrl, coupangUrl?, ima
 
 작성 후 실행:
 ```bash
-node --env-file=.env scripts/content/push.mjs {슬러그}
+node scripts/content/push.mjs {슬러그}
 ```
+
+> **참고**: `--env-file` 플래그 없이 실행한다 (`push.mjs`가 내부에서 .env를 직접 읽음).
 
 **push.mjs가 하는 일**: Notion GiftGuides에서 슬러그로 페이지 찾기 → intro 갱신 → 기존 본문 블록 전부 삭제 → 새 블록 추가 → 기존 연결 Products 아카이브 → 새 상품 생성.
 
 **재실행 안전**: 기존 블록/상품을 지우고 새로 채우는 방식이므로 여러 번 실행해도 문제없음.
+
+### 5-6b. 캐시 갱신 (필수 — 빌드가 캐시를 사용함)
+
+```bash
+python scripts/_dump_notion_cache.py
+```
+
+> 이 프로젝트는 `@notionhq/client` 라이브러리가 Windows 환경에서 Notion API 연결에 실패하는 문제가 있다.
+> 해결책으로 `src/data/notion-cache.json`(Python으로 생성)을 빌드 시 읽어서 fallback한다.
+> **Notion에 가이드를 반영한 후에는 반드시 캐시를 재생성해야 빌드가 최신 데이터를 반영한다.**
+> Note: 이 스크립트는 임시 디버그용이며, 다음 작업자가 `scripts/` 내에 캐시 생성 전용 스크립트를 만들 예정.
 
 ### 5-7. 검증
 
