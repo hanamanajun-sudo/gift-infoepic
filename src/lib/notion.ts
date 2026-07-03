@@ -248,7 +248,7 @@ function parseProduct(page: any): Product {
   const p = page.properties;
   return {
     id: page.id,
-    name: getTitle(p.Name),
+    name: getTitle(p.Title),
     price: getNumber(p.price),
     coupangUrl: getUrl(p.coupangUrl),
     naverUrl: getUrl(p.naverUrl),
@@ -285,7 +285,7 @@ function slugify(text: string): string {
     .slice(0, 60);
 }
 
-function blocksToHtml(blocks: any[]): { html: string; headings: Heading[] } {
+async function blocksToHtml(blocks: any[], notion: Client): Promise<{ html: string; headings: Heading[] }> {
   let html = "";
   const headings: Heading[] = [];
   let inBulletList = false;
@@ -337,6 +337,19 @@ function blocksToHtml(blocks: any[]): { html: string; headings: Heading[] } {
           : block.image?.file?.url ?? "";
         const caption = plainText(block.image?.caption ?? []);
         html += `<figure><img src="${url}" alt="${caption}" loading="lazy" decoding="async">${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>\n`;
+        break;
+      }
+      case "table": {
+        const rowsResp = await notion.blocks.children.list({ block_id: block.id });
+        const hasHeader = block.table?.has_column_header;
+        let rowsHtml = "";
+        rowsResp.results.forEach((rowBlock: any, i: number) => {
+          const cells: any[][] = rowBlock.table_row?.cells ?? [];
+          const cellTag = hasHeader && i === 0 ? "th" : "td";
+          const cellsHtml = cells.map((cell) => `<${cellTag}>${richTextToHtml(cell)}</${cellTag}>`).join("");
+          rowsHtml += `<tr>${cellsHtml}</tr>\n`;
+        });
+        html += `<table>\n${rowsHtml}</table>\n`;
         break;
       }
       case "divider":
@@ -404,7 +417,7 @@ export async function getGuideContent(pageId: string): Promise<{ html: string; h
   }
 
   const response = await notion.blocks.children.list({ block_id: pageId });
-  return blocksToHtml(response.results);
+  return blocksToHtml(response.results, notion);
 }
 
 export async function getProducts(guideId: string): Promise<Product[]> {

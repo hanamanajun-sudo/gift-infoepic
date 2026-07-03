@@ -133,6 +133,21 @@ a:hover { color: var(--color-link-hover); }
 .guide-content strong { font-weight: var(--font-weight-bold); }
 .guide-content a { color: var(--color-link); text-decoration: underline; text-decoration-color: var(--color-primary-light); }
 .guide-content a:hover { color: var(--color-link-hover); }
+.guide-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-6);
+  font-size: var(--text-sm);
+}
+.guide-content th, .guide-content td {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+.guide-content th {
+  background: var(--color-bg-subtle);
+  font-weight: var(--font-weight-semibold);
+}
 
 /* ── Search Modal (Pagefind) ── */
 :root {

@@ -21,7 +21,7 @@ export default defineConfig({
     rehypePlugins: [rehypeLazyImages],
   },
   output: 'static',
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   vite: {
     plugins: [tailwindcss()],
   },
