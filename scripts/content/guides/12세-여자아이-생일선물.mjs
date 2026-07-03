@@ -1,42 +1,13 @@
-import { Client } from '@notionhq/client';
+import { h2, h3, p, bullet, table } from '../lib.mjs';
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const GUIDES_DB_ID = process.env.NOTION_GUIDES_DB_ID;
+export const slug = '12세-여자아이-생일선물';
 
-const SLUG = '12세-여자아이-생일선물';
-
-const NEW_INTRO =
+export const intro =
   '12세 여자아이는 초등학교 마지막 해를 보내며 취향이 뚜렷해지는 시기예요. ' +
   '친구들 사이 유행에 민감해지고 꾸미기·화장에 관심이 생기기 시작하지만, 아직 어린이다운 즐거움도 함께 갖고 있어요. ' +
   '실제 블로그 후기, 유튜브 댓글, 일본 커뮤니티 사례를 교차 검증해서 이 시기 아이들이 진짜 반응했던 선물만 골랐습니다.';
 
-// ── 리치텍스트 헬퍼 ──────────────────────────────────────────────────────
-const rt = (text, opts = {}) => [{ type: 'text', text: { content: text }, annotations: opts }];
-
-const h2 = (text) => ({ object: 'block', type: 'heading_2', heading_2: { rich_text: rt(text) } });
-const h3 = (text) => ({ object: 'block', type: 'heading_3', heading_3: { rich_text: rt(text) } });
-const p = (text) => ({ object: 'block', type: 'paragraph', paragraph: { rich_text: rt(text) } });
-const bullet = (text) => ({ object: 'block', type: 'bulleted_list_item', bulleted_list_item: { rich_text: rt(text) } });
-
-function table(headerRow, rows) {
-  const toRow = (cells) => ({
-    object: 'block',
-    type: 'table_row',
-    table_row: { cells: cells.map((c) => rt(c)) },
-  });
-  return {
-    object: 'block',
-    type: 'table',
-    table: {
-      table_width: headerRow.length,
-      has_column_header: true,
-      has_row_header: false,
-      children: [toRow(headerRow), ...rows.map(toRow)],
-    },
-  };
-}
-
-const BLOCKS = [
+export const blocks = [
   h2('가격대별로 고르기'),
   table(
     ['예산', '추천 상품', '이유'],
@@ -68,44 +39,45 @@ const BLOCKS = [
   p('팔찌메이커나 레고 같은 조립·DIY 키트는 형제 간 다툼 소지가 있으니, 1인용으로 명확히 구분되는 선물을 고르는 게 좋습니다.'),
 ];
 
-async function main() {
-  const search = await notion.databases.query({
-    database_id: GUIDES_DB_ID,
-    filter: { property: 'slug', rich_text: { equals: SLUG } },
-  });
-
-  const guide = search.results[0];
-  if (!guide) {
-    console.error(`슬러그 "${SLUG}"를 가진 가이드를 찾지 못했습니다.`);
-    process.exit(1);
-  }
-
-  console.log(`가이드 페이지 발견: ${guide.id}`);
-
-  // intro 갱신
-  await notion.pages.update({
-    page_id: guide.id,
-    properties: {
-      intro: { rich_text: rt(NEW_INTRO) },
-    },
-  });
-  console.log('intro 갱신 완료');
-
-  // 기존 본문 블록 삭제
-  const existing = await notion.blocks.children.list({ block_id: guide.id });
-  for (const block of existing.results) {
-    await notion.blocks.delete({ block_id: block.id });
-  }
-  console.log(`기존 블록 ${existing.results.length}개 삭제 완료`);
-
-  // 새 본문 추가 (100개 제한 고려 — 지금은 20개 내외라 한 번에 전송)
-  await notion.blocks.children.append({ block_id: guide.id, children: BLOCKS });
-  console.log(`새 블록 ${BLOCKS.length}개 추가 완료`);
-
-  console.log('\n완료:', guide.id);
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+export const products = [
+  {
+    name: '레고 프렌즈 하트레이크 시티 아파트와 상점 42670',
+    price: 159900,
+    naverUrl: 'https://search.shopping.naver.com/catalog/59557782476',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_5955778/59557782476.20260406093425.jpg',
+    rank: 1,
+    pros: '독립된 블로그 3곳에서 반복 언급된 스테디셀러. 고급 브릭 조립으로 몰입감이 높고, 완성 후에도 갖고 놀 수 있어 만족도가 오래갑니다.',
+  },
+  {
+    name: '봉봉프렌즈 어린이 화장품 봉봉 메이크업박스 5종세트',
+    price: 47560,
+    naverUrl: 'https://search.shopping.naver.com/catalog/51652538619',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_5165253/51652538619.20250102121122.jpg',
+    rank: 2,
+    pros: '꾸미기·화장에 관심이 생기기 시작하는 시기 심리와 정확히 맞아떨어지는 아이템. 키즈 전용 순한 성분이라 부모도 안심할 수 있습니다.',
+  },
+  {
+    name: '다름인터내셔널 디알고 고양이귀 키즈 블루투스 스터디 헤드셋',
+    price: 31150,
+    naverUrl: 'https://search.shopping.naver.com/catalog/54067898167',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_5406789/54067898167.20250411161909.jpg',
+    rank: 3,
+    pros: '"4세부터 12세까지 오래 쓸 수 있다"는 실사용 후기가 확인된 제품. 학습·인강용으로도 매일 쓸 수 있어 실용성이 높습니다.',
+  },
+  {
+    name: '우정 예술 공예 팔찌 문자열 메이커 키트',
+    price: 27300,
+    naverUrl: 'https://smartstore.naver.com/main/products/13421887303',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_9096639/90966397639.jpg',
+    rank: 4,
+    pros: '같은 카테고리 제품 실사용 후기에서 "대만족" 반응이 확인됐습니다. 완성한 팔찌를 직접 착용할 수 있어 성취감이 큽니다.',
+  },
+  {
+    name: '디알고 어린이이어셋 청력보호 블루투스 골전도 키즈 이어폰',
+    price: 19800,
+    naverUrl: 'https://smartstore.naver.com/main/products/12247815836',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_8979232/89792326552.jpg',
+    rank: 5,
+    pros: '위시리스트형 유튜브 댓글에서 최다 언급된 카테고리. 일반 이어폰 대신 골전도를 채택해 초등학생 안전성을 우선했습니다.',
+  },
+];
