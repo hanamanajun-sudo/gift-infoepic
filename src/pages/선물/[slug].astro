@@ -105,6 +105,7 @@ const pairedCount = Math.min(products.length, productSections.length);
   <!-- ── 추천 상품 섹션 (통합형) ── -->
   {pairedCount > 0 && (
     <section class="merged-products" aria-labelledby="products-heading">
+      <p class="affiliate-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 일정액의 수수료를 제공받을 수 있습니다.</p>
       <h2 id="products-heading" class="products-title">
         <i class="ti ti-star-filled" aria-hidden="true"></i>
         추천 선물 TOP{pairedCount}
@@ -160,6 +161,7 @@ const pairedCount = Math.min(products.length, productSections.length);
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                         class="product-link-btn naver"
+                        onclick={`gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'naver'})`}
                       >
                         <i class="ti ti-external-link" aria-hidden="true"></i>
                         네이버 쇼핑 최저가 확인
@@ -171,6 +173,7 @@ const pairedCount = Math.min(products.length, productSections.length);
                         target="_blank"
                         rel="noopener noreferrer sponsored"
                         class="product-link-btn coupang"
+                        onclick={`gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'coupang'})`}
                       >
                         <i class="ti ti-shopping-cart" aria-hidden="true"></i>
                         쿠팡 최저가 확인
@@ -253,6 +256,15 @@ const pairedCount = Math.min(products.length, productSections.length);
 <style>
   /* ── 통합 상품 카드 ── */
   .merged-products { margin-bottom: var(--space-10); }
+  .affiliate-notice {
+    font-size: var(--text-xs);
+    color: var(--color-text-light);
+    text-align: center;
+    margin-bottom: var(--space-4);
+    padding: var(--space-2);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-md);
+  }
   .products-title {
     display: flex;
     align-items: center;
