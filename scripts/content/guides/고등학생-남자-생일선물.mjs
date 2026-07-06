@@ -127,10 +127,10 @@ export const products = [
     pros: '중2~3 게이밍헤드셋과 다른 게이밍 장비. 초경량 무선. FPS 게임 필수템.',
   },
   {
-    name: '남성 소가죽 자동 벨트 정장',
+    name: '교체용 소가죽 벨트띠 자동 벨트끈 남성',
     price: 9600,
-    naverUrl: 'https://smartstore.naver.com/main/products/5259894475',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8261777/82617771620.jpg',
+    naverUrl: 'https://smartstore.naver.com/main/products/11919210488',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_8946372/89463721176.jpg',
     rank: 5,
     pros: '첫 정장 악세서리. 16세 실버팔찌(패션)와 차별화. 면접·졸업식 필수.',
   },
