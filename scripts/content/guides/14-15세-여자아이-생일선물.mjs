@@ -130,8 +130,8 @@ export const products = [
   {
     name: '감성미니무드등 침실수면등 인테리어램프 밝기조절',
     price: 29000,
-    naverUrl: 'https://smartstore.naver.com/main/products/12708022423',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9025253/90252533347.jpg',
+    naverUrl: 'https://smartstore.naver.com/main/products/13639780815',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_9118429/91184291524.jpg',
     rank: 6,
     pros: '여고생 대형무드등(79,900)보다 가벼운 입문용. 방꾸미기 첫템.',
   },

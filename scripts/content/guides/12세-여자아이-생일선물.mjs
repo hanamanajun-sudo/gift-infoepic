@@ -67,8 +67,8 @@ export const products = [
   {
     name: '우정 예술 공예 팔찌 문자열 메이커 키트',
     price: 27300,
-    naverUrl: 'https://smartstore.naver.com/main/products/13421887303',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9096639/90966397639.jpg',
+    naverUrl: 'https://search.shopping.naver.com/catalog/60653641800',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_6065364/60653641800.20260630180034.jpg',
     rank: 4,
     pros: '같은 카테고리 제품 실사용 후기에서 "대만족" 반응이 확인됐습니다. 완성한 팔찌를 직접 착용할 수 있어 성취감이 큽니다.',
   },

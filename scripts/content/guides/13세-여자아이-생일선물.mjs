@@ -103,8 +103,8 @@ export const products = [
   {
     name: '다꾸 랜덤박스 스티커 도무송 문구 캐릭터 선물 세트',
     price: 10000,
-    naverUrl: 'https://smartstore.naver.com/main/products/5137822342',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8268234/82682343054.5.jpg',
+    naverUrl: 'https://smartstore.naver.com/main/products/5660551602',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_8320504/83205048937.18.jpg',
     rank: 3,
     pros: '중1 다꾸 시작 필수템. 10,000원 가성비. 스티커+떡메모지+캐릭터 포함.',
   },

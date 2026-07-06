@@ -135,8 +135,8 @@ export const products = [
   {
     name: 'SYMA X5 입문용 드론 초보자 교육용',
     price: 49800,
-    naverUrl: 'https://smartstore.naver.com/main/products/384070486',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9659484/9659484234.25.jpg',
+    naverUrl: 'https://search.shopping.naver.com/catalog/59487408772',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_5948740/59487408772.20260619171843.jpg',
     rank: 2,
     pros: '블로그 "초등 고학년 남아 어린이날 선물로 드론 인기" 확인. 초보자용 쉬운 조종, 10분+ 비행.',
   },
@@ -151,8 +151,8 @@ export const products = [
   {
     name: '이니셜 각인 소가죽 반지갑 중학생 선물포장',
     price: 39900,
-    naverUrl: 'https://smartstore.naver.com/main/products/7649430562',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8519393/85193930884.1.jpg',
+    naverUrl: 'https://smartstore.naver.com/main/products/5286671927',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_8283116/82831164069.1.jpg',
     rank: 4,
     pros: '일본 "おもちゃ以外" 1순위(財布). 이니셜 각인으로 특별함 추가. 중학교 필수템.',
   },

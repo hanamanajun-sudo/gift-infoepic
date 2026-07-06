@@ -122,8 +122,8 @@ export const products = [
   {
     name: '아떼 어센틱 립 글로이 밤 3.5g x 2개 SET',
     price: 43900,
-    naverUrl: 'https://smartstore.naver.com/main/products/11514621681',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8905913/89059132054.33.jpg',
+    naverUrl: 'https://search.shopping.naver.com/catalog/51929499372',
+    imageUrl: 'https://shopping-phinf.pstatic.net/main_5192949/51929499372.20241213220754.jpg',
     rank: 5,
     pros: '틴트보다 자연스럽고 립밤보다 발색. 여고생 메이크업 첫템. 2개 세트.',
   },
