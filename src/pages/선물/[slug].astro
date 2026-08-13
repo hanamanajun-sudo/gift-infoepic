@@ -28,8 +28,13 @@ const [{ html: content, headings }, products, coupangProducts] = await Promise.a
 ]);
 
 // ── 연관 가이드 ──
+// 성별이 명확히 반대인 가이드(아들↔딸, 남아↔여아 등)는 추천에서 제외.
+// 둘 중 하나라도 성별이 비어있거나 '공통'이면 기존처럼 제외하지 않는다.
+const OPPOSITE_GENDER: Record<string, string> = { '여성': '남성', '남성': '여성', '여아': '남아', '남아': '여아' };
+const relatedOppositeGender = OPPOSITE_GENDER[guide.recipientGender];
 const related = allGuides
   .filter(g => g.slug !== guide.slug)
+  .filter(g => !(relatedOppositeGender && g.recipientGender === relatedOppositeGender))
   .map(g => {
     let score = 0;
     if (g.occasion.some(o => guide.occasion.includes(o))) score += 3;

@@ -23,7 +23,8 @@ const breadcrumbs = [
   { label: guide.title, href: '' },
 ];
 
-const jsonLd = {
+// 상품이 없는 관계형/허브 페이지(예: 아들-생일선물)는 빈 ItemList 대신 CollectionPage로 표시
+const jsonLd = products.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": guide.title,
@@ -35,6 +36,12 @@ const jsonLd = {
     "name": p.name,
     "url": p.coupangUrl || p.naverUrl || `${SITE}/선물/${guide.slug}/`,
   })),
+} : {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": guide.title,
+  "description": guide.description,
+  "url": `${SITE}/선물/${guide.slug}/`,
 };
 ---
 
