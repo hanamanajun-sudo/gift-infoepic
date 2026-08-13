@@ -105,7 +105,7 @@ if (products.length > 0 && content) {
 const pairedCount = Math.min(products.length, productSections.length);
 ---
 
-<GuideLayout guide={guide} headings={headings} products={products}>
+<GuideLayout guide={guide} headings={headings} products={products.slice(0, pairedCount)}>
 
   <!-- ── 추천 상품 섹션 (통합형) ── -->
   {pairedCount > 0 && (
