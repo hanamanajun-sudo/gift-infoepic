@@ -16,7 +16,11 @@ function rehypeLazyImages() {
 
 export default defineConfig({
   site: 'https://gift.infoepic.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/search'),
+    }),
+  ],
   markdown: {
     rehypePlugins: [rehypeLazyImages],
   },
