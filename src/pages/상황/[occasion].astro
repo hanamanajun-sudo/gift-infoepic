@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import GiftCard from '../../components/GiftCard.astro';
 import CategoryNav from '../../components/CategoryNav.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import HubSelector from '../../components/HubSelector.astro';
 import { getGiftGuides } from '../../lib/notion';
 
 export const getStaticPaths = async () => {
@@ -46,9 +47,54 @@ const breadcrumbs = [
     </header>
 
     {guides.length > 0 ? (
-      <div class="guide-grid">
-        {guides.map(guide => <GiftCard guide={guide} />)}
-      </div>
+      <Fragment>
+        <HubSelector guides={guides} mode="occasion" />
+
+        {occasion === '생일' && (
+          <Fragment>
+            <section class="hub-extra" aria-labelledby="fail-box-title">
+              <h2 id="fail-box-title" class="hub-extra-title">
+                <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+                이럴 땐 피하세요
+              </h2>
+              <ul class="fail-box-list">
+                <li><strong>사이즈를 모르면</strong> — 의류·신발은 피하고, 액세서리·상품권처럼 사이즈와 무관한 카테고리를 고르세요.</li>
+                <li><strong>향 취향을 모르면</strong> — 향수·바디케어보다 실용템이나 상품권이 안전합니다.</li>
+                <li><strong>상대 취향을 전혀 모르면</strong> — 고가의 취미 용품보다 상품권·문구처럼 개인화 부담이 적은 카테고리를 먼저 보세요.</li>
+                <li><strong>생일이 임박했다면</strong> — 당일·익일 배송이 가능한 카테고리나 모바일 상품권을 확인하세요.</li>
+              </ul>
+            </section>
+
+            <section class="hub-extra" aria-labelledby="compare-table-title">
+              <h2 id="compare-table-title" class="hub-extra-title">
+                <i class="ti ti-table" aria-hidden="true"></i>
+                카테고리 비교
+              </h2>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr><th>카테고리</th><th>무난함</th><th>개인화 필요도</th><th>교환 필요성</th><th>급한 구매 적합성</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>상품권·기프트카드</td><td>상</td><td>하</td><td>낮음</td><td>상</td></tr>
+                    <tr><td>꽃다발</td><td>상</td><td>하</td><td>낮음</td><td>상</td></tr>
+                    <tr><td>액세서리·주얼리</td><td>중</td><td>중</td><td>낮음~중간</td><td>중</td></tr>
+                    <tr><td>향수</td><td>하</td><td>상</td><td>낮음(미개봉 시)</td><td>하</td></tr>
+                    <tr><td>의류·잡화</td><td>하</td><td>상</td><td>높음</td><td>하</td></tr>
+                    <tr><td>취미 용품</td><td>하</td><td>상</td><td>중간</td><td>중</td></tr>
+                    <tr><td>뷰티·코스메</td><td>중</td><td>중~상</td><td>낮음~중간</td><td>중</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="compare-table-note">개인화 필요도가 높을수록 상대의 취향을 정확히 알아야 실패 확률이 낮습니다. 취향을 잘 모른다면 무난함이 높은 카테고리부터 비교해 보세요.</p>
+            </section>
+          </Fragment>
+        )}
+
+        <div class="guide-grid">
+          {guides.map(guide => <GiftCard guide={guide} />)}
+        </div>
+      </Fragment>
     ) : (
       <div class="empty-state">
         <i class="ti ti-gift-off" aria-hidden="true"></i>
@@ -82,4 +128,27 @@ const breadcrumbs = [
   }
   .empty-state i { font-size: 3rem; color: var(--color-text-light); }
   .empty-state p { font-size: var(--text-lg); color: var(--color-text-muted); }
+
+  .hub-extra { margin-bottom: var(--space-8); }
+  .hub-extra-title {
+    display: flex; align-items: center; gap: var(--space-2);
+    font-size: var(--text-lg); font-weight: var(--font-weight-bold);
+    color: var(--color-text); margin-bottom: var(--space-4);
+  }
+  .fail-box-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+  .fail-box-list li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-subtle); border-radius: var(--radius-md);
+    font-size: var(--text-sm); color: var(--color-text);
+  }
+  .fail-box-list strong { color: var(--color-primary-dark); }
+
+  .compare-table-wrap { overflow-x: auto; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+  .compare-table th, .compare-table td {
+    padding: var(--space-2) var(--space-3); text-align: left;
+    border-bottom: 1px solid var(--color-border-subtle); white-space: nowrap;
+  }
+  .compare-table th { color: var(--color-text-muted); font-weight: var(--font-weight-semibold); }
+  .compare-table-note { margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted); }
 </style>

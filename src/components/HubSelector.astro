@@ -1,0 +1,195 @@
+---
+import type { GiftGuide } from '../lib/notion';
+
+interface Props {
+  guides: GiftGuide[];
+  mode: 'occasion' | 'budget';
+}
+
+const { guides, mode } = Astro.props;
+
+const uniq = (arr: string[]) => [...new Set(arr)].filter(Boolean);
+
+const relations = uniq(guides.flatMap(g => g.relation));
+const ages = uniq(guides.flatMap(g => g.ageGroup));
+const thirdOptions = mode === 'occasion'
+  ? uniq(guides.flatMap(g => g.budgetTag))
+  : uniq(guides.flatMap(g => g.occasion));
+const thirdLabel = mode === 'occasion' ? '예산' : '상황';
+const thirdIcon = mode === 'occasion' ? 'ti-wallet' : 'ti-calendar';
+
+const AGE_ORDER = ['유아', '7세', '8세', '9세', '초등학생', '10세', '12세', '13세', '14세', '15세', '16세', '중학생', '고등학생', '20대', '30대', '40대', '50대'];
+ages.sort((a, b) => {
+  const ia = AGE_ORDER.indexOf(a), ib = AGE_ORDER.indexOf(b);
+  if (ia === -1 && ib === -1) return a.localeCompare(b);
+  if (ia === -1) return 1;
+  if (ib === -1) return -1;
+  return ia - ib;
+});
+
+const BUDGET_ORDER = ['1만원이하', '3만원이하', '5만원이하', '10만원이하', '20만원이하', '20만원이상'];
+if (mode === 'occasion') {
+  thirdOptions.sort((a, b) => {
+    const ia = BUDGET_ORDER.indexOf(a), ib = BUDGET_ORDER.indexOf(b);
+    if (ia === -1 || ib === -1) return a.localeCompare(b);
+    return ia - ib;
+  });
+}
+---
+
+<section class="hub-selector" aria-label="조건으로 좁혀 보기">
+  <h2 class="hub-selector-title">
+    <i class="ti ti-filter-search" aria-hidden="true"></i>
+    조건으로 좁혀 보기
+  </h2>
+  <p class="hub-selector-sub">받는 사람의 관계·나이·{thirdLabel}을 선택하면 맞는 가이드만 남습니다.</p>
+
+  <div class="hub-selector-controls">
+    <label class="hub-select-label">
+      <span><i class="ti ti-heart" aria-hidden="true"></i> 관계</span>
+      <select id="hub-filter-relation" class="hub-select">
+        <option value="">전체</option>
+        {relations.map(r => <option value={r}>{r}</option>)}
+      </select>
+    </label>
+    <label class="hub-select-label">
+      <span><i class="ti ti-users" aria-hidden="true"></i> 나이</span>
+      <select id="hub-filter-age" class="hub-select">
+        <option value="">전체</option>
+        {ages.map(a => <option value={a}>{a}</option>)}
+      </select>
+    </label>
+    <label class="hub-select-label">
+      <span><i class={`ti ${thirdIcon}`} aria-hidden="true"></i> {thirdLabel}</span>
+      <select id="hub-filter-third" class="hub-select">
+        <option value="">전체</option>
+        {thirdOptions.map(t => <option value={t}>{t}</option>)}
+      </select>
+    </label>
+    <button type="button" id="hub-filter-reset" class="hub-filter-reset">초기화</button>
+  </div>
+
+  <p id="hub-filter-count" class="hub-filter-count" aria-live="polite">가이드 {guides.length}개 표시 중</p>
+
+  <div id="hub-filter-empty" class="hub-filter-empty" hidden>
+    <i class="ti ti-mood-empty" aria-hidden="true"></i>
+    조건에 맞는 가이드가 없어요. 조건을 하나씩 풀어보세요.
+  </div>
+
+  <ul class="hub-filter-list">
+    {guides.map(g => (
+      <li
+        class="hub-filter-item"
+        data-relation={g.relation.join(' ')}
+        data-age={g.ageGroup.join(' ')}
+        data-third={mode === 'occasion' ? g.budgetTag.join(' ') : g.occasion.join(' ')}
+      >
+        <a href={`/선물/${g.slug}/`}>{g.title}</a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script is:inline>
+  (function () {
+    var relSel = document.getElementById('hub-filter-relation');
+    var ageSel = document.getElementById('hub-filter-age');
+    var thirdSel = document.getElementById('hub-filter-third');
+    var resetBtn = document.getElementById('hub-filter-reset');
+    var countEl = document.getElementById('hub-filter-count');
+    var emptyEl = document.getElementById('hub-filter-empty');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.hub-filter-item'));
+    if (!relSel || !ageSel || !thirdSel) return;
+
+    function matches(list, value) {
+      if (!value) return true;
+      return (list || '').split(' ').indexOf(value) !== -1;
+    }
+
+    function apply() {
+      var rel = relSel.value, age = ageSel.value, third = thirdSel.value;
+      var shown = 0;
+      items.forEach(function (li) {
+        var ok = matches(li.getAttribute('data-relation'), rel)
+          && matches(li.getAttribute('data-age'), age)
+          && matches(li.getAttribute('data-third'), third);
+        li.hidden = !ok;
+        if (ok) shown++;
+      });
+      countEl.textContent = (rel || age || third)
+        ? '가이드 ' + shown + '개 표시 중'
+        : '가이드 ' + items.length + '개 표시 중';
+      emptyEl.hidden = shown !== 0;
+    }
+
+    relSel.addEventListener('change', apply);
+    ageSel.addEventListener('change', apply);
+    thirdSel.addEventListener('change', apply);
+    resetBtn.addEventListener('click', function () {
+      relSel.value = '';
+      ageSel.value = '';
+      thirdSel.value = '';
+      apply();
+    });
+  })();
+</script>
+
+<style>
+  .hub-selector {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6) var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+  .hub-selector-title {
+    display: flex; align-items: center; gap: var(--space-2);
+    font-size: var(--text-lg); font-weight: var(--font-weight-bold);
+    color: var(--color-text); margin-bottom: var(--space-2);
+  }
+  .hub-selector-sub { color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-4); }
+
+  .hub-selector-controls {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);
+    align-items: end;
+  }
+  @media (min-width: 640px) { .hub-selector-controls { grid-template-columns: repeat(3, 1fr) auto; } }
+
+  .hub-select-label { display: flex; flex-direction: column; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .hub-select {
+    padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md); background: var(--color-bg); color: var(--color-text);
+    font-family: inherit; font-size: var(--text-sm); cursor: pointer;
+  }
+  .hub-filter-reset {
+    padding: var(--space-2) var(--space-4); border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md); background: var(--color-bg); color: var(--color-text-muted);
+    font-size: var(--text-sm); cursor: pointer; white-space: nowrap;
+  }
+  .hub-filter-reset:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+
+  .hub-filter-count { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  .hub-filter-empty {
+    display: flex; align-items: center; gap: var(--space-2);
+    margin-top: var(--space-2); padding: var(--space-4);
+    background: var(--color-bg); border-radius: var(--radius-md);
+    color: var(--color-text-muted); font-size: var(--text-sm);
+  }
+
+  .hub-filter-list {
+    list-style: none; padding: 0; margin: var(--space-3) 0 0;
+    display: grid; grid-template-columns: 1fr; gap: var(--space-2);
+  }
+  @media (min-width: 640px) { .hub-filter-list { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .hub-filter-list { grid-template-columns: repeat(3, 1fr); } }
+
+  .hub-filter-item a {
+    display: block; padding: var(--space-3) var(--space-4);
+    background: var(--color-bg); border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md); color: var(--color-text);
+    font-size: var(--text-sm); text-decoration: none;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .hub-filter-item a:hover { border-color: var(--color-primary); background: var(--color-primary-light); }
+</style>
