@@ -53,14 +53,6 @@ const related = allGuides
   .slice(0, 3)
   .map(({ g }) => g);
 
-// ── 검증: 상품-H3 개수만 확인 ──
-if (products.length > 0 && content) {
-  const allH3s = [...content.matchAll(/<h3[^>]*id="[^"]*"[^>]*>.*?<\/h3>/g)] || [];
-  if (allH3s.length < products.length) {
-    console.warn(`⚠️ [${guide.slug}] H3(${allH3s.length}) < products(${products.length}) — 설명 블록 부족!`);
-  }
-}
-
 // ── 본문: 통합 상품 카드 위에, 나머지 전체 본문 아래 ──
 type ProductSection = { h3: string; paragraph: string };
 // products와 blocks(H3+p)가 1:1 매칭되면 각 상품을 카드로 렌더링
@@ -72,9 +64,29 @@ const productSections: ProductSection[] = [];
 if (products.length > 0 && content) {
   // 임시 DOM 없이 간단한 문자열 파싱: 각 상품 설명(H3 + 다음 P) 찾기
   const h3Regex = /<h3[^>]*id="[^"]*"[^>]*>.*?<\/h3>/g;
-  const matches = [...content.matchAll(h3Regex)];
-  
-  // 첫 번째 H3의 위치
+  const h2Regex = /<h2[^>]*>.*?<\/h2>/g;
+  const allH3Matches = [...content.matchAll(h3Regex)];
+  const allH2Matches = [...content.matchAll(h2Regex)];
+
+  // 문서를 H2 기준으로 섹션 나눠 각 섹션에 속한 H3들을 그룹화한다.
+  // "첫 H3 = 상품 섹션"이라는 가정은 "고르기 전 확인" 같은 안내 섹션이
+  // 실제 상품 섹션보다 앞에 오면 깨지므로, products 개수와 가장 가까운
+  // H3 개수를 가진 섹션을 상품 섹션으로 고른다("고르는 법"·FAQ 섹션의
+  // 일반 조언 H3가 상품 카드로 잘못 매칭되는 것을 막기 위함).
+  const boundaries = [0, ...allH2Matches.map(h2 => h2.index!), content.length];
+  let bestGroup: RegExpMatchArray[] = [];
+  for (let i = 0; i < boundaries.length - 1; i++) {
+    const [start, end] = [boundaries[i], boundaries[i + 1]];
+    const group = allH3Matches.filter(m => m.index !== undefined && m.index >= start && m.index < end);
+    if (group.length === products.length) { bestGroup = group; break; } // 정확히 일치하면 즉시 채택
+    if (group.length >= bestGroup.length) bestGroup = group; // 동률이면 뒤에 나온 섹션 우선
+  }
+  const matches = bestGroup;
+
+  if (matches.length < products.length) {
+    console.warn(`⚠️ [${guide.slug}] H3(${matches.length}) < products(${products.length}) — 설명 블록 부족!`);
+  }
+
   const firstH3 = matches[0];
   if (firstH3 && firstH3.index !== undefined) {
     // 첫 H3 앞부분은 remainingHtml로
