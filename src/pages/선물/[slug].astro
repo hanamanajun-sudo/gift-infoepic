@@ -21,10 +21,15 @@ const coupangKeyword = [
   '선물',
 ].filter(Boolean).join(' ') || guide.title;
 
+// 자동 "쿠팡 실시간 추천 상품" 그리드는 큐레이션 없이 키워드 검색만으로 채워지므로
+// 기본 꺼둔다 (트래픽 낮은 페이지에 비큐레이션 제휴 링크 대량 노출 = 저품질 위험).
+// COUPANG_ACCESS_KEY는 상품 수동 리서치(Products DB 큐레이션)에는 계속 사용된다.
+const coupangAutoSectionEnabled = import.meta.env.COUPANG_AUTO_SECTION_ENABLED === 'true';
+
 const [{ html: content, headings }, products, coupangProducts] = await Promise.all([
   getGuideContent(guide.id),
   getProducts(guide.id),
-  searchCoupangProducts(coupangKeyword),
+  coupangAutoSectionEnabled ? searchCoupangProducts(coupangKeyword) : Promise.resolve([]),
 ]);
 
 // ── 연관 가이드 ──
