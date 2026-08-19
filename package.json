@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "node scripts/sync-thumbnails.mjs && astro build && pagefind --site dist",
     "preview": "astro preview",
-    "collect": "node --env-file=.env scripts/research/collect.mjs"
+    "collect": "node --env-file=.env scripts/research/collect.mjs",
+    "thumbnail-admin": "node scripts/thumbnail-admin.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
