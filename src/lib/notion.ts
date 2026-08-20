@@ -163,6 +163,17 @@ function cacheParseGuide(entry: any): GiftGuide {
   };
 }
 
+// Notion 배경색 주석 → 형광펜 효과 CSS 클래스 (global.css의 mark.hl-* 참고)
+const HIGHLIGHT_CLASS: Record<string, string> = {
+  yellow_background: "hl-yellow",
+  orange_background: "hl-yellow",
+  pink_background: "hl-pink",
+  red_background: "hl-pink",
+  green_background: "hl-green",
+  blue_background: "hl-blue",
+  purple_background: "hl-blue",
+};
+
 // ── 리치텍스트 → HTML ─────────────────────────────────────────────────────
 function richTextToHtml(richText: any[]): string {
   return (richText ?? []).map((r: any) => {
@@ -173,6 +184,8 @@ function richTextToHtml(richText: any[]): string {
     if (r.annotations?.bold) text = `<strong>${text}</strong>`;
     if (r.annotations?.italic) text = `<em>${text}</em>`;
     if (r.annotations?.code) text = `<code>${text}</code>`;
+    const hlClass = HIGHLIGHT_CLASS[r.annotations?.color];
+    if (hlClass) text = `<mark class="${hlClass}">${text}</mark>`;
     if (r.href) text = `<a href="${r.href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     return text;
   }).join("");

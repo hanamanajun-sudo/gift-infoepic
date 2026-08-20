@@ -25,6 +25,17 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--color-link); text-decoration: none; transition: color var(--transition-fast); }
 a:hover { color: var(--color-link-hover); }
 
+/* ── 형광펜 강조 (Notion 텍스트 배경색으로 지정) ── */
+mark[class^="hl-"] {
+  background: none;
+  color: inherit;
+  padding: 0 0.1em;
+}
+.hl-yellow { background-image: linear-gradient(to top, rgba(255, 209, 0, 0.55) 45%, transparent 45%); }
+.hl-pink   { background-image: linear-gradient(to top, rgba(255, 130, 168, 0.5) 45%, transparent 45%); }
+.hl-green  { background-image: linear-gradient(to top, rgba(110, 224, 152, 0.5) 45%, transparent 45%); }
+.hl-blue   { background-image: linear-gradient(to top, rgba(120, 180, 255, 0.5) 45%, transparent 45%); }
+
 /* ── Layout ── */
 .container {
   max-width: var(--max-width-wide);
