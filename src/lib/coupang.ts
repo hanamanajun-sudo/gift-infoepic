@@ -59,8 +59,10 @@ function isFresh(entry: CacheEntry): boolean {
 }
 
 function buildAuthHeader(method: string, path: string, query: string): string {
-  const accessKey = import.meta.env.COUPANG_ACCESS_KEY;
-  const secretKey = import.meta.env.COUPANG_SECRET_KEY;
+  // import.meta.env는 Astro 빌드 안에서만 존재한다. 상품 리서치용 CLI 스크립트에서도
+  // 같은 함수를 쓰려면 process.env 폴백이 필요하다.
+  const accessKey = import.meta.env?.COUPANG_ACCESS_KEY ?? process.env.COUPANG_ACCESS_KEY;
+  const secretKey = import.meta.env?.COUPANG_SECRET_KEY ?? process.env.COUPANG_SECRET_KEY;
 
   // 쿠팡 API: 2자리 연도 형식 YYMMDDTHHmmssZ
   const now = new Date();
@@ -83,8 +85,10 @@ function buildAuthHeader(method: string, path: string, query: string): string {
 }
 
 export async function searchCoupangProducts(keyword: string, limit = 8): Promise<CoupangProduct[]> {
-  const accessKey = import.meta.env.COUPANG_ACCESS_KEY;
-  const secretKey = import.meta.env.COUPANG_SECRET_KEY;
+  // import.meta.env는 Astro 빌드 안에서만 존재한다. 상품 리서치용 CLI 스크립트에서도
+  // 같은 함수를 쓰려면 process.env 폴백이 필요하다.
+  const accessKey = import.meta.env?.COUPANG_ACCESS_KEY ?? process.env.COUPANG_ACCESS_KEY;
+  const secretKey = import.meta.env?.COUPANG_SECRET_KEY ?? process.env.COUPANG_SECRET_KEY;
 
   if (!accessKey || !secretKey) return [];
 
