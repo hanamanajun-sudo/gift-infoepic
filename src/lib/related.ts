@@ -104,9 +104,30 @@ function familyOf(occasions: string[]): string[] {
   return family ?? [];
 }
 
-/** 아이템 가이드(지갑·향수·텀블러…)는 슬러그 형태로 구분된다. */
+/** 품목 가이드(지갑·향수·텀블러…) — "이 물건을 살까?"에 답하는 페이지. */
 function isItemGuide(guide: GiftGuide): boolean {
-  return /-선물-추천$/.test(guide.slug) || /-고르는-법$/.test(guide.slug);
+  return /-선물-추천$/.test(guide.slug);
+}
+
+/**
+ * 조언 가이드(커플·어린이·부모님 선물 고르는 법, 향수·틴트 처음 고르는 법).
+ * 품목 가이드와 슬러그 모양이 비슷해 예전엔 같이 묶었는데, 그러면
+ * 집들이 선물 페이지에 "어린이 선물 고르는 법"이 품목으로 추천된다.
+ * 이쪽은 관계·나이로 이어지는 게 맞아서 품목 축 후보에서는 뺀다.
+ */
+function isAdviceGuide(guide: GiftGuide): boolean {
+  return /-고르는-법$/.test(guide.slug);
+}
+
+/**
+ * 예산 허브(1만원이하-선물 …)는 특정 대상의 가이드가 아니라 가격대 모음이다.
+ * 그런데 태그는 상황·관계·나이를 다 달고 있어서(허브에 잡히려면 필요하다)
+ * "비슷한 나이" "같은 자리, 다른 사람에게" 축에 그대로 끼어든다.
+ * 12세 남자아이 생일선물 페이지에 "3만원이하 선물"이 같은 자리 추천으로 뜨는 식이다.
+ * 태그를 지우면 /예산/ 허브가 망가지므로, 데이터가 아니라 여기서 걸러낸다.
+ */
+function isBudgetHub(guide: GiftGuide): boolean {
+  return /^\d+만원(이하|이상)-선물$/.test(guide.slug);
 }
 
 const overlaps = (a: string[], b: string[]) => a.some(v => b.includes(v));
@@ -161,7 +182,7 @@ export function getRelatedGroups(
   // 같은 나이(Δ0)는 제외한다. 같은 나이 페이지는 카니발라이제이션 정리 대상이지 추천 대상이 아니다.
   // 허용 폭은 아이일수록 좁게 — 12세와 16세는 완전히 다른 선물이지만 35세와 39세는 사실상 같다.
   const byAge = myAge == null ? [] : pool
-    .filter(g => !isItemGuide(g))
+    .filter(g => !isItemGuide(g) && !isAdviceGuide(g) && !isBudgetHub(g))
     .filter(sameOccasionProfile)
     .map(g => ({ g, age: ageOf(g) }))
     .filter((x): x is { g: GiftGuide; age: number } => x.age != null)
@@ -173,12 +194,13 @@ export function getRelatedGroups(
   // ── 축 2. 같은 상황(단, 범용 태그 제외), 다른 대상 ──
   const myOccasions = guide.occasion.filter(o => !GENERIC_OCCASIONS.has(o));
   const direct = myOccasions.length === 0 ? [] : pool
+    .filter(g => !isBudgetHub(g) && !isItemGuide(g) && !isAdviceGuide(g))
     .filter(g => overlaps(g.occasion.filter(o => !GENERIC_OCCASIONS.has(o)), myOccasions))
     .filter(g => !overlaps(g.relation, guide.relation));
 
   // 직접 매칭이 없으면(사이트에 그 행사 페이지가 하나뿐이면) 같은 계열로 넓힌다
   const family = familyOf(myOccasions).filter(o => !myOccasions.includes(o));
-  const byOccasion = (direct.length ? direct : pool.filter(g => overlaps(g.occasion, family)))
+  const byOccasion = (direct.length ? direct : pool.filter(g => !isBudgetHub(g) && overlaps(g.occasion, family)))
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
 
   // ── 축 3. 같은 대상, 다른 선택지 ──
@@ -194,6 +216,7 @@ export function getRelatedGroups(
     guide.budgetTag.filter(b => !g.budgetTag.includes(b)).length;
 
   const byAudience = pool
+    .filter(g => !isBudgetHub(g))
     .filter(stageOk)
     .filter(sameOccasionProfile)
     .filter(g => overlaps(g.relation, guide.relation) || overlaps(g.ageGroup, guide.ageGroup))
@@ -212,14 +235,30 @@ export function getRelatedGroups(
   const budgetOverlap = (g: GiftGuide) =>
     g.budgetTag.filter(b => guide.budgetTag.includes(b)).length;
 
-  const itemPool = pool.filter(g => isItemGuide(g) && g.slug !== guide.slug);
-  const byItem = guide.interests.length > 0
-    ? itemPool
-        .filter(g => overlaps(g.interests, guide.interests))
-        .sort((a, b) => budgetOverlap(b) - budgetOverlap(a))
+  // 페이지가 이미 그 품목을 이야기하고 있으면 그 품목 가이드를 최우선으로.
+  // "향수 처음 고르는 법"에 머그컵을 추천하고 향수 가이드를 빠뜨리는 걸 막는다.
+  const myText = `${guide.slug} ${guide.title}`;
+  const topicMatch = (g: GiftGuide) =>
+    myText.includes(g.slug.replace(/-선물-추천$/, '')) ? 1 : 0;
+
+  const itemPool = pool
+    .filter(g => isItemGuide(g) && g.slug !== guide.slug)
+    .sort((a, b) => topicMatch(b) - topicMatch(a));
+
+  const sharedInterest = itemPool
+    .filter(g => overlaps(g.interests, guide.interests))
+    .sort((a, b) => topicMatch(b) - topicMatch(a) || budgetOverlap(b) - budgetOverlap(a));
+
+  // 관심사가 겹치는 품목이 없으면(품목 가이드 쪽에 관심사 태그가 없는 경우가 많다)
+  // 예산대가 겹치는 품목으로 대체한다. 없는 것보다는 낫고, 가격대는 맞으니 엉뚱하진 않다.
+  const byItem = sharedInterest.length
+    ? sharedInterest
     : itemPool
         .filter(g => budgetOverlap(g) > 0)
-        .sort((a, b) => budgetOverlap(b) - budgetOverlap(a) || a.slug.localeCompare(b.slug));
+        .sort((a, b) =>
+          topicMatch(b) - topicMatch(a) ||
+          budgetOverlap(b) - budgetOverlap(a) ||
+          a.slug.localeCompare(b.slug));
 
   return (
     [
