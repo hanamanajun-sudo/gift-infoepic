@@ -16,3 +16,8 @@ Thumbs.db
 # Editor
 .vscode/settings.json
 *.swp
+
+# Cloudflare Workers 로컬 개발용 시크릿
+.dev.vars
+.dev.vars.*
+.wrangler/
