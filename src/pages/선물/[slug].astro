@@ -4,6 +4,7 @@ import ProductCard from '../../components/ProductCard.astro';
 import GiftCard from '../../components/GiftCard.astro';
 import { getGiftGuides, getGiftGuideBySlug, getGuideContent, getProducts } from '../../lib/notion';
 import { searchCoupangProducts } from '../../lib/coupang';
+import { getRelatedGroups, getInlineSuggestion } from '../../lib/related';
 
 export const getStaticPaths = async () => {
   const guides = await getGiftGuides();
@@ -33,25 +34,10 @@ const [{ html: content, headings }, products, coupangProducts] = await Promise.a
 ]);
 
 // ── 연관 가이드 ──
-// 성별이 명확히 반대인 가이드(아들↔딸, 남아↔여아 등)는 추천에서 제외.
-// 둘 중 하나라도 성별이 비어있거나 '공통'이면 기존처럼 제외하지 않는다.
-const OPPOSITE_GENDER: Record<string, string> = { '여성': '남성', '남성': '여성', '여아': '남아', '남아': '여아' };
-const relatedOppositeGender = OPPOSITE_GENDER[guide.recipientGender];
-const related = allGuides
-  .filter(g => g.slug !== guide.slug)
-  .filter(g => !(relatedOppositeGender && g.recipientGender === relatedOppositeGender))
-  .map(g => {
-    let score = 0;
-    if (g.occasion.some(o => guide.occasion.includes(o))) score += 3;
-    if (g.relation.some(r => guide.relation.includes(r))) score += 2;
-    if (g.ageGroup.some(a => guide.ageGroup.includes(a))) score += 2;
-    if (g.budgetTag.some(b => guide.budgetTag.includes(b))) score += 1;
-    return { g, score };
-  })
-  .filter(({ score }) => score > 0)
-  .sort((a, b) => b.score - a.score)
-  .slice(0, 3)
-  .map(({ g }) => g);
+// 축 4개(인접 나이 / 같은 상황 다른 대상 / 다른 예산 / 아이템)로 나눠 뽑는다.
+// 근거와 축 정의는 src/lib/related.ts 주석 참고.
+const relatedGroups = getRelatedGroups(guide, allGuides);
+const inlineSuggestion = getInlineSuggestion(relatedGroups);
 
 // ── 본문: 통합 상품 카드 위에, 나머지 전체 본문 아래 ──
 type ProductSection = { h3: string; paragraph: string };
@@ -136,7 +122,9 @@ const pairedCount = Math.min(products.length, productSections.length);
       <div class="product-flow">
         {products.slice(0, pairedCount).map((product, i) => {
           const section = productSections[i];
+          const showInline = i === 2 && inlineSuggestion;
           return (
+            <Fragment>
             <article class="merged-product-card" id={`product-${i + 1}`}>
               <!-- 순위 배지 -->
               <div class="rank-badge" aria-label={`${i + 1}위`}>{i + 1}</div>
@@ -205,6 +193,17 @@ const pairedCount = Math.min(products.length, productSections.length);
                 )}
               </div>
             </article>
+
+            {showInline && (
+              <aside class="inline-suggest">
+                <span class="inline-suggest-label">{inlineSuggestion.label}</span>
+                <a href={`/선물/${inlineSuggestion.guide.slug}/`} class="inline-suggest-link">
+                  {inlineSuggestion.guide.title}
+                  <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                </a>
+              </aside>
+            )}
+            </Fragment>
           );
         })}
       </div>
@@ -262,15 +261,20 @@ const pairedCount = Math.min(products.length, productSections.length);
   )}
 
   <!-- ── 연관 가이드 ── -->
-  {related.length > 0 && (
+  {relatedGroups.length > 0 && (
     <section class="related-section" aria-labelledby="related-heading">
       <h2 id="related-heading" class="related-title">
         <i class="ti ti-arrow-right" aria-hidden="true"></i>
-        이런 선물 가이드도 있어요
+        다음으로 보면 좋은 가이드
       </h2>
-      <div class="related-grid">
-        {related.map(g => <GiftCard guide={g} />)}
-      </div>
+      {relatedGroups.map(group => (
+        <div class="related-group">
+          <h3 class="related-group-title">{group.label}</h3>
+          <div class="related-grid">
+            {group.guides.map(g => <GiftCard guide={g} />)}
+          </div>
+        </div>
+      ))}
     </section>
   )}
 </GuideLayout>
@@ -495,6 +499,43 @@ const pairedCount = Math.min(products.length, productSections.length);
   .rocket-badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: var(--radius-full); background: #E4393C; color: white; font-weight: var(--font-weight-semibold); width: fit-content; }
   .related-section { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 2px solid var(--color-border-subtle); }
   .related-title { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-5); color: var(--color-text); }
+  /* ── 본문 중간 다음 단계 제안 ── */
+  .inline-suggest {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: var(--color-primary-light);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-xl);
+  }
+  .inline-suggest-label {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-dark);
+    letter-spacing: 0.02em;
+  }
+  .inline-suggest-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: var(--leading-snug);
+  }
+  .inline-suggest-link:hover { color: var(--color-primary-dark); }
+  .inline-suggest-link i { font-size: 0.9em; color: var(--color-primary); }
+
+  .related-group { margin-bottom: var(--space-8); }
+  .related-group:last-child { margin-bottom: 0; }
+  .related-group-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
   .related-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
   @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 900px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }

@@ -1,0 +1,1453 @@
+{
+  "takenAt": "2026-09-02T14:50:03.117Z",
+  "entries": [
+    {
+      "id": "3c2975d6-5268-8195-b4f6-dde2b4cb7452",
+      "slug": "유치원-입학선물",
+      "before": {
+        "occasion": [
+          "입학"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "유아"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하"
+        ]
+      }
+    },
+    {
+      "id": "3c1975d6-5268-812b-8aab-cb1e5c3d29db",
+      "slug": "2세-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "2세",
+          "유아"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "3c1975d6-5268-81b6-9297-e12f75e48ee5",
+      "slug": "6세-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "6세",
+          "유아"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "20만원이상"
+        ]
+      }
+    },
+    {
+      "id": "3c1975d6-5268-81a6-bc40-f3fec93c03c8",
+      "slug": "3세-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "3세",
+          "유아"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "3c1975d6-5268-817a-a900-c0880118bd9e",
+      "slug": "5세-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "5세",
+          "유아"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "3c1975d6-5268-8153-87b8-f62b5688ca88",
+      "slug": "백일-선물",
+      "before": {
+        "occasion": [
+          "백일"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "유아"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "20만원이상"
+        ]
+      }
+    },
+    {
+      "id": "395975d6-5268-81e7-b93c-e95e9cd22eaf",
+      "slug": "여자친구-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-8105-9522-ca9517da7e64",
+      "slug": "남자친구-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-81ed-aa0e-cf45188c2abd",
+      "slug": "엄마-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-8133-b217-e5cb0c3c1c7e",
+      "slug": "50대-여성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-81e2-b958-c6584aaf8cda",
+      "slug": "40대-남성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-81f9-9cb9-d9832b61a2a6",
+      "slug": "40대-여성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-8116-bb4b-c45fd4d2b4de",
+      "slug": "30대-여성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "395975d6-5268-81b7-812f-da6492113092",
+      "slug": "30대-남성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37d975d6-5268-811c-9ff2-c7a8a90e1ba2",
+      "slug": "커플-선물-고르는-법",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37d975d6-5268-8176-90b4-df2f9bd4c090",
+      "slug": "어린이-선물-고르는-법",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37d975d6-5268-8160-86bd-e1dc7389f78f",
+      "slug": "부모님-선물-고르는-법",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37d975d6-5268-8170-8bfd-dc295a83585e",
+      "slug": "향수-처음-고르는-법",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37d975d6-5268-8157-bac2-f3b7df3ad3df",
+      "slug": "틴트-처음-고르는-법",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37c975d6-5268-81f9-ab7f-da9167578eaf",
+      "slug": "14-15세-여자아이-생일선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37c975d6-5268-8110-bd26-c43f2872b568",
+      "slug": "7-9세-남자아이-생일선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "37c975d6-5268-81eb-a2f9-d1506dd2adc1",
+      "slug": "7-9세-여자아이-생일선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-810e-bded-f1aa7420a32f",
+      "slug": "설날-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-8116-977e-db4928bc29ea",
+      "slug": "남동생-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-819c-bcf0-dd24090ac412",
+      "slug": "장인어른-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-81da-bd07-fb5a632c2410",
+      "slug": "추석-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-81dd-9d13-c941830a5975",
+      "slug": "여동생-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-8103-bb18-dbbbaf807f60",
+      "slug": "화장품-선물-추천",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-8124-b1ea-ce52005c5d54",
+      "slug": "게임기-선물-추천",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-813e-b7b2-dfc6a66bd28e",
+      "slug": "인형-선물-추천",
+      "before": {
+        "occasion": [
+          "어린이날"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-8163-9dca-feb41a9bff37",
+      "slug": "헤드폰-선물-추천",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-819a-8f9f-c81e64d9cb4a",
+      "slug": "머그컵-선물-추천",
+      "before": {
+        "occasion": [
+          "집들이"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-819f-bcc8-ff0a2422aa50",
+      "slug": "책-선물-추천",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "368975d6-5268-81cf-9472-ee2fefd75149",
+      "slug": "쿠션-선물-추천",
+      "before": {
+        "occasion": [
+          "집들이"
+        ],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8186-8fd6-e0dfa40aee22",
+      "slug": "0-3세-아기-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [
+          "유아"
+        ],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8103-b56b-ce310de24dce",
+      "slug": "환갑-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-814d-811d-d2b635ff9391",
+      "slug": "결혼축하-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-815d-b2b6-c3482bbacd8b",
+      "slug": "결혼기념일-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-815f-b5e0-c15f5c7f2fa5",
+      "slug": "퇴직-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8190-9491-f2c010d6ae6b",
+      "slug": "취직축하-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81b8-be28-e4eaeb6cf0c0",
+      "slug": "승진축하-선물",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81eb-bd79-ef28a4c484fc",
+      "slug": "출산축하-선물",
+      "before": {
+        "occasion": [
+          "출산"
+        ],
+        "relation": [
+          "친구",
+          "직장동료"
+        ],
+        "ageGroup": [
+          "유아"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-813b-a8ca-f8a60d675c8d",
+      "slug": "할머니-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "할머니"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-815b-9bf8-c2be6d76f191",
+      "slug": "남편-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "남편"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8165-947e-d20af0815c5a",
+      "slug": "할아버지-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "할아버지"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81aa-a955-fc3449eb68f7",
+      "slug": "아내-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아내"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81ab-8024-e8adbeddb137",
+      "slug": "시어머니-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "시어머니"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81d0-b6f9-c8a54dd5becb",
+      "slug": "직장상사-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "직장상사"
+        ],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81d2-a3c7-d8bb680e2031",
+      "slug": "가방-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8110-82f4-cbb5fc0e2c30",
+      "slug": "캔들-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81e2-bbb0-fed137e98c92",
+      "slug": "스킨케어-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-81b3-bcf0-dd5f2d5895bd",
+      "slug": "귀걸이-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-812e-8f99-ff19be98bad0",
+      "slug": "텀블러-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8132-9696-e49c80c15d78",
+      "slug": "향수-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-811e-9ce4-db9969b88af7",
+      "slug": "지갑-선물-추천",
+      "before": {
+        "occasion": [],
+        "relation": [],
+        "ageGroup": [],
+        "budgetTag": []
+      }
+    },
+    {
+      "id": "367975d6-5268-8104-8f97-e019cfb3b7a7",
+      "slug": "5만원이하-선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "크리스마스",
+          "화이트데이"
+        ],
+        "relation": [
+          "친구",
+          "남자친구",
+          "여자친구",
+          "직장동료"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대"
+        ],
+        "budgetTag": [
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-816c-9400-e598a21d351a",
+      "slug": "3만원이하-선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "스승의날",
+          "크리스마스"
+        ],
+        "relation": [
+          "친구",
+          "직장동료",
+          "선생님"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대",
+          "고등학생"
+        ],
+        "budgetTag": [
+          "3만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8196-be9b-c944d957c922",
+      "slug": "10만원이하-선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어버이날",
+          "크리스마스"
+        ],
+        "relation": [
+          "친구",
+          "엄마",
+          "아빠",
+          "남자친구",
+          "여자친구"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대",
+          "40대"
+        ],
+        "budgetTag": [
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81f9-9e24-c497072c4118",
+      "slug": "1만원이하-선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "스승의날"
+        ],
+        "relation": [
+          "친구",
+          "직장동료",
+          "선생님"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대"
+        ],
+        "budgetTag": [
+          "1만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8105-bd82-d48f7c58aa15",
+      "slug": "돌잔치-선물",
+      "before": {
+        "occasion": [
+          "돌잔치"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "유아"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81ae-97e9-c0510536458c",
+      "slug": "중학생-남자-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "중학생",
+          "12세",
+          "13세",
+          "14세",
+          "15세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81ef-a5ce-f2abf6c038f7",
+      "slug": "고등학생-남자-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "고등학생",
+          "15세",
+          "16세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8104-a989-c299297987fc",
+      "slug": "스승의날-선물",
+      "before": {
+        "occasion": [
+          "스승의날"
+        ],
+        "relation": [
+          "선생님"
+        ],
+        "ageGroup": [
+          "중학생",
+          "고등학생",
+          "20대"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8149-8769-f6371cd993d9",
+      "slug": "발렌타인데이-선물",
+      "before": {
+        "occasion": [
+          "발렌타인"
+        ],
+        "relation": [
+          "남자친구"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8151-bc63-ef2e46f85580",
+      "slug": "입학선물",
+      "before": {
+        "occasion": [
+          "입학"
+        ],
+        "relation": [
+          "딸",
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "초등학생",
+          "중학생",
+          "7세",
+          "13세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-817e-a6b9-c27cb18ba12a",
+      "slug": "어린이날-선물",
+      "before": {
+        "occasion": [
+          "어린이날"
+        ],
+        "relation": [
+          "아들",
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "유아",
+          "초등학생",
+          "7세",
+          "8세",
+          "9세",
+          "10세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-818f-bca1-fa09b9812432",
+      "slug": "어버이날-선물",
+      "before": {
+        "occasion": [
+          "어버이날"
+        ],
+        "relation": [
+          "엄마",
+          "아빠"
+        ],
+        "ageGroup": [
+          "40대",
+          "50대"
+        ],
+        "budgetTag": [
+          "5만원이하",
+          "10만원이하",
+          "20만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-810c-919f-d9f1e36101f8",
+      "slug": "고등학생-여자-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "딸"
+        ],
+        "ageGroup": [
+          "고등학생",
+          "15세",
+          "16세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8172-ad56-cb0d5c22890a",
+      "slug": "초등학생-저학년-선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어린이날"
+        ],
+        "relation": [
+          "아들",
+          "딸"
+        ],
+        "ageGroup": [
+          "유아",
+          "초등학생",
+          "7세",
+          "8세",
+          "9세"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8180-8ecd-f8aa9012e4b2",
+      "slug": "여동생-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "딸"
+        ],
+        "ageGroup": [
+          "중학생",
+          "고등학생",
+          "20대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-818a-89ce-fdebf5216612",
+      "slug": "남동생-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들"
+        ],
+        "ageGroup": [
+          "중학생",
+          "고등학생",
+          "20대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81f1-9411-f9cd60a46660",
+      "slug": "친구-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "친구"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-812f-8c4e-f11e69fe030b",
+      "slug": "선생님-감사선물",
+      "before": {
+        "occasion": [
+          "스승의날"
+        ],
+        "relation": [
+          "선생님"
+        ],
+        "ageGroup": [
+          "30대",
+          "40대",
+          "50대"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8166-8938-eab8d47199a5",
+      "slug": "할아버지-생신선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아빠"
+        ],
+        "ageGroup": [
+          "50대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81a0-875d-ca3b2543975e",
+      "slug": "할머니-생신선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "엄마"
+        ],
+        "ageGroup": [
+          "50대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81e4-be10-c41ebe1cd107",
+      "slug": "직장동료-선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "직장동료"
+        ],
+        "ageGroup": [
+          "20대",
+          "30대",
+          "40대"
+        ],
+        "budgetTag": [
+          "1만원이하",
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-810d-985e-f1169f4e4b36",
+      "slug": "10세-남자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어린이날"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "10세",
+          "초등학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-812c-9afc-f2d1027bab6b",
+      "slug": "12세-남자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "졸업"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "12세",
+          "초등학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8139-a172-e57848d05a97",
+      "slug": "40대-엄마-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어버이날"
+        ],
+        "relation": [
+          "엄마"
+        ],
+        "ageGroup": [
+          "40대"
+        ],
+        "budgetTag": [
+          "5만원이하",
+          "10만원이하",
+          "20만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8160-80d6-fcdd28f6b58d",
+      "slug": "15세-여자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "15세",
+          "중학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-8163-a64d-c6b88a29069a",
+      "slug": "20대-남성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "친구",
+          "남자친구"
+        ],
+        "ageGroup": [
+          "20대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-816f-8400-caf596869503",
+      "slug": "10세-여자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어린이날"
+        ],
+        "relation": [
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "10세",
+          "초등학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81a4-b68d-ecf4cc900875",
+      "slug": "30대-엄마-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어버이날"
+        ],
+        "relation": [
+          "엄마"
+        ],
+        "ageGroup": [
+          "30대"
+        ],
+        "budgetTag": [
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81aa-83d9-c1ea7f8b82bb",
+      "slug": "16세-남자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "16세",
+          "고등학생"
+        ],
+        "budgetTag": [
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81b4-a37d-c053a458b1ac",
+      "slug": "12세-여자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "졸업"
+        ],
+        "relation": [
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "12세",
+          "초등학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81be-bcab-d4bb2f842cc4",
+      "slug": "13세-남자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "아들",
+          "조카"
+        ],
+        "ageGroup": [
+          "13세",
+          "중학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81c5-97b3-fde3a1825038",
+      "slug": "20대-여성-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "친구",
+          "여자친구"
+        ],
+        "ageGroup": [
+          "20대"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하",
+          "10만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81d6-866b-cdba473df0e8",
+      "slug": "50대-부모님-생일선물",
+      "before": {
+        "occasion": [
+          "생일",
+          "어버이날"
+        ],
+        "relation": [
+          "엄마",
+          "아빠"
+        ],
+        "ageGroup": [
+          "50대"
+        ],
+        "budgetTag": [
+          "5만원이하",
+          "10만원이하",
+          "20만원이하"
+        ]
+      }
+    },
+    {
+      "id": "367975d6-5268-81e8-9f62-c307d2378382",
+      "slug": "13세-여자아이-생일선물",
+      "before": {
+        "occasion": [
+          "생일"
+        ],
+        "relation": [
+          "딸",
+          "조카"
+        ],
+        "ageGroup": [
+          "13세",
+          "중학생"
+        ],
+        "budgetTag": [
+          "3만원이하",
+          "5만원이하"
+        ]
+      }
+    }
+  ]
+}
