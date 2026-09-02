@@ -84,6 +84,68 @@ function buildAuthHeader(method: string, path: string, query: string): string {
   return `CEA algorithm=HmacSHA256, access-key=${accessKey}, signed-date=${datetime}, signature=${signature}`;
 }
 
+/**
+ * 상품검색 API가 돌려주는 productUrl은 그 검색 요청에 서명된 임시 링크다.
+ * 실측: 같은 상품을 몇 분 간격으로 두 번 검색하면 requestid·token이 매번 바뀐다.
+ * 이 링크를 Notion에 저장해 며칠 뒤 방문자가 누르면 "요청하신 페이지의 사용권한이
+ * 없습니다"로 막힌다 — 2026-09-03 추석 가이드 발행 직후 실제로 겪은 사고.
+ *
+ * 저장·게시용으로 오래 남는 링크가 필요하면 반드시 이 함수로 별도 변환해야 한다.
+ * (공식 Deeplink API. 상품검색과 완전히 다른 엔드포인트.)
+ */
+export async function createDeeplinks(coupangUrls: string[], subId = ''): Promise<Record<string, string>> {
+  const accessKey = import.meta.env?.COUPANG_ACCESS_KEY ?? process.env.COUPANG_ACCESS_KEY;
+  const secretKey = import.meta.env?.COUPANG_SECRET_KEY ?? process.env.COUPANG_SECRET_KEY;
+  if (!accessKey || !secretKey || coupangUrls.length === 0) return {};
+
+  const method = 'POST';
+  const path = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink';
+
+  return enqueueApiCall(async () => {
+    try {
+      const res = await fetch(`https://api-gateway.coupang.com${path}`, {
+        method,
+        headers: {
+          Authorization: buildAuthHeader(method, path, ''),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ coupangUrls, subId }),
+      });
+
+      if (!res.ok) {
+        console.warn(`[Coupang Deeplink] ${res.status} ${res.statusText}`);
+        return {};
+      }
+
+      const data = await res.json() as any;
+      if (data.rCode !== '0') {
+        console.warn(`[Coupang Deeplink] rCode: ${data.rCode} ${data.rMessage}`);
+        return {};
+      }
+
+      const map: Record<string, string> = {};
+      for (const item of data.data ?? []) map[item.originalUrl] = item.shortenUrl;
+      return map;
+    } catch (err) {
+      console.warn('[Coupang Deeplink] fetch error:', err);
+      return {};
+    }
+  });
+}
+
+/** productUrl(임시 서명 링크)에서 itemId·vendorItemId를 뽑아 평문 상품 URL을 만든다. */
+export function toPlainProductUrl(product: CoupangProduct): string | null {
+  try {
+    const u = new URL(product.productUrl);
+    const itemId = u.searchParams.get('itemId');
+    const vendorItemId = u.searchParams.get('vendorItemId');
+    if (!itemId || !vendorItemId) return null;
+    return `https://www.coupang.com/vp/products/${product.productId}?itemId=${itemId}&vendorItemId=${vendorItemId}`;
+  } catch {
+    return null;
+  }
+}
+
 export async function searchCoupangProducts(keyword: string, limit = 8): Promise<CoupangProduct[]> {
   // import.meta.env는 Astro 빌드 안에서만 존재한다. 상품 리서치용 CLI 스크립트에서도
   // 같은 함수를 쓰려면 process.env 폴백이 필요하다.
