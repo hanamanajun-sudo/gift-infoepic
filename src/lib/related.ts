@@ -287,3 +287,87 @@ export function getInlineSuggestion(
   }
   return null;
 }
+
+// ────────────────────────────────────────────────────────────────────────
+// 나이·예산 스위처 칩
+//
+// 관련 가이드 섹션(위)은 본문 맨 아래에 있어 끝까지 스크롤해야 닿는다.
+// 스위처는 그 반대다 — 헤더 바로 아래, 스크롤 없이 보이는 자리에 둬서
+// "우리 애는 한 살 더 많은데" "이 예산 말고 더 싼 건" 같은 즉각적인 이탈을
+// 페이지 이탈 전에 잡는다. 일본 상위 선물 사이트(giftmall 등)의 공통 장치.
+// ────────────────────────────────────────────────────────────────────────
+
+export interface SwitchChip {
+  label: string;
+  href: string;
+  active: boolean;
+}
+
+/** 슬러그가 "N세-" 또는 "N-M세-"로 시작하는 개별 나이 가이드만 나이 사다리에 태운다. */
+const AGE_LADDER_SLUG = /^(\d+)(?:-(\d+))?세-/;
+
+/** 0-3세-아기-선물·4-6세-유아-선물은 상품 없는 시기별 분기 허브다 — 사다리에서 뺀다. */
+const AGE_NAV_HUBS = new Set(['0-3세-아기-선물', '4-6세-유아-선물']);
+
+function ageLadderInfo(guide: GiftGuide): { repAge: number; label: string } | null {
+  if (AGE_NAV_HUBS.has(guide.slug)) return null;
+  const m = guide.slug.match(AGE_LADDER_SLUG);
+  if (!m) return null;
+  const a = Number(m[1]);
+  const b = m[2] ? Number(m[2]) : null;
+  return b == null ? { repAge: a, label: `${a}세` } : { repAge: (a + b) / 2, label: `${a}~${b}세` };
+}
+
+/**
+ * "12세 남자아이 생일선물" 페이지에 도착했는데 실은 13살 아이를 찾고 있었다면,
+ * 뒤로가기 없이 바로 옆 나이로 넘어갈 수 있게 한다.
+ *
+ * 슬러그가 "N세-"로 시작하는 개별 나이 가이드만 후보로 삼는다. "중학생-남자-생일선물"처럼
+ * 여러 나이를 묶은 가이드나 "크리스마스-선물"처럼 나이 태그가 부수적으로만 걸린 가이드는
+ * 슬러그 패턴이 안 맞아 자동으로 빠진다 — ageGroup 태그 기준으로 걸렀다면 이런 것들이
+ * "나이가 가깝다"는 이유만으로 섞여 들어왔을 것이다.
+ */
+export function getAgeSwitcherChips(guide: GiftGuide, allGuides: GiftGuide[], take = 6): SwitchChip[] {
+  const me = ageLadderInfo(guide);
+  if (!me) return [];
+
+  const myGender = genderOf(guide);
+  const genderOk = (g: GiftGuide) => {
+    const other = genderOf(g);
+    return myGender == null || other == null || myGender === other;
+  };
+
+  const pool = allGuides
+    .filter(genderOk)
+    .map(g => ({ guide: g, info: ageLadderInfo(g) }))
+    .filter((x): x is { guide: GiftGuide; info: { repAge: number; label: string } } => x.info != null);
+
+  const others = pool
+    .filter(x => x.guide.slug !== guide.slug)
+    .sort((a, b) => Math.abs(a.info.repAge - me.repAge) - Math.abs(b.info.repAge - me.repAge))
+    .slice(0, take);
+
+  return [...others, { guide, info: me }]
+    .sort((a, b) => a.info.repAge - b.info.repAge)
+    .map(({ guide: g, info }) => ({
+      label: info.label,
+      href: `/선물/${g.slug}/`,
+      active: g.slug === guide.slug,
+    }));
+}
+
+const BUDGET_LADDER = ['1만원이하', '3만원이하', '5만원이하', '10만원이하', '20만원이하', '20만원이상'];
+
+/**
+ * 예산 밴드 전체를 항상 보여주고 이 가이드가 걸쳐 있는 밴드를 강조한다.
+ * budgetTag가 누적식(2만원 상품은 3만·5만·10만원 밴드 전부에 해당)이라
+ * 여러 개가 동시에 활성화되는 게 정상이다.
+ */
+export function getBudgetSwitcherChips(guide: GiftGuide): SwitchChip[] {
+  if (guide.budgetTag.length === 0) return [];
+  return BUDGET_LADDER.map(tag => ({
+    label: tag,
+    href: `/예산/${tag}/`,
+    active: guide.budgetTag.includes(tag),
+  }));
+}

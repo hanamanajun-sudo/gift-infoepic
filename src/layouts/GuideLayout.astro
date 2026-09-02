@@ -82,6 +82,8 @@ const jsonLd = products.length > 0 ? {
 
           {guide.intro && <p class="guide-intro">{guide.intro}</p>}
 
+          <slot name="chips" />
+
           <div class="guide-meta-bottom">
             <p class="guide-updated">
               <i class="ti ti-clock" aria-hidden="true"></i>

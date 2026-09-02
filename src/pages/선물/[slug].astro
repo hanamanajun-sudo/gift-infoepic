@@ -4,7 +4,8 @@ import ProductCard from '../../components/ProductCard.astro';
 import GiftCard from '../../components/GiftCard.astro';
 import { getGiftGuides, getGiftGuideBySlug, getGuideContent, getProducts } from '../../lib/notion';
 import { searchCoupangProducts } from '../../lib/coupang';
-import { getRelatedGroups, getInlineSuggestion } from '../../lib/related';
+import { getRelatedGroups, getInlineSuggestion, getAgeSwitcherChips, getBudgetSwitcherChips } from '../../lib/related';
+import SwitcherChips from '../../components/SwitcherChips.astro';
 
 export const getStaticPaths = async () => {
   const guides = await getGiftGuides();
@@ -38,6 +39,8 @@ const [{ html: content, headings }, products, coupangProducts] = await Promise.a
 // 근거와 축 정의는 src/lib/related.ts 주석 참고.
 const relatedGroups = getRelatedGroups(guide, allGuides);
 const inlineSuggestion = getInlineSuggestion(relatedGroups);
+const ageChips = getAgeSwitcherChips(guide, allGuides);
+const budgetChips = getBudgetSwitcherChips(guide);
 
 // ── 본문: 통합 상품 카드 위에, 나머지 전체 본문 아래 ──
 type ProductSection = { h3: string; paragraph: string };
@@ -109,6 +112,10 @@ const pairedCount = Math.min(products.length, productSections.length);
 ---
 
 <GuideLayout guide={guide} headings={headings} products={products.slice(0, pairedCount)}>
+  <Fragment slot="chips">
+    <SwitcherChips label="비슷한 나이는" chips={ageChips} />
+    <SwitcherChips label="예산을 바꿔서 보기" chips={budgetChips} />
+  </Fragment>
 
   <!-- ── 추천 상품 섹션 (통합형) ── -->
   {pairedCount > 0 && (
