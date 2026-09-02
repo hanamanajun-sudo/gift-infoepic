@@ -58,12 +58,11 @@ const fullTitle = title.includes('선물추천') ? title : `${title} | 선물추
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image"       content={ogImageUrl} />
 
-  <!-- Pretendard -->
+  <!-- Pretendard (dynamic-subset: unicode-range 분할로 실제 쓰는 글자만 내려받음) -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-  <!-- Tabler Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+  <!-- 아이콘: Tabler 웹폰트(CSS 250KB + woff2 829KB) 대신 src/styles/icons.css 서브셋 사용 -->
 
   <!-- Pagefind (generated after build) -->
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
@@ -97,7 +96,7 @@ const fullTitle = title.includes('선물추천') ? title : `${title} | 선물추
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQTCBQDJF5"></script>
-  <script>
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());

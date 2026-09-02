@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GiftCard from '../../components/GiftCard.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getGiftGuides } from '../../lib/notion';
+
+const guides = await getGiftGuides();
+
+// 최근 수정 순 — 갱신된 가이드가 위로 올라오게
+const sorted = [...guides].sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+
+// 필터 칩: 값별 개수를 세서 많은 순으로. 1개짜리는 칩으로 만들 가치가 없어 제외.
+function facet(pick: (g: typeof guides[number]) => string[]) {
+  const counts = new Map<string, number>();
+  for (const g of guides) for (const v of pick(g)) counts.set(v, (counts.get(v) ?? 0) + 1);
+  return [...counts.entries()]
+    .filter(([, n]) => n > 1)
+    .sort((a, b) => b[1] - a[1])
+    .map(([value, count]) => ({ value, count }));
+}
+
+const facets = [
+  { key: 'age',      label: '나이',  hub: '/나이/',  items: facet(g => g.ageGroup) },
+  { key: 'occasion', label: '상황',  hub: '/상황/',  items: facet(g => g.occasion) },
+  { key: 'relation', label: '관계',  hub: '/관계/',  items: facet(g => g.relation) },
+  { key: 'budget',   label: '예산',  hub: '/예산/',  items: facet(g => g.budgetTag) },
+];
+
+const breadcrumbs = [
+  { label: '홈', href: '/' },
+  { label: '전체 선물 가이드', href: '' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `전체 선물 가이드 ${guides.length}개`,
+  description: `나이·상황·관계·예산별 선물 추천 가이드 ${guides.length}개 전체 목록.`,
+  url: 'https://gift.infoepic.com/선물/',
+  hasPart: sorted.slice(0, 30).map(g => ({
+    '@type': 'WebPage',
+    name: g.title,
+    url: `https://gift.infoepic.com/선물/${g.slug}/`,
+  })),
+};
+---
+
+<BaseLayout
+  title={`전체 선물 가이드 ${guides.length}개 — 나이·상황·관계·예산별 모아보기`}
+  description={`선물 추천 가이드 ${guides.length}개 전체 목록. 받는 사람의 나이, 어떤 자리인지, 어떤 관계인지, 예산이 얼마인지로 좁혀서 찾아보세요.`}
+  jsonLd={jsonLd}
+>
+  <Header />
+
+  <main class="container list-page" id="main-content">
+    <CategoryNav activeHref="/선물/" />
+    <Breadcrumb items={breadcrumbs} />
+
+    <header class="page-header">
+      <h1 class="page-title">
+        <i class="ti ti-gift" aria-hidden="true"></i>
+        전체 선물 가이드
+      </h1>
+      <p class="page-desc">
+        지금까지 정리한 가이드 <strong>{guides.length}개</strong>입니다.
+        아래 조건을 눌러 좁혀보거나, 오른쪽 위 검색으로 바로 찾아보세요.
+      </p>
+    </header>
+
+    <!-- ── 필터 ── -->
+    <section class="filters" aria-label="가이드 좁혀보기">
+      {facets.map(f => (
+        <div class="facet">
+          <div class="facet-head">
+            <span class="facet-label">{f.label}</span>
+            <a href={f.hub} class="facet-hub">{f.label}별 전체 보기 <i class="ti ti-chevron-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="chips" role="group" aria-label={`${f.label}로 좁히기`}>
+            {f.items.map(item => (
+              <button
+                type="button"
+                class="chip"
+                data-facet={f.key}
+                data-value={item.value}
+                aria-pressed="false"
+              >
+                {item.value}
+                <span class="chip-n">{item.count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="filter-status">
+        <p class="result-count" aria-live="polite">
+          <span id="result-n">{guides.length}</span>개 가이드
+        </p>
+        <button type="button" id="reset-filters" class="reset-btn" hidden>
+          <i class="ti ti-x" aria-hidden="true"></i> 조건 초기화
+        </button>
+      </div>
+    </section>
+
+    <!-- ── 목록 ── -->
+    <div class="guide-grid" id="guide-grid">
+      {sorted.map(g => (
+        <div
+          class="grid-item"
+          data-age={g.ageGroup.join('|')}
+          data-occasion={g.occasion.join('|')}
+          data-relation={g.relation.join('|')}
+          data-budget={g.budgetTag.join('|')}
+        >
+          <GiftCard guide={g} />
+        </div>
+      ))}
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>
+      <i class="ti ti-mood-empty" aria-hidden="true"></i>
+      조건에 맞는 가이드가 없어요. 조건을 하나 지워보세요.
+    </p>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var grid = document.getElementById('guide-grid');
+    if (!grid) return;
+
+    var items = Array.prototype.slice.call(grid.querySelectorAll('.grid-item'));
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+    var resultN = document.getElementById('result-n');
+    var emptyState = document.getElementById('empty-state');
+    var resetBtn = document.getElementById('reset-filters');
+
+    // facet당 하나씩만 선택 — 조건을 겹칠수록 결과가 0이 되는 걸 막는다
+    var active = {};
+
+    function matches(el) {
+      for (var key in active) {
+        var values = (el.getAttribute('data-' + key) || '').split('|');
+        if (values.indexOf(active[key]) === -1) return false;
+      }
+      return true;
+    }
+
+    function apply() {
+      var shown = 0;
+      items.forEach(function (el) {
+        var ok = matches(el);
+        el.hidden = !ok;
+        if (ok) shown++;
+      });
+      resultN.textContent = shown;
+      emptyState.hidden = shown !== 0;
+      resetBtn.hidden = Object.keys(active).length === 0;
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var facet = chip.getAttribute('data-facet');
+        var value = chip.getAttribute('data-value');
+        var isOn = active[facet] === value;
+
+        // 같은 facet의 다른 칩은 해제
+        chips.forEach(function (c) {
+          if (c.getAttribute('data-facet') === facet) c.setAttribute('aria-pressed', 'false');
+        });
+
+        if (isOn) delete active[facet];
+        else {
+          active[facet] = value;
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        apply();
+      });
+    });
+
+    resetBtn.addEventListener('click', function () {
+      active = {};
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+      apply();
+    });
+  })();
+</script>
+
+<style>
+  .list-page { padding-top: var(--space-10); padding-bottom: var(--space-16); }
+
+  .page-header { margin-bottom: var(--space-8); }
+  .page-title {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-size: var(--text-3xl); font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-3);
+  }
+  .page-title i { color: var(--color-primary); }
+  .page-desc { font-size: var(--text-lg); color: var(--color-text-muted); }
+  .page-desc strong { color: var(--color-text); font-weight: var(--font-weight-semibold); }
+
+  /* ── 필터 ── */
+  .filters {
+    display: flex; flex-direction: column; gap: var(--space-5);
+    padding: var(--space-6);
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .facet { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .facet-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--space-3); flex-wrap: wrap;
+  }
+  .facet-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+  .facet-hub {
+    display: inline-flex; align-items: center; gap: 2px;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+  .facet-hub:hover { color: var(--color-primary); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .chip:hover { border-color: var(--color-primary); color: var(--color-primary-dark); }
+  .chip:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  .chip[aria-pressed='true'] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .chip-n {
+    font-size: var(--text-xs);
+    padding: 0 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-border);
+    color: var(--color-text-muted);
+  }
+  .chip[aria-pressed='true'] .chip-n { background: rgba(255, 255, 255, 0.3); color: white; }
+
+  .filter-status {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-3); flex-wrap: wrap;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .result-count { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .result-count #result-n { font-weight: var(--font-weight-bold); color: var(--color-text); }
+
+  .reset-btn {
+    display: inline-flex; align-items: center; gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    background: none;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-family: inherit;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .reset-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* ── 목록 ── */
+  .guide-grid {
+    display: grid; grid-template-columns: 1fr; gap: var(--space-5);
+  }
+  @media (min-width: 640px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .guide-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .grid-item { display: flex; }
+  .grid-item > * { width: 100%; }
+
+  .empty-state {
+    display: flex; flex-direction: column; align-items: center; gap: var(--space-3);
+    padding: var(--space-16) var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    text-align: center;
+  }
+  .empty-state i { font-size: 2.5rem; color: var(--color-text-light); }
+</style>
