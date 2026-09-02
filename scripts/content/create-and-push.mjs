@@ -34,6 +34,25 @@ if (!slug) {
 
 const config = await import(`./guides/${slug}.mjs`);
 
+/**
+ * 설정 파일이 내보낸 속성만 골라 Notion 형식으로 바꾼다.
+ * 내보내지 않은 속성은 아예 넣지 않아서 기존 값이 지워지지 않게 한다
+ * (재큐레이션할 때 손으로 넣어둔 값을 규칙이 덮으면 안 되기 때문).
+ */
+function buildProperties(config) {
+  const props = {};
+  if (config.title) props.Title = { title: [{ text: { content: config.title } }] };
+  if (config.description) props.description = { rich_text: [{ text: { content: config.description } }] };
+  if (config.intro) props.intro = { rich_text: [{ text: { content: config.intro } }] };
+  for (const key of ['occasion', 'relation', 'ageGroup', 'budgetTag', 'interests']) {
+    if (config[key]) props[key] = { multi_select: config[key].map(name => ({ name })) };
+  }
+  if (config.priceMin != null) props.priceMin = { number: config.priceMin };
+  if (config.priceMax != null) props.priceMax = { number: config.priceMax };
+  if (config.recipientGender) props.recipientGender = { select: { name: config.recipientGender } };
+  return props;
+}
+
 const existing = await notion.databases.query({
   database_id: GUIDES_DB_ID,
   filter: { property: 'slug', rich_text: { equals: slug } },
@@ -43,23 +62,16 @@ if (existing.results.length === 0) {
   const page = await notion.pages.create({
     parent: { database_id: GUIDES_DB_ID },
     properties: {
-      Title: { title: [{ text: { content: config.title } }] },
+      ...buildProperties(config),
       slug: { rich_text: [{ text: { content: slug } }] },
-      description: { rich_text: [{ text: { content: config.description } }] },
-      intro: { rich_text: [{ text: { content: config.intro } }] },
-      occasion: { multi_select: (config.occasion ?? []).map(name => ({ name })) },
-      relation: { multi_select: (config.relation ?? []).map(name => ({ name })) },
-      ageGroup: { multi_select: (config.ageGroup ?? []).map(name => ({ name })) },
-      budgetTag: { multi_select: (config.budgetTag ?? []).map(name => ({ name })) },
-      ...(config.priceMin != null ? { priceMin: { number: config.priceMin } } : {}),
-      ...(config.priceMax != null ? { priceMax: { number: config.priceMax } } : {}),
-      ...(config.recipientGender ? { recipientGender: { select: { name: config.recipientGender } } } : {}),
       published: { checkbox: true },
     },
   });
   console.log(`[${slug}] 신규 가이드 페이지 생성: ${page.id}`);
 } else {
-  console.log(`[${slug}] 이미 존재하는 가이드 (${existing.results[0].id}) — 속성은 건드리지 않고 콘텐츠만 갱신합니다.`);
+  const pageId = existing.results[0].id;
+  await notion.pages.update({ page_id: pageId, properties: buildProperties(config) });
+  console.log(`[${slug}] 기존 가이드 속성 갱신 (${pageId})`);
 }
 
 await pushGuide(config);
