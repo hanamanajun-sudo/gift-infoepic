@@ -1,35 +1,162 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
+
 export const slug = '20대-남성-생일선물';
+export const title = '20대 남성 생일선물 추천 TOP6 — 친구·형제 기준, 뜻밖의 1위는 피부';
+export const description =
+  '20대 남성 생일선물 추천 TOP6. 연인이 아니라 친구·형·동생 사이의 후기를 ' +
+  '모아보면 뜻밖에 "피부 관리"가 자주 등장합니다. 지갑·향수·테크 아이템까지 ' +
+  '실제 언급 순서대로 정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['친구'];
+export const ageGroup = ['20대'];
+export const budgetTag = ['3만원이하', '5만원이하', '10만원이하'];
+export const interests = ['테크', '향기', '패션'];
+export const recipientGender = '남성';
+export const priceMin = 20800;
+export const priceMax = 69500;
+
 export const intro =
-  '20대 남성은 대학생·취준생·사회초년생 등 인생의 전환점에 있는 시기예요. ' +
-  '고등학생 때와 달리 지갑과 시계, 향수 같은 본격적인 성인 아이템이 필요해지고, ' +
-  '취향도 뚜렷해져서 선물 고르기가 가장 까다로운 대상 중 하나입니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 20대 남성 선물 데이터를 교차 검증해서 ' +
-  '20대 남성이 진짜 좋아했던 선물만 골랐습니다.';
+  '20대 남성 생일선물 후기를 연인 관계를 빼고 보면(순수 "친구" 문맥 17건, ' +
+  '"동생" 22회, "형" 17회) 뜻밖의 카테고리가 등장합니다 — 피부 관리입니다. ' +
+  '"누나가 지성피부 동생한테 사줬다", "20대 초반 남자 선물로 피부 밸런스 ' +
+  '잡아주는 제품"이라는 후기가 여러 건이었습니다. 남자친구 생일선물 가이드가 ' +
+  '옷·향수 중심이었다면, 이쪽은 친구·형제 사이에서 실제로 통하는 실용템 ' +
+  '위주였습니다. 지갑(19회)·향수(친구 맥락)·보조배터리 같은 테크 아이템이 ' +
+  '뒤를 이었습니다.';
+
 export const blocks = [
   h2('가격대별로 고르기'),
-  table([['예산','추천 상품','이유']],[['3~5만원대','소가죽 반지갑 / 샘소나이트 백팩','사회초년생·대학생 필수템, 브랜드까지 OK'],['7~9만원대','조말론 향수 / 갤럭시 핏3','20대 남자친구·친구 선물 베스트'],['9~20만원대','갤럭시 버즈3 / 지샥 가죽시계','프리미엄 선물, 특별한 날']]),
-  h2('20대 남성이 진짜 좋아하는 선물 TOP 6'),
-  h3('매일 쓰는 필수템 "이니셜 각인 소가죽 반지갑"'),p('20대 남성에게 지갑은 가장 무난하면서도 실용적인 선물입니다. 이니셜 각인이 가능한 소가죽 반지갑은 선물의 특별함을 더해줍니다. 29,500원으로 부담 없는 가격에 사회초년생이나 대학생 남자친구에게 첫 브랜드 지갑을 선물할 수 있습니다. 블로그에서 "20대 남자친구에게 지갑 선물했는데 3년째 쓰고 있다"는 후기가 있습니다.'),
-  h3('데일리 시계 "지샥 커스텀 메탈"'),p('20대 남성은 패션에 관심을 갖기 시작하면서 시계에도 눈을 돌립니다. 지샥 미니 지얄오크 메탈 커스텀은 13세의 카시오 학생시계(14,700원)나 16세의 지샥 G-SHOCK(38,900원)보다 한참 위의 프리미엄 아이템입니다. 209,000원으로 부담스러운 가격이지만, 오래 사용할 수 있는 첫 진짜 시계로 만족도가 높습니다.'),
-  h3('취향 저격 향수 "조말론 오드코롱"'),p('20대 남성에게 향수는 더 이상 바디스프레이가 아닌, 자신을 표현하는 도구입니다. 조말론 런던 미모사 앤 카다멈 오드코롱은 은은하면서도 고급스러운 향으로 20대 남녀 모두에게 인기입니다. 77,000원으로 첫 명품 향수로 적당한 가격이며, 블로그에서 "20대 남자친구에게 조말론 선물했는데 정말 좋아했다"는 후기가 많습니다.'),
-  h3('무선의 자유 "갤럭시 버즈3"'),p('20대 남성은 출퇴근·등하교·운동·게임까지 하루 종일 무선 이어폰을 사용합니다. 갤럭시 버즈3는 13세의 앤커 무선이어폰(39,900원)보다 프리미엄급으로, 노이즈캔슬링과 착용감이 뛰어납니다. 70,000원대로 부담스럽지 않은 가격에 일상의 만족도를 높여주는 선물입니다.'),
-  h3('건강 관리 시작 "갤럭시 핏3"'),p('20대부터 건강 관리에 관심을 갖기 시작합니다. 갤럭시 핏3는 만보기·심박수·수면측정 등 기본 건강 기능을 갖춘 스마트밴드로, 90,000원으로 스마트워치보다 부담 없는 가격이 특징입니다. 운동을 시작한 20대 남성이나 건강 관리에 관심 있는 사회초년생에게 좋은 선물입니다.'),
-  h3('데일리 백팩 "샘소나이트 초경량"'),p('20대 남성은 노트북과 텀블러, 운동복까지 매일 챙길 짐이 많습니다. 샘소나이트 초경량 백팩은 16세의 등하교 백팩(39,800원)보다 더 성인스러운 디자인으로, 대학 강의실부터 직장까지 어디든 어울립니다. 51,500원으로 부담 없는 가격에 브랜드+내구성+디자인을 모두 만족시킵니다.'),
-  h2('20대 남성 선물 고르는 법'),
-  p('20대 남성은 고등학생과 달리 지갑·시계·향수 같은 완전한 성인 아이템이 필요합니다. "처음"이라는 느낌보다 "완성된" 느낌의 선물을 선호하며, 브랜드와 디자인에 민감합니다.'),
-  h3('패션·악세서리에 관심 있다면'),p('소가죽 반지갑이나 지샥 커스텀 시계가 좋습니다. 20대는 브랜드와 디자인을 중요시합니다.'),
-  h3('향수·바디케어에 관심 있다면'),p('조말론 향수가 가장 무난합니다. 바디스프레이가 아닌 진짜 향수로 업그레이드된 느낌을 주세요.'),
-  h3('테크·운동을 좋아한다면'),p('갤럭시 버즈3나 핏3가 최고입니다. 실용적이면서도 트렌디한 선물입니다.'),
-  h2('이건 사지 마세요'),b('고등학생용 아이템(바디스프레이·게이밍 마우스 등) — 20대는 완전한 성인입니다.'),b('사이즈가 중요한 옷·신발 — 20대는 브랜드와 핏에 매우 민감합니다.'),b('유치한 장난감이나 굿즈 — 20대 남성에게 장난감은 필요 없습니다.'),
-  h2('자주 묻는 질문'),h3('20대 남성 생일선물 예산은 얼마가 적당한가요?'),p('3만원~20만원대까지 폭넓습니다. 3~5만원대(지갑·백팩)부터 7~20만원대(향수·버즈·핏3·지샥)까지 선택 가능합니다.'),h3('남자친구 선물로 가장 좋은 선택은?'),p('조말론 향수(77,000원)나 갤럭시 버즈3(70,000원)가 가장 무난합니다. 취향을 모른다면 이니셜 각인 지갑(29,500원)도 좋습니다.'),
-  h3('20대 남성에게 옷이나 신발은 피해야 하나요?'),p('네, 사이즈와 취향을 정확히 알아야 해서 리스크가 큽니다. 지갑·향수·이어폰처럼 사이즈 프리한 선물이 안전합니다.'),
+  table(
+    ['예산', '추천', '이럴 때'],
+    [
+      ['2만원대', '대용량 보조배터리', '가볍게 실용적인 선물을 원할 때'],
+      ['3만원대', '클립형 블루투스 스피커 / 소가죽 벨트', '테크·클래식 아이템을 원할 때'],
+      ['4만원대', 'ELLE Homme 지갑', '매일 쓰는 실용템, 실패 확률이 낮음'],
+      ['5만원대', '캘빈클라인 향수', '조금 특별한 느낌을 주고 싶을 때'],
+      ['7만원대', '지성피부 집중관리 4종세트', '피부 트러블로 고민하는 친구·동생에게'],
+    ]
+  ),
+
+  h2('20대 남성이 진짜 좋아하는 선물 TOP6'),
+
+  h3('뜻밖의 1위 "홀츠포맨 지성피부 집중관리 4종세트"'),
+  p(
+    '"누나가 지성피부 동생한테 사줬더니 피부 밸런스가 잡혔다"는 구체적인 ' +
+    '후기가 있었습니다. 20대 남성 특유의 피지 고민을 겨냥한 스킨·로션· ' +
+    '에센스 4종 구성입니다. 69,500원.'
+  ),
+
+  h3('매일 쓰는 실용템 "ELLE Homme 남성지갑"'),
+  p(
+    '지갑은 19회 언급되며 "친구·남자친구·아빠·남동생 선물로 좋다"고 두루 ' +
+    '추천되는 카테고리입니다. 익숙한 브랜드라 실패 확률이 낮습니다. 38,500원.'
+  ),
+
+  h3('가볍게 특별함을 더하는 "캘빈클라인 CK 이터너티"'),
+  p(
+    '향수는 친구 사이 선물로도 꾸준히 언급되는 카테고리입니다. 오래 사랑받은 ' +
+    '스테디셀러라 처음 선물해도 무난합니다. 50,300원.'
+  ),
+
+  h3('언제든 유용한 "PIUJJA 대용량 보조배터리"'),
+  p(
+    '실용성 위주 선물을 찾는다면 가장 무난한 선택입니다. 30,000mAh 대용량 ' +
+    '고속충전으로 하루 종일 밖에 있어도 걱정 없습니다. 20,800원.'
+  ),
+
+  h3('취향을 더하는 "브리츠 클립형 블루투스 스피커"'),
+  p(
+    '가방이나 옷깃에 클립처럼 걸어 쓰는 웨어러블 스피커입니다. 흔한 선물이 ' +
+    '아니라서 "센스 있다"는 인상을 줄 수 있습니다. 29,900원.'
+  ),
+
+  h3('무난한 클래식 "벨트맨 이태리 소가죽 벨트"'),
+  p(
+    '지갑만큼 자주는 아니지만 꾸준히 언급되는 클래식 카테고리입니다. 캐주얼· ' +
+    '정장 모두에 무난하게 어울립니다. 41,800원.'
+  ),
+
+  h2('왜 친구·형제 사이엔 피부 관리인가'),
+  p(
+    '연인 사이라면 향수나 옷처럼 취향과 스타일을 반영한 선물이 자연스럽지만, ' +
+    '친구·형제 사이에는 그보다 "평소에 아쉬워하던 걸 챙겨준다"는 실용적 접근이 ' +
+    '더 잘 통합니다. 20대 초반 남성의 피지·트러블 고민은 스스로 관리 제품을 ' +
+    '사기까지는 잘 안 이어지는 영역이라, 가족이나 친구가 선물했을 때 실제로 ' +
+    '달라진 걸 체감하는 경우가 많았습니다.'
+  ),
+
+  h2('이건 사지 마세요'),
+  bullet('사이즈가 있는 옷·신발 — 브랜드와 사이즈 취향이 갈리기 쉬운 품목입니다.'),
+  bullet('반지·목걸이 같은 액세서리 — 친구·형제 사이에는 부담스러운 신호로 읽힐 수 있습니다.'),
+  bullet('이미 쓰는 것과 같은 급의 지갑·스피커 — 카테고리가 맞아도 등급이 같으면 감흥이 없습니다.'),
+
+  h2('자주 묻는 질문'),
+  h3('연인 사이 선물은 어디서 찾나요?'),
+  p('남자친구 생일선물 가이드를 참고하세요. 향수·커플 액세서리 중심으로 따로 정리했습니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('2만원대부터 7만원대까지 고르게 후기가 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+  h3('피부 타입을 모르면 어떻게 하나요?'),
+  p('지성·트러블 케어 제품은 대부분 겸용으로 써도 큰 문제가 없는 순한 성분 위주라, 정확히 모른다면 이 제품처럼 순한 4종 세트가 안전합니다.'),
+
+  h2('관련 가이드'),
+  bullet('남자친구 생일선물: 연인 사이 기준'),
+  bullet('30대 남성 생일선물: 한 세대 위 기준'),
+  bullet('5만원 이하 선물만 비교하기'),
 ];
-export const products=[
-  {name:'이니셜각인 소가죽 반지갑 남성 수제 선물포장',price:29500,naverUrl:'https://smartstore.naver.com/main/products/5286671927',imageUrl:'https://shopping-phinf.pstatic.net/main_8283116/82831164069.1.jpg',rank:1,pros:'20대 첫 브랜드 지갑. 이니셜 각인으로 특별함. 29,500원 가성비.'},
-  {name:'지샥 미니 지얄오크 카시오 커스텀 메탈 손목시계',price:209000,naverUrl:'https://smartstore.naver.com/main/products/10101061976',imageUrl:'https://shopping-phinf.pstatic.net/main_8764556/87645564680.6.jpg',rank:2,pros:'고2~3 지샥(38,900)과 다른 프리미엄. 첫 진짜 시계. 오래 사용.'},
-  {name:'조 말론 런던 미모사 앤 카다멈 오드코롱 30ml',price:77000,naverUrl:'https://search.shopping.naver.com/catalog/53875752458',imageUrl:'https://shopping-phinf.pstatic.net/main_5387575/53875752458.20250331165441.jpg',rank:3,pros:'고2~3 존바바토스보다 고급. 20대 첫 명품 향수. 은은한 향.'},
-  {name:'삼성 갤럭시 버즈3 SM-R530',price:70000,naverUrl:'https://smartstore.naver.com/main/products/10585064825',imageUrl:'https://shopping-phinf.pstatic.net/main_8812957/88129570415.1.jpg',rank:4,pros:'13세 앤커(39,900)보다 프리미엄. 노캔+착용감. 20대 필수템.'},
-  {name:'삼성 갤럭시 핏3 스마트밴드 SM-R390',price:90000,naverUrl:'https://smartstore.naver.com/main/products/12741880851',imageUrl:'https://shopping-phinf.pstatic.net/main_9028639/90286391792.7.jpg',rank:5,pros:'20대 건강관리 첫템. 만보기+심박수+수면. 부담 없는 가격.'},
-  {name:'샘소나이트 백팩 남자 직장인 대학생 초경량',price:51500,naverUrl:'https://smartstore.naver.com/main/products/5306481632',imageUrl:'https://shopping-phinf.pstatic.net/main_8285097/82850974079.7.jpg',rank:6,pros:'16세 등하교백팩과 다른 성인 디자인. 대학→직장까지.'},
+
+export const products = [
+  {
+    rank: 1,
+    name: '홀츠포맨 남자 지성 문제성 피부 집중관리 4종세트',
+    price: 69500,
+    pros: '"누나가 지성피부 동생한테 사줬다" 실제 후기. 20대 남성 피지 고민을 겨냥한 스킨·로션·에센스 4종.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/WKYKUC1znuMnN47GWA5E2DqWNTCBBuLLOYF8m6NvklSLqeBNClA-vzKt5egQKWw95o3lMm0CpVm85QIjdmybdZYD3drruHN_mH_81jB5mSJp_OzXSE2eDotuS_69RjRFD-ldIicWE9MbSRHNXAK-dXB_7wFJhnLr9P3wky7wqxEoSuKRmj6WP-CF0z5u1Y3LLtKQkDIYyzmG8WRnSGHa0_ez055m4dqq_V95fAHUTPPOMe9uWTJ6IZ-QVYTY9_cMO6d_dCMUr5nOMneY8A9hSQe-02hjfVJ6NYuIyUSenHTlAhwIR2KYgsPiM9vqzicdfVo5P4o3ZMB5ykbw01QsmV4TLp9A2NmEo3p2P4yxsvgEaC_oerepOsQR1EOwqbvJmVW5JWmvtuU1kBdy3jaG1EtBM7LYxQWPF4RkLRJhsoeaNsmNQetObK0MaQ4ZLfAoDWwJlyDG82ALgeTP6nrtPhNtFkLeQRPv2epjx6OCXlJXUjddws-ocbjo_7GYC2T0mgjXBO5HQ77KB-OcQVedE9pE0S1ZtI4=',
+    coupangUrl: 'https://link.coupang.com/a/gKZw35FQJM',
+    naverUrl: null,
+  },
+  {
+    rank: 2,
+    name: 'ELLE Homme (엘르옴므) 남성지갑',
+    price: 38500,
+    pros: '지갑 언급 19회. "친구·남자친구·아빠·남동생 선물로 좋다"고 두루 추천됨.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/EKBlzqFXqRJl4bt1EDXId17wJWNTI2lnHmdMq8Z7cZGe8GJmAYtGNH3Eb1GrJsTeYeF1F90M4y7SIrkf6yCAaYXmMW6e2ONgJQ69ltJWb7G1DOjBcBfBJBjdLvLXvskvuzhbYGdumrk__eCMJtdr6DegHqmpO9SYZ_11I_Ynm5yuFBXgRNyvxv3mHSflL9t-0uhFpWWPHxF1BttsTeLSqsowqm0GH2mcbrlE2X7tJGqKmLhqbHk2LxJP9yXNERALCR4eRa23-VA3JFIFmZxvcIaNTHnI4hF9KA7GX8h6qSUkSfXQnw2Q1W0nqfRSQG5Sh3HphW65RVwYmnFrpii7WegGhyjXV6bxT9EqwkmGToJv6wEPtMakMDV-jiE85UBhuvSmXTROLh9xASqTO2Gr32hnrD1oaPVLgZaeUHPVp3qcC6gu05reJk2_hjIZ2sBkGDPkuAMEPjZBkv8XKVvzHFibIHp_B_inFff8x02TCvm2Sbli2kT8lXW2UzJf6t1BAL3qXFx29sknMYZ9UERqizEvC_gUV0G_hg==',
+    coupangUrl: 'https://link.coupang.com/a/gKZw4bbdTg',
+    naverUrl: null,
+  },
+  {
+    rank: 3,
+    name: '캘빈클라인 CK 이터너티 포 맨 EDT',
+    price: 50300,
+    pros: '친구 사이 선물로도 꾸준히 언급. 오래 사랑받은 스테디셀러라 처음 선물해도 무난.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/QlWrcf4aBjeuA0suQpLoZE9dvBzyjxb9wgpzL0XSGl5IXUt_69-qz6MELqU2-R8CkfmHN0skf5IFFJf-T6qHEhn4iNfzEj-LCbOsw_vl1lGFbBJGIVI1fE2nwht92KcwkfX5YeyQ8V80I7PQX-9XvAvz-6kHqGWZgXsWN9ntOGVLSWrjPF4iVOsNYnDu9rytTmwtC-tU9GVu4CUGgEcLiwx9Rl6kNpOk1b4u-C6h_8GvKrJRnYEZyXsz20YXk-9ALIBGjdiFaSnH7Gkp-48Al7QVVGDm5sC5KRMJVMkEp92tUPVhXbVulg7Ln30Ez931q67dgiMgTnM-oo8Me_KuISeSd3hgrFfrmznCUWNNnWB-VFVPYqmdQy4ushZIK5djz00R7v0McMFqjZCWaruGOah-8LnYqygBwy3geTjqt2GWHuu8WP_6Ont--NJKoF3aNTw7EEHrvHQ4-mw-gjC7RTmaGvA6M1pKngHVvccP45O7Af1zIlqLLjDJtoW90PFRLu_9hQxHO75_hihjDqGbaYOVLdPLK_QPJ8r0eH_FrEblRew=',
+    coupangUrl: 'https://link.coupang.com/a/gKZw4lXM60',
+    naverUrl: null,
+  },
+  {
+    rank: 4,
+    name: 'PIUJJA 대용량 보조배터리 30000mAh (고속충전 PD 22.5W)',
+    price: 20800,
+    pros: '가장 무난한 실용 선물. 대용량 고속충전으로 하루 종일 밖에 있어도 걱정 없음.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/RyGp3U3FD24hCa93RybCzZmYBr4N5CXKKCuDwz_TzTfKlf4VR_FLTJGL23j05R27aKAtbv_a_OLikm7f9BwdnOJp_puHoEUeGw33lVxz5SIYyoElGpkM3OVrQJbOzgXnpFCDy_ns08aHTLScOT4GTEzr53Sn41XV_L_YiYQd9T2TjRofbLk4651i_yhvBtLqrZmcbdaNvFExuPtDbYe3bEBhhvbHA52Fef817mNdeBXZVZPMTNOTGR2xP74tIUJ0xNeQ0UM_Jy3Qth1di7Cv_hmdnTWsw5nCDT70ucv_721f-6suZiqT6NylPLjsEPRdSNxrVNj2nspWE5hXtS8Oc4P3o0Tzg7sae8ZAFBElmGHXJl0WfpZwnq1zrkZTmLrVe13dfwqecuFkzifzRWQR9_LU5eow6ZwLNd_g8Qp90NlhZ0bE9_XBT-QtlQ8vGRRNHxg8_ZJDCz5LcGkdlakhpfDjCKeOocF_yg4HHBz-g7O0hlNrarJBBWbOBxa_kgE9Hj-JnLWffwhqmYOX0uP5-RID58aLrKAA9J4ZLlM24zY2zA==',
+    coupangUrl: 'https://link.coupang.com/a/gKZw4gd01s',
+    naverUrl: null,
+  },
+  {
+    rank: 5,
+    name: '브리츠 클립형 무선 웨어러블 블루투스 스피커',
+    price: 29900,
+    pros: '가방·옷깃에 걸어 쓰는 웨어러블 스피커. 흔치 않은 선물이라 센스 있다는 인상.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/kdmSX8Eukcj278hckb9--3cm8Ls1m-tJYeDs9dhan-i1qiJeGhCoGZSsrzdlqcf689Q0eKO8FjLZUf_fmqOP35u_lACfyPMK_vyMPrFeAX924NuNgi4FlDtxph5LhYrJQp4E8YYS9Ia8jEVq7nUofdX0cmz1BUSR_VUJQRoupF9P_AbeDLh7i8miSnDRwA3YkTwBqEFkfi4fy4JhdBQHHXpEMJEkCB1ZRrYY-t34zzCIeSTIwCG5keb5dnAKLutmAt7RWtaUqyThkaDXorH3ey6TAtkEik-kP-wUCZUznT_6M8trKqpQKVWoITq1QgYDWQ9Ft6noDJZkpxbKOuZqpjeS7QPv1uQXfAlzM3MRC1hchQWY51sh7mEKih7RBogHFnpNWphE4DronSqzAxWmm2aJ-4ttGCYxZH0EBl2OS2owyUV5QURHYunmgq_N77lbDgNFCN01rYN_gux1JkSjkWCKEC2YVfyEyfgYoXqtQi-Bm4LVRk7YP0HgLhXUCkPlCWph1Qq9Ke1ZxxQrIzDVxSJodGzJ-Z3XAg==',
+    coupangUrl: 'https://link.coupang.com/a/gKZw4pPmYm',
+    naverUrl: null,
+  },
+  {
+    rank: 6,
+    name: '벨트맨 이태리 소가죽 남자 벨트 (캐주얼/정장)',
+    price: 41800,
+    pros: '지갑만큼은 아니지만 꾸준히 언급되는 클래식. 캐주얼·정장 모두 무난.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/nV3aW7pT4wgf3WqRnapQM-osLhpAjBDThT33HOam3t3-qmXQuS68d08imtLM4-3r74GC10FmwDwrFSTc5L_subaljJLdGm2zZP46HzJP78445pvJn7yimO5_5RuwSP3RPLtvCuI5_647YDJ7l2cCkNr-ZGuZldItkbspCFhTwFPaOaYRCW7Ljt97sYXkbXDToF2kANtwXzsjplN3zBr10U0AZX8Oo0I3p3vvZCIiZJr-gvRZSAjva0hUDFZFcmvoyRAl5eCb7sntw8SW_0d0Td3sgcwdSgyrgUub39eH_nUrb5XsvAfYQuSD6UjMT9zbCxJ2LPOOTJ2kkopURTOpXpJPRLwLp7WdSA66ui9gWD1lgY79dZe8DiBVqeN1nsQyLu43LDUEKMNK4oBDezuN0NqNHz3FbOtyDxeWZ-1laSDRn0_X4NPcqIU744iTxJVfQu-3EHCskfFEn7mUlCgvpn6xRAxDnucBG7EDADHfXshmNdURsNaOgZElkc2hSb4ONpQW7cIlECjJ_gOiMwviKlzL1RHZH5ocJeyp',
+    coupangUrl: 'https://link.coupang.com/a/gKZw4uLxRI',
+    naverUrl: null,
+  },
 ];
