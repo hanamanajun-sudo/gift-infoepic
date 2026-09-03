@@ -1,33 +1,163 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
+
 export const slug = '20대-여성-생일선물';
+export const title = '20대 여성 생일선물 추천 TOP6 — 연인 말고 친구·동료 기준';
+export const description =
+  '20대 여성 생일선물 추천 TOP6. 연인 사이라면 향수·커플템이 정답이지만, ' +
+  '친구·직장동료·후배처럼 조금 거리가 있는 관계에는 부담 없는 무난한 선물이 ' +
+  '더 안전합니다. 홍삼·핸드크림·디퓨저처럼 실패 없는 카테고리로 정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['친구'];
+export const ageGroup = ['20대'];
+export const budgetTag = ['3만원이하', '5만원이하', '10만원이하'];
+export const interests = ['K뷰티', '향기', '생활'];
+export const recipientGender = '여성';
+export const priceMin = 18000;
+export const priceMax = 51430;
+
 export const intro =
-  '20대 여성은 대학생·취준생·사회초년생 등 인생의 변화가 가장 많은 시기예요. ' +
-  '여고생 시절의 캐주얼한 취향에서 벗어나 지갑·향수·목걸이 같은 ' +
-  '본격적인 성인 여성의 아이템에 관심을 갖기 시작합니다. ' +
-  '여자친구·여사친·딸·조카 등 다양한 관계에서 선물을 고를 수 있는 만큼 ' +
-  '센스 있는 선택이 중요합니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 20대 여성 선물 데이터를 교차 검증해서 ' +
-  '20대 여성이 진짜 좋아했던 선물만 골랐습니다.';
+  '20대 여성 생일선물 후기를 모아보면 "향수"(25회)가 가장 많이 나오지만, 그 ' +
+  '내용을 자세히 보면 대부분 연인 사이 선물이었습니다. "여자친구" 관련 언급이 ' +
+  '17회, "편지"가 14회로 뒤를 이었는데, 이건 연인 사이의 생일선물 문화에 더 ' +
+  '가깝습니다. 이 글은 그 대신 "친구선물로 정관장 홍삼세트 추천"처럼 연인이 ' +
+  '아닌 관계 — 친구·직장동료·후배 — 를 위한 후기에 집중했습니다. 연인 사이 ' +
+  '선물을 찾고 있다면 여자친구 생일선물 가이드를 먼저 보시길 권합니다.'
+;
+
 export const blocks = [
   h2('가격대별로 고르기'),
-  table([['예산','추천 상품','이유']],[['2~4만원대','소가죽 반지갑 / 실버 목걸이 / 디퓨저','여고생보다 성숙한 첫 성인 선물'],['7~8만원대','캐시미어 머플러 / 조말론 향수','프리미엄 선물, 여자친구에게 딱']]),
-  h2('20대 여성이 진짜 좋아하는 선물 TOP 6'),
-  h3('첫 브랜드 지갑 "이니셜 각인 소가죽 반지갑"'),p('20대 여성에게 지갑은 여고생 카드지갑(27,900원)보다 한 단계 위의 아이템입니다. 이니셜 각인이 가능한 소가죽 반지갑은 35,900원으로 부담 없는 가격에 첫 브랜드 지갑을 선물할 수 있습니다. 블로그에서 "20대 여자친구에게 소가죽 지갑 선물했는데 매일 쓰고 다닌다"는 후기가 있습니다.'),
-  h3('데일리 향수 "조말론 블랙베리 앤 베이"'),p('여고생의 12,000원 튜베로즈 향수와 차원이 다른 20대 여성의 첫 명품 향수입니다. 조말론 블랙베리 앤 베이는 은은하면서도 세련된 향으로 20대 여성에게 가장 인기 있는 향수 중 하나입니다. 블로그에서 "20대 여자친구 첫 명품 향수로 조말론 선물했다가 완전 성공"이라는 후기가 많습니다.'),
-  h3('데일리 악세서리 "925 실버 목걸이"'),p('20대 여성은 패션에 관심을 갖기 시작하면서 첫 실버 악세서리를 갖습니다. 925 실버 눈꽃 체인 목걸이는 여고생의 실버 체인 팔찌(38,900원·16세)와 달리 목걸이로 업그레이드된 버전입니다. 49,800원으로 순은 소재라 변색 걱정이 없고, 데일리로 착용하기 좋습니다.'),
-  h3('방 인테리어 "플로랑 디퓨저 선물세트"'),p('20대 여성은 자신만의 공간에 신경 쓰기 시작합니다. 대용량 디퓨저 선물세트(19,000원)는 여고생의 미니 무드등(29,000원)과 달리 공간 전체의 분위기를 바꿔주는 아이템입니다. 인테리어 소품으로도 예쁘고, 은은한 향기로 집에 들어올 때마다 기분이 좋아집니다.'),
-  h3('겨울철 필수템 "캐시미어 머플러"'),p('20대 여성에게 고급스러운 머플러 하나는 패션과 실용을 모두 잡는 선물입니다. 고비 캐시미어 머플러는 76,000원으로 첫 캐시미어 아이템으로 적당한 가격이며, 블랙·베이지 등 무난한 색상은 어떤 옷에도 잘 어울립니다. 여자친구·여사친·딸 누구에게나 잘 통하는 무난한 선물입니다.'),
-  h3('데일리 백 "천연가죽 숄더백"'),p('20대 여성은 가방에도 취향이 생기기 시작합니다. 천연가죽 숄더백은 여고생의 캔버스 에코백(7,820원)이나 백팩(39,800원)과 차원이 다른 성인 여성의 아이템입니다. 129,800원으로 부담스러운 가격이지만, 오래 사용할 수 있는 가죽 소재라 가성비가 좋습니다.'),
-  h2('20대 여성 선물 고르는 법'),p('20대 여성은 여고생과 달리 지갑·향수·목걸이 같은 완전한 성인 여성 아이템이 필요합니다. "처음"보다 "완성된" 느낌의 선물을 선호하며, 브랜드와 디자인에 민감합니다.'),
-  h3('패션·악세서리에 관심 있다면'),p('소가죽 반지갑이나 실버 목걸이가 좋습니다. 첫 브랜드 아이템으로 최고입니다.'),h3('향수·인테리어에 관심 있다면'),p('조말론 향수나 디퓨저 세트가 딱 맞습니다.'),h3('겨울철이나 실용템을 원한다면'),p('캐시미어 머플러나 천연가죽 숄더백이 좋습니다.'),
-  h2('이건 사지 마세요'),b('여고생용 아이템(에코백·립글로이밤·캐릭터 굿즈) — 20대는 여고생이 아닙니다.'),b('사이즈가 중요한 옷·신발 — 20대 여성은 브랜드와 핏에 매우 민감합니다.'),b('유치한 디자인의 악세서리 — 실버나 골드 같은 진짜 소재의 아이템을 고르세요.'),
-  h2('자주 묻는 질문'),h3('20대 여성 생일선물 예산은 얼마가 적당한가요?'),p('2만원~15만원대까지 폭넓습니다. 2~5만원대(지갑·목걸이·디퓨저)부터 7~15만원대(머플러·향수·가방)까지 다양합니다.'),h3('여자친구 선물로 가장 좋은 선택은?'),p('조말론 향수(154,800원/100ml)나 캐시미어 머플러(76,000원)가 가장 무난하게 잘 통합니다.'),h3('20대 여성에게 옷이나 신발은 피해야 하나요?'),p('네, 사이즈와 취향을 정확히 알아야 해서 리스크가 큽니다. 지갑·목걸이·향수처럼 사이즈 프리한 선물이 안전합니다.'),
+  table(
+    ['예산', '추천', '이럴 때'],
+    [
+      ['1만원대후반', '진주 목걸이 / 핸드크림 세트', '가볍게 무난한 선물을 원할 때'],
+      ['2만원대', '홍삼정 스틱 / 벨벳 틴트 세트', '건강 또는 색조를 챙기고 싶을 때'],
+      ['2만원대후반', '프리미엄 대용량 디퓨저', '방을 꾸미는 걸 좋아하는 친구에게'],
+      ['5만원대', '체크 머플러', '조금 더 격을 갖추고 싶을 때'],
+    ]
+  ),
+
+  h2('20대 여성 생일선물 추천 TOP6'),
+
+  h3('생색나지 않게 건강 챙기기 "풍년보감 홍삼정 에브리데이"'),
+  p(
+    '"친구선물로 정관장 홍삼세트 추천"이라는 후기가 있을 만큼, 연인이 아닌 ' +
+    '관계에서는 오히려 실용적인 건강식품이 부담 없이 받아들여집니다. 매일 ' +
+    '한 포씩 챙기는 스틱형입니다. 22,320원.'
+  ),
+
+  h3('취향을 크게 안 타는 "퍼퓸 핸드크림 5종 세트"'),
+  p(
+    '연인 사이라면 향수 하나를 정해서 주지만, 친구·동료 사이에는 여러 향을 ' +
+    '골라 쓸 수 있는 핸드크림 세트가 더 무난합니다. 딸기·바닐라 등 5가지 향. ' +
+    '18,800원.'
+  ),
+
+  h3('방 분위기를 바꿔주는 "센토 프리미엄 디퓨저"'),
+  p(
+    '대용량 3개 구성이라 오래 쓸 수 있고, 인테리어 소품으로도 부담이 적은 ' +
+    '카테고리입니다. 25,900원.'
+  ),
+
+  h3('가볍게 색조를 더하는 "벨벳 타투 틴트 립글로스 6종세트"'),
+  p(
+    '6종 세트라 색을 고를 필요 없이 다양하게 시도해볼 수 있습니다. 무광·촉촉 ' +
+    '두 가지 텍스처를 함께 담았습니다. 20,900원.'
+  ),
+
+  h3('무난하게 격을 더하는 "데일리라이크 진주 목걸이"'),
+  p(
+    '연인 사이의 커플 주얼리와 달리, 혼자 착용해도 자연스러운 심플한 진주 ' +
+    '디자인입니다. 취향을 크게 타지 않는 데일리 아이템입니다. 18,000원.'
+  ),
+
+  h3('조금 더 격식 있는 "트렌빌 체크 머플러"'),
+  p(
+    '겨울 생일이라면 실용적이면서도 격식 있는 선물이 됩니다. 선물포장까지 ' +
+    '갖춰진 세트입니다. 51,430원.'
+  ),
+
+  h2('연인이 아니라면 왜 다르게 골라야 하나'),
+  p(
+    '같은 "20대 여성 생일선물"이라도 관계에 따라 답이 완전히 다릅니다. 연인 ' +
+    '사이라면 향수·커플 주얼리처럼 취향이 뚜렷하게 갈리는 아이템도 괜찮습니다 ' +
+    '— 평소 대화를 통해 취향을 알고 있을 가능성이 높기 때문입니다. 하지만 ' +
+    '친구·직장동료·후배 사이에는 그런 정보가 부족한 경우가 많아서, 취향을 ' +
+    '크게 타지 않는 실용적인 카테고리(건강식품·핸드크림·디퓨저)가 실패 확률이 ' +
+    '훨씬 낮습니다.'
+  ),
+
+  h2('이건 사지 마세요'),
+  bullet('커플 주얼리 — 연인이 아닌 관계에서는 부담스러운 신호로 읽힐 수 있습니다.'),
+  bullet('한 가지 향으로 확정된 향수 — 취향을 모른다면 실패 위험이 큽니다.'),
+  bullet('사이즈가 있는 옷·신발 — 취향과 사이즈가 갈리기 쉬운 품목입니다.'),
+
+  h2('자주 묻는 질문'),
+  h3('연인 사이 선물은 어디서 찾나요?'),
+  p('여자친구 생일선물 가이드를 참고하세요. 향수·커플 액세서리·편지 중심으로 따로 정리했습니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('1만원대 후반부터 5만원대까지 고르게 후기가 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+  h3('직장 동료에게 줘도 괜찮은 선물인가요?'),
+  p('네, 이 목록의 상품들은 모두 취향을 크게 타지 않아 직장 동료·후배 선물로도 무난합니다.'),
+
+  h2('관련 가이드'),
+  bullet('여자친구 생일선물: 연인 사이 기준, 향수와 편지'),
+  bullet('30대 여성 생일선물: 한 세대 위 기준'),
+  bullet('5만원 이하 선물만 비교하기'),
 ];
-export const products=[
-  {name:'이니셜각인 소가죽 여자반지갑 20대 미니 똑딱이',price:35900,naverUrl:'https://smartstore.naver.com/main/products/6851025862',imageUrl:'https://shopping-phinf.pstatic.net/main_8439552/84395526184.jpg',rank:1,pros:'여고생 카드지갑(27,900)보다 성숙. 첫 브랜드 지갑. 이니셜 각인.'},
-  {name:'조 말론 블랙베리 앤 베이 코롱 100ml',price:154800,naverUrl:'https://smartstore.naver.com/main/products/13394053843',imageUrl:'https://shopping-phinf.pstatic.net/main_9093856/90938564179.jpg',rank:2,pros:'여고생 튜베로즈(12,000)와 다른 명품향수. 20대 여자친구 1순위.'},
-  {name:'이태리 925실버 눈꽃체인목걸이 순은 여성',price:49800,naverUrl:'https://smartstore.naver.com/main/products/6399019342',imageUrl:'https://shopping-phinf.pstatic.net/main_8394351/83943519675.8.jpg',rank:3,pros:'16세 실버팔찌(38,900)와 다른 목걸이. 순은 변색 없음.'},
-  {name:'플로랑 대용량 디퓨저 500ML 2개 선물세트',price:19000,naverUrl:'https://search.shopping.naver.com/catalog/54894262774',imageUrl:'https://shopping-phinf.pstatic.net/main_5489426/54894262774.20250903111049.jpg',rank:4,pros:'여고생 미니무드등(29,000)과 다른 공간향기. 방 인테리어.'},
-  {name:'GOBI 고비 캐시미어 베이직 머플러 목도리',price:76000,naverUrl:'https://smartstore.naver.com/main/products/2204814084',imageUrl:'https://shopping-phinf.pstatic.net/main_1238700/12387007995.52.jpg',rank:5,pros:'첫 캐시미어 아이템. 무난한 색상. 어머니·여자친구 모두 OK.'},
-  {name:'민티즈럭셔리 천연가죽 스웨이백 숄더백',price:129800,naverUrl:'https://smartstore.naver.com/main/products/11743024647',imageUrl:'https://shopping-phinf.pstatic.net/main_8928753/89287535166.jpg',rank:6,pros:'여고생 에코백·백팩과 다른 성인 가방. 가죽 소재 내구성.'},
+
+export const products = [
+  {
+    rank: 1,
+    name: '풍년보감 6년근 고려홍삼정 에브리데이100',
+    price: 22320,
+    pros: '"친구선물로 정관장 홍삼세트 추천" 실제 후기. 매일 한 포씩 챙기는 스틱형.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/SuFXi4dhquBgplu-SoZlIYi1nf1IsX0DSq4FDHGZ1_7zMvp2RkhvJOtPQNh2ZGXkaajKha2CoA2GundKIC1ofGsdXf5cUqW2-49xo3ky4WfUjARLmE_8KDhy71nQ2OFzFGA4YJuSmm0Rhiw1wUsSvXxtjjnCWbqxGya7hNXiG8rtj68KoykCkwogHkBKohNb1DdLflbV0PTFfXgRjGZi704GEipT2-0iKH-kJy7Pbj6rmZLq3ch6YO0HE9Q5VFsGPlQjIkf0vVRbaoQEYoNcW5S8ZGT6MPWZRT7aE7IBYYUZxBLmODe-IPndh6bZ7x5-tTc1zHuXzfAMJ6MmgAAfU4iGJqmS3oNx_JmEOg9V7dPMs2ZTtO38bAm7gp6HV0vbs_bp9kMEpedhKTpMKngACjjufPSnCywFbbZubmf6bkyJSdUedz0o8ZeCI7x4UN-xqt6LGDG1HheP6PKS5Zv3vp__VbOf3NAD-IgwtDNbHYh01WfOnnW_xW8bltNkcO3s6d1Bp0d1NsNCm4eKts_kUf0T',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTl4g3g',
+    naverUrl: null,
+  },
+  {
+    rank: 2,
+    name: '퍼퓸 핸드크림 5종 세트 (딸기·바닐라·솔티드카라멜 외)',
+    price: 18800,
+    pros: '여러 향을 골라 쓸 수 있어 취향을 몰라도 실패 확률이 낮음. 데일리 보습 케어.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/GK7MbLXkY2HDyfLxGO6cz6OV6ZGgZ9W4gkiBwXtFHSh2dOCH4CxoZST2pB5gJ1KyxbHeRhRo7q6_Ex5ptJrnBUtV063sslSFG1zYCaeojs2LWhE_cBUuwZ-JKr7sWO3hb_XEpC1p2WTvhN49pe_aoXQAqGenk64RXbZ2Xptbt0GnxqHGICqee8WC5jRjEec9Z8IhkI7NbnASiCnH5s3nKJ4Gp18g0GwAeP8dE0LufKmTKJ9cBxWZjzOgHkYNB3rUeUfVca7HaB7TUgMGMC0P2JEbIQU2UFbiSlvyCs4pPKTp_edPKiMjOvfuB3vhAe2Bz4c0YhzZzYMFXv3Fp3tamcMYQiMNS0kRy9DBjic2AKBBQMTs5o3pLg6GMKdBfQg3WTRQmHK2a1eQCCzZF_Y3ZYS9SGdCW3HYBilJ_fgotVwLzcIZXkDq_tgW1WffKIxrGJ68IrqWR6H8pnrj1cTIVKv-iDrc1YhRcWbQfrg1_9D551jQz88_1VMy3zIEnDFWCj9DlVRZUAGUuxVx6DsYSERgGhIrvfnyRQdiqZlY6iboXw==',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTsH2I0',
+    naverUrl: null,
+  },
+  {
+    rank: 3,
+    name: '센토 인텐스 프리미엄 대용량 디퓨저 (호텔우드, 550ml x 3)',
+    price: 25900,
+    pros: '대용량 3개 구성으로 오래 사용. 인테리어 소품으로도 부담 없음.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/QJattyEDNq5z1z6-QITTXav1PgYGwuzs90YrbU2hmtEwP822A4MdBuYCgB0wPdsrujQ2RuE0ritRv_Q9Fp4FVHbcnEuFoffHtGt-K5R_eZ-kFtKl3HwosLF7iZRqbztPD8K1XT7DKSV66cinerc2JbjewdMMTJD_T6FeeZ0dyxWf_5GxACH1Gmb7S4BMsPXDGl4pz1kNdsYFaSuZr7wCowuMaf2qAuDw1X0fMq9Bwab133b3Pd0DW88b2ox90PtAKqIQ80qbAnYE4Z1q4pcjHoTwtrD2MSlB_Onqh42uUWRENuTzHsBYVmbWid1irWql5rhsLSBVmR0VEM_G_1byDIQjIYtcDg2IcTGyWsc4pQXshR6UOTH4g75x-NPlz7uAsUeLZEYG8GeujUAtoDEWlKc5hzHo6xJ-dZhmQnpikiZ87uxPFPT_Rqe-1v1YjmJXM3pg7BNWtPzQuML8kUfsARNb2d1P61G997iwJA7jLRzTjCHNoB7nyRk9qQySB-yriBEHj5i6ag==',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTx2qZg',
+    naverUrl: null,
+  },
+  {
+    rank: 4,
+    name: '벨벳 타투 틴트 립글로스 6종세트',
+    price: 20900,
+    pros: '6종 세트라 색을 고를 필요 없이 다양하게 시도. 무광·촉촉 텍스처 함께 구성.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/Bz5Z0ZCkgCTSGRD2B4NzI9l0lJAjS36ElmhB2LplUdXnYmYYBf5WlRUh7bV7AlHBqR9gQhEV3Re1d8EvUed_1o_aCb--OdOgvUdRLFZIRc5HFhBFUOaJCIHD1TgFD0_kqU0g_6u8LAwdKqDZvNKZpdfxiY7aRt7tKcGGIcG5JiGm_M4vCrB2HinaA-HA0jD3xO2dpqaG-tVj5TIkEFeCMmQM9apo7bLpHQrLIzvJcFxj5UsVQU-EtbQAwvhE1seF9ujrKrWMyjhubaZOCoEj9dgSiiq-4woUnrFQLhQKue5w3h52FsAdYqUlfAAwMwNCu5msWO_OGxc7PP9nJ7S44g1Kg9E-CU4eXTVpqWgq4OvqI-BacaZr3jwK5BLfh5vuiYVMJOm6jFdh24WLb_Ix7JtRw6fB0bXL505kK53yJvZjssoYWZz21tDEQ2VhmKtJ9YhqJCeEopBKCpamWB1hFYKBlvKxmPwf1xtZQBX_2wareoEgt7S3KM90Vx08H4_Ld63cfEYVr4LvcBydEMLWOawVW1K5-AkURTkSzDXiCRMtScR-',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTFtNRc',
+    naverUrl: null,
+  },
+  {
+    rank: 5,
+    name: '데일리라이크 진주 목걸이 (2color, 심플)',
+    price: 18000,
+    pros: '커플 주얼리와 달리 혼자 착용해도 자연스러운 심플 디자인. 취향을 크게 안 탐.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/pC10GoKBbPYn9qq6pKHWRO3iZRhCifl0pSeZriH9BXAF4C5LhWGtiM202xMG5_7YYjIC36IQjJytyZo0cEA6XPrZP8RE8G-LnNhqD_noOr7FadBzNXXm6cQXN98AvBmsqoC_KdZB8Cpnrmgvif2OHp8lgCJzFg3BtYOF_uH3eDoCMeDhGSmXGERxIsGy9hsvF8Ct3bWwzqBeFzPWnfR791ApKM2RnmE2bQAte_KNkQgQ5OcSBQndz_kO0MlGrMOS0mCfgJdh6D3c27fG4lXgcGhC5HcjFSf9r31eEf2UpNjjLrMmCEn_-aeJp6Y7AlXR_JVb2Wo5LiM3Cx7eNowe_mFIL7wGFx1h3olzPkifDdro_LE1dsLB5Nqv5KVl37wM52g4hU0IbzG_lAbsP0rx7j_RMuOzzHvOaGsUTg1HrjRLDg9u164yvLCPscPuYM8VD2DiGpkhgpd2QszkekGBd4-qatkFs65ZbfefwuQwLimK1zFVFfo5YN8rf2XMm3-HMEF8byokXdsK17WtnN_d_r6W6ZD7M3IFjPwz4Adzas_fIR0=',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTJCYQC',
+    naverUrl: null,
+  },
+  {
+    rank: 6,
+    name: '트렌빌 체크 머플러 (선물포장 패키지)',
+    price: 51430,
+    pros: '겨울 생일에 실용적이면서 격식 있는 선택. 선물포장 세트로 별도 포장 불필요.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/EUV-K82bpwMrsU10EaDJCFnjNSd4OxDwllR1LlKJuuWGYQLeCYTOOGm7JcegM68KlYoSSbO3uTk020EasoF3F0YO1MDyuLduY1F-MbmbwwPeBY3Jqc-ggJaOVIBUS5WgaljGv0wRCzOxInVxeFYfrfUQkSuEmTW1o-18xr-omr2x98XcZ8aBseBVhmNLeojvatpI5EUSC1PIzp7GxyZQ4SEhGERPb793fDJQbQ7E5GZ6kitKf5R3cyVdp3NXVl-GkH_D9h4a5WUrg29q0B0dd05VqsnCN8SI1ENFxnhEQJsWGkO8u64gxfWNg3D0OSIIBhYxF0R23p4dfp8nowEJe5CK8Q21BCNRxEL8TuINOc2R2USe1u18FXmh2Ebm6Wmp-DAn0hwhjfHGxhQPY13iqXvAfUJaqCpMB__YBpzxuw_15GIG7lthTivjid1kxh-QsE5rgGIDrZqAlk3iWOB3AzjS2ahW69_zufmqEQdANnddj9762VNMHKqfwHWDpTePTenThDTKPV2gqmqtsE20mAYQ-PJnbo32kwtE0zT6mEOlZQU=',
+    coupangUrl: 'https://link.coupang.com/a/gKYXTQumrs',
+    naverUrl: null,
+  },
 ];
