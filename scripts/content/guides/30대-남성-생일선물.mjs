@@ -1,33 +1,164 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
+
 export const slug = '30대-남성-생일선물';
+export const title = '30대 남성 생일선물 추천 TOP6 — 여기서도 1위는 면도기입니다';
+export const description =
+  '30대 남성 생일선물 추천 TOP6. "남편"이 122회로 가장 많이 언급되는 이 나이대에서도 ' +
+  '역시 전기면도기가 압도적 1위였습니다. 이미 좋은 면도기가 있는지에 따라 갈리는 ' +
+  '대안까지 정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['남편', '아빠'];
+export const ageGroup = ['30대'];
+export const budgetTag = ['5만원이하', '10만원이하', '20만원이하'];
+export const interests = ['패션', '건강', '테크'];
+export const recipientGender = '남성';
+export const priceMin = 25890;
+export const priceMax = 159000;
+
 export const intro =
-  '30대 남성은 직장에서 중간 관리자로 성장하고, 가정을 꾸리기 시작하며, ' +
-  '건강과 취미에도 관심을 갖기 시작하는 시기예요. ' +
-  '20대의 트렌디한 아이템보다는 품질과 브랜드, 실용성이 중요한 나이입니다. ' +
-  '남편·아빠·형·친구·직장동료 등 다양한 관계에서 고를 수 있는 만큼 ' +
-  '센스와 실용을 모두 잡는 선물이 필요합니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 30대 남성 선물 데이터를 교차 검증해서 ' +
-  '30대 남성이 진짜 좋아했던 선물만 골랐습니다.';
+  '30대 남성 생일선물 후기에서도 "면도기"가 90회로 전체 1위입니다. 관계로 보면 ' +
+  '"남편"이 122회로 압도적이어서, 이 나이대 생일선물 후기 대부분이 아내가 남편에게 ' +
+  '주는 상황이라는 뜻입니다. 40대 남성 가이드에서 확인한 것과 같은 결과인데, ' +
+  '이유도 같습니다 — 매일 쓰지만 본인이 직접 업그레이드하는 일은 드문 몇 안 되는 ' +
+  '소모품이라는 것입니다. 다만 30대 특유의 신호도 있었습니다. "속옷"류(드로즈· ' +
+  '팬티) 언급이 26회로 40대보다 두드러졌는데, 특정 브랜드를 반복해서 후기에 남길 ' +
+  '만큼 친밀한 사이에서 주고받는 품목이라 이 글에서는 다루지 않았습니다.';
+
 export const blocks = [
   h2('가격대별로 고르기'),
-  table([['예산','추천 상품','이유']],[['4~6만원대','가죽 서류가방 / 아이오페 맨 스킨케어','직장인 필수템, 30대 피부 관리 시작'],['11~18만원대','닥스 벨트 / 디올 향수 / 네스프레소 / 안마기','프리미엄 브랜드·건강·취향 선물']]),
-  h2('30대 남성이 진짜 좋아하는 선물 TOP 6'),
-  h3('직장인의 품격 "닥스 가죽 벨트"'),p('30대 남성에게 벨트는 단순한 악세서리가 아닌 직장인의 품격을 보여주는 아이템입니다. 닥스 가죽 벨트는 20대의 소가죽 반지갑(29,500원)보다 한 단계 위 브랜드템으로, 118,000원의 적당한 가격에 오래 사용할 수 있습니다. 블로그에서 "30대 남편에게 닥스 벨트 선물했는데 매일 착용한다"는 후기가 있습니다.'),
-  h3('남성 향수의 정석 "디올 소바쥬 EDT"'),p('30대 남성에게 향수는 20대의 조말론보다 더 남성적이고 진중한 이미지가 필요합니다. 디올 소바쥬는 전 세계에서 가장 많이 팔리는 남성 향수 중 하나로, 132,000원의 가격에 30대 남성의 품격을 완성해줍니다. 블로그에서 "30대 남편 생일선물로 디올 소바쥬 줬는데 진짜 좋아했다"는 후기가 많습니다.'),
-  h3('출근 필수템 "가죽 서류가방"'),p('30대 직장인에게 서류가방은 20대의 샘소나이트 백팩(51,500원)과 다른 완전한 성인 아이템입니다. 가죽 서류가방은 노트북과 서류를 넣고 다니기에 실용적이면서도, 정장과의 조화가 중요한 직장인의 필수품입니다. 59,800원으로 가성비 좋은 가죽 서류가방을 선물할 수 있습니다.'),
-  h3('30대 피부 관리 시작 "아이오페 맨 스킨케어 세트"'),p('30대가 되면 피부 노화가 신경 쓰이기 시작합니다. 아이오페 맨 안티에이징 스킨케어 세트는 13세의 올인원 스킨케어(33,900원)와 달리 본격적인 노화 방지 기능을 갖춘 제품입니다. 40,060원으로 부담 없는 가격에 30대 남편이나 아빠의 피부 관리를 시작하게 해주세요.'),
-  h3('커피 취미 "네스프레소 시티즈 커피머신"'),p('30대 남성은 커피에 진심이 되는 시기입니다. 네스프레소 시티즈 커피머신은 179,000원으로 부담스러운 가격이지만, 매일 집에서 즐기는 커피 한 잔의 가치를 생각하면 충분한 투자입니다. 블로그에서 "30대 아버님께 커피머신 선물했는데 매일 아침 내려드신다"는 후기가 있습니다.'),
-  h3('피로 회복 "목 어깨 안마기"'),p('30대는 직장과 가정에서 가장 바쁜 시기로, 목과 어깨 통증을 호소하는 사람이 많습니다. 목 어깨 안마기는 30대 남성의 건강을 생각하는 따뜻한 선물입니다. 179,000원으로 고가이지만, 매일 사용할 수 있는 실용템입니다.'),
-  h2('30대 남성 선물 고르는 법'),p('30대 남성은 20대의 트렌디함보다 품질과 실용성을 중시합니다. 브랜드 가치와 내구성, 실제 사용도가 선물의 성패를 결정합니다.'),
-  h3('직장·비즈니스 스타일'),p('닥스 벨트나 가죽 서류가방이 좋습니다. 직장인의 품격을 높여주는 아이템입니다.'),h3('취미·건강 관심'),p('네스프레소 커피머신이나 목어깨 안마기가 잘 맞습니다.'),h3('향수·스킨케어 관심'),p('디올 소바쥬나 아이오페 맨 스킨케어가 좋습니다.'),
-  h2('이건 사지 마세요'),b('20대용 트렌디 아이템(지샥 메탈·갤럭시 버즈 등) — 30대는 더 클래식한 아이템이 필요합니다.'),b('사이즈가 중요한 옷·신발 — 브랜드와 핏에 매우 민감합니다.'),b('유치한 장난감이나 굿즈 — 30대 남성에게는 필요 없는 선물입니다.'),
-  h2('자주 묻는 질문'),h3('30대 남성 생일선물 예산은 얼마가 적당한가요?'),p('4만원~18만원대까지 폭넓습니다. 4~6만원대(서류가방·스킨케어)부터 11~18만원대(벨트·향수·커피머신·안마기)까지 다양합니다.'),h3('남편 선물로 가장 좋은 선택은?'),p('닥스 벨트(118,000원)나 디올 소바쥬(132,000원)가 가장 무난하게 잘 통합니다.'),h3('30대 남성에게 옷이나 신발은 피해야 하나요?'),p('네, 사이즈와 취향 리스크가 큽니다. 벨트·향수·커피머신처럼 확실한 선물이 안전합니다.'),
+  table(
+    ['예산', '추천', '이럴 때'],
+    [
+      ['2만원대', '가죽 자동벨트', '가볍게 실용적인 선물을 원할 때'],
+      ['5~6만원대', '홍삼정 젤리스틱 / 명품st 반지갑', '건강 또는 매일 쓰는 소품을 원할 때'],
+      ['7만원대', '필립스 3000 시리즈 전기면도기', '아직 전기면도기가 없거나 낡았을 때'],
+      ['10만원대', '노이즈캔슬링 블루투스 이어폰', '출퇴근길이 긴 남편에게'],
+      ['15만원대', '필립스 SkinIQ 7000 시리즈', '이미 저가형 면도기를 쓰고 있어 업그레이드가 필요할 때'],
+    ]
+  ),
+
+  h2('30대 남성이 진짜 좋아하는 선물 TOP6'),
+
+  h3('아직 면도기가 없다면 "필립스 3000 시리즈 전기면도기"'),
+  p(
+    '후기 90회로 전체 1위 카테고리입니다. "면도기 선물은 진짜 엄청난 센스", ' +
+    '"싫어할 남자는 없다"는 표현이 반복됐습니다. 처음 전기면도기로 바꾸는 경우라면 ' +
+    '입문형인 3000 시리즈로 충분합니다. 70,900원.'
+  ),
+
+  h3('이미 좋은 면도기가 있다면 "필립스 SkinIQ 7000 시리즈"'),
+  p(
+    '같은 급을 또 선물하면 "이미 있는데"라는 반응이 나옵니다. 후기에서 실제로 ' +
+    '"필립스 i9000 프레스티지가 가장 좋을 것 같다"처럼 상급 라인을 콕 집어 찾는 ' +
+    '경우가 있었는데, 예산 안에서는 SkinIQ 7000이 가장 근접한 선택입니다. 159,000원.'
+  ),
+
+  h3('매일 쓰는 소품 "루이까또즈 남성 반지갑"'),
+  p(
+    '"명품 반지갑 브랜드 BEST" 같은 제목이 반복해서 나올 만큼 지갑도 꾸준한 ' +
+    '카테고리입니다. 백화점에서 A/S가 되는 브랜드로 고르면 실패 확률이 낮습니다. ' +
+    '63,000원.'
+  ),
+
+  h3('출퇴근길을 챙기는 "노이즈캔슬링 블루투스 이어폰"'),
+  p(
+    '면도기·지갑만큼 자주 나오진 않지만, 30대 남성 특유의 "출퇴근이 긴" 생활 ' +
+    '패턴에 맞는 실용템입니다. 통화 품질까지 챙긴 모델로 골랐습니다. 99,890원.'
+  ),
+
+  h3('생색나지 않게 건강 챙기기 "정원삼 홍삼정365 젤리스틱"'),
+  p(
+    '"영양제" 언급 8회, 매일 한 포씩 먹는 젤리스틱 형태라 부담 없이 건강까지 ' +
+    '챙기는 선물이 됩니다. 55,620원.'
+  ),
+
+  h3('가볍게 실용적인 "가죽 자동벨트"'),
+  p(
+    '벨트는 지갑과 함께 꾸준히 언급되는 클래식 카테고리입니다. 자동 버클이라 ' +
+    '체형이 바뀌어도 계속 쓸 수 있어 실패 확률이 낮습니다. 25,890원.'
+  ),
+
+  h2('왜 30대에도 면도기인가'),
+  p(
+    '40대 남성 가이드에서 확인한 이유가 30대에도 그대로 적용됩니다. 전기면도기는 ' +
+    '매일 쓰는 소모품이면서도 본인이 직접 업그레이드하는 일은 드물어서, 받으면 ' +
+    '바로 체감되는 몇 안 되는 카테고리로 남아 있습니다. 다른 점이 있다면 30대 ' +
+    '데이터에서는 "남편"이 122회로 더 압도적이었다는 것인데, 30대가 결혼 초반과 ' +
+    '겹치는 시기라 생일을 챙기는 절대 다수가 배우자이기 때문으로 보입니다.'
+  ),
+
+  h2('이건 사지 마세요'),
+  bullet('블로그에 자주 나오는 최상급 라인(9000시리즈 면도기 등) — 예산을 크게 넘는 경우가 많아 확인 후 고르세요.'),
+  bullet('사이즈가 있는 옷·신발 — 브랜드와 핏 취향이 갈리기 쉽습니다.'),
+  bullet('이미 쓰는 것과 같은 급의 면도기·지갑 — 카테고리가 맞아도 등급이 같으면 감흥이 없습니다.'),
+
+  h2('자주 묻는 질문'),
+  h3('속옷을 선물해도 되나요?'),
+  p('후기에 실제로 자주 등장하지만, 신혼이나 아주 가까운 부부 사이에서만 안전한 카테고리입니다. 그 외 관계에서는 이 글의 다른 상품이 더 무난합니다.'),
+  h3('40대 남성 선물과 뭐가 다른가요?'),
+  p('핵심 카테고리(면도기)는 같지만 예산이 30대는 대체로 조금 더 낮게 형성돼 있고, 이어폰 같은 테크 아이템이 상대적으로 더 잘 통합니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('2만원대부터 16만원대까지 고르게 후기가 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+
+  h2('관련 가이드'),
+  bullet('40대 남성 생일선물: 한 세대 위 기준, 면도기가 1위인 이유'),
+  bullet('30대 여성 생일선물: 배우자에게 주는 기준은 다릅니다'),
+  bullet('10만원 이하 선물만 비교하기'),
 ];
-export const products=[
-  {name:'닥스 벨트 남성 가죽 허리띠 클래식 블랙 804 선물용',price:118000,naverUrl:'https://smartstore.naver.com/main/products/11079564117',imageUrl:'https://shopping-phinf.pstatic.net/main_8862407/88624074439.jpg',rank:1,pros:'20대 소가죽지갑(29,500)보다 위 브랜드. 직장인 품격.'},
-  {name:'디올 소바쥬 오 드 뚜왈렛 EDT 60ml',price:132000,naverUrl:'https://smartstore.naver.com/main/products/8498239012',imageUrl:'https://shopping-phinf.pstatic.net/main_8604273/86042739335.3.jpg',rank:2,pros:'20대 조말론보다 남성적. 세계 최다 판매 남성 향수.'},
-  {name:'가죽 직장인 남자 서류가방 노트북 출근 가방',price:59800,naverUrl:'https://smartstore.naver.com/main/products/11810512338',imageUrl:'https://shopping-phinf.pstatic.net/main_8935502/89355022925.2.jpg',rank:3,pros:'20대 샘소나이트(51,500)와 다른 성인 서류가방. 가성비.'},
-  {name:'아이오페 맨 안티에이징 스킨케어 세트 2종',price:40060,naverUrl:'https://search.shopping.naver.com/catalog/56691529489',imageUrl:'https://shopping-phinf.pstatic.net/main_5669152/56691529489.20250911163454.jpg',rank:4,pros:'13세 올인원(33,900)과 다른 본격 노화 방지. 30대 필수.'},
-  {name:'네스프레소 시티즈 D113 커피머신 화이트',price:179000,naverUrl:'https://search.shopping.naver.com/catalog/53875773207',imageUrl:'https://shopping-phinf.pstatic.net/main_5387577/53875773207.20250403101919.jpg',rank:5,pros:'30대 커피 취미. 매일 사용하는 고급 선물.'},
-  {name:'빌라르 딥필로 베개 목 어깨 승모근 안마기',price:179000,naverUrl:'https://smartstore.naver.com/main/products/13197800272',imageUrl:'https://shopping-phinf.pstatic.net/main_9074231/90742311369.jpg',rank:6,pros:'30대 건강 관리. 직장인 목어깨 통증 케어. 실용템.'},
+
+export const products = [
+  {
+    rank: 1,
+    name: '필립스 3000 시리즈 전기면도기',
+    price: 70900,
+    pros: '후기 90회로 전체 1위 카테고리. 아직 전기면도기가 없거나 오래됐을 때 입문형으로 충분.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/TU-aXYF2E3gWZs33TYbPzFkcm9VM9EvIQnrHhuFr_V0finVyxlap2tFMQTaNottGxZdwasbb5lLvjAxflYHxjlPY_AIxfyWbGOtlVel-4wqSanNA8T8RwxFQHFZYqc3jW02TnnrsFnpAdDMTSqL4mdzKmOtkD8iSwa6STBFxuKWh7_t3f8HGlcUZgj6pcEEu_oXeeEZcAOO6nNLyATSfghPZMUSbMnw264ogI7iYnIKdmm6uN3pOycANPXNll2n0Nfy82GoAOM_iVdfGkK383qc2WhHIU_IX0KAlQQwvXw7O1Y39IIwAtG_bekN1Qxe42tu6JU0sUHsGgbWL8J9CqS5bcAe8_GLkoLqoiVa_LlZhKRqSRNw0JbogcfY-9DFvWdDVztAwW05UPOF0QnEIvpWL6sWgl3sq2AKiFv8DdUnZf_VnzbYPrMUtY5wdAkwiZp0taqOZv-L6lcvhaVLkAfXWxOV6TOuhqgC7pR0ugXh3R43Gq0YQCOOww1Q189bzlxX_XxGmpDaWUOrwk7lV5e8Fzg==',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZuL40q',
+    naverUrl: null,
+  },
+  {
+    rank: 2,
+    name: '필립스 SkinIQ 7000 시리즈 전기면도기',
+    price: 159000,
+    pros: '이미 저가형 면도기를 쓰는 남편을 위한 업그레이드 라인. 상급 라인을 원한다는 후기가 실제로 있었음.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/wdKmkKwPy3N6IbcUwemqpvDuGAVcptgvLcAcaLZY7R7122gd3tfC9yFkz_gh8BkKuSF2v5Kt7FWeMmNuZ3Uj7Ec2Iq08HRBnCMGXu3SnkWjzDjy01rzqAxSfOK-QQZGthKNs7p7tsCmEg3f9k9kLmKVQt2bPLcc7x6C7xueW38gyDoedYLR_xSvaGFz7YhE-EfqE5be_lSFeZu3m0aHxy73_cgJhwW8cIahjma9JCBndEE6wQ_QmKShEFHA8nZYzT2tiiagM8cITxzXwf59j2-fHonyTLoi3q97UvKQLOJ5NZ-8oxh6n1bweRUZ0TY5M-nBRH0LczgzZ1BdEKUKLjf0IyQZ80DGHf57OBkTTLNc9H2DCNwoAsfh6hxHidRgK87NJKK2S5-DzXFv9iafV52WM3YKXAsGv1i0P1l0NIqlU3qfkomcoA6Gotu8P3mHo6ZHlAo4-yBzBfAnQxNJ50MvOIQ1r_AgtfkA2dPmeGa7Hbvxkc-1B0fBt_eFZagAYVUOGWcxET-dKTJXFC3zn-gMs-Bg=',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZzjZkG',
+    naverUrl: null,
+  },
+  {
+    rank: 3,
+    name: '루이까또즈 블랙 네이비 투톤 스티치 포인트 남성 반지갑',
+    price: 63000,
+    pros: '"명품 반지갑 브랜드" 언급이 반복됨. 백화점 A/S 되는 브랜드라 실패 확률이 낮음.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/qxKINGz0yXjRmiuaqyri6xsyvnnj5pjHY0XYRpFBV6EarCvWyDPL4LWdEVBU8dDoJZr0rpdBGnIo64ja6rBe4PYkPDDgKRe6xmwJlfAyKSC3t3lAt_2MnX93ez-VJP3LNfKLqN-UoJ84p7PwvrgSWAU6gcEQ4YqKGA57nOYlVAjYkJM-Lau8wE5KwZXCR17mUVb1n3KdbciIrY2OgqjVZ32QomjX1fCj1S0R3nT9meOiy9KAZ5z-fWXU7Eq2GBYcIxN3Pmu4Hp7XzPgkGrfC7re81avfvy1at6xbSezyMKMv6ZAoj65vQsjrkn1yMP1Wy_wWk-PihZ5bdxqHo2CXpjoKUPHYXFkp-A1GEq0yhp3QJrtk9TPM-iwVDn4sXwTmuHmZBjl8VEL5B2VnU4_d8MOwG1eCuJOjBGvjJr91xRcoRVrJULNjTugZLQ2J6ZlHfwmtNl3Qk8wiuE9VCA7E7qhMXTqoydXMlpa29J79fOocz1FqRlBEhSBnot1Yj5LiKkQDwPlxB2Ld8jWIjL6hmw==',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZDMpKm',
+    naverUrl: null,
+  },
+  {
+    rank: 4,
+    name: '엠지텍 노이즈캔슬링 통화용 블루투스 이어폰',
+    price: 99890,
+    pros: '출퇴근이 긴 30대 남편에게 맞는 실용템. 통화 품질까지 챙긴 모델.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/_fiWr1DF0q52MS8O_Q0ryEFnC_w03wcWVjA96CZdeIVAUxjvJWsnSYvlSYES8-3Jk5qir2vKnLSSU9nnnwiISRbPX3Wsv7suHYLmmB3F9k8xhUmIfmpsAFRGrzFNQ-VRSs9AyeBHqd77ET1rNBSjGfRlLYyustY-B0wYXa9iqY8-T-XkJ7SUq4TG43-Gnf5Y8Pxwr978hkJupDpeVLjVFH4ccnBt2_4qnnGeAXoYkvNQJZtcEXgxE4CaPLhYJkJ2Anlsqz0wWLDzG55t3DtAGap6xB0FqCqrabiBr6T29oXglxzF0wTv3W4xQN63OXoyjyv1OhT_6dlOH1LTSBy-9yINRVhUdyR2QN18tSeiAXEgaQc4d0hJ2dkDgdumUPXECiUu-BBAVxDhqrqxwIPoGzCgZUyKwkPgPFewIMV54-ckAMLnjkCJ32JOkhsN-m0dc7Efa-DfmL_W-MQK5dPCcPo7owoZxi04sgdCH_MMdMs-qGcMoujVKvbKf511ENCbj4jFkGVO1_c=',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZJNMXY',
+    naverUrl: null,
+  },
+  {
+    rank: 5,
+    name: '정원삼 6년근 고려홍삼정365 젤리스틱',
+    price: 55620,
+    pros: '"영양제" 언급 8회. 매일 한 포씩 먹는 젤리스틱 형태라 부담 없이 건강까지.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/NohXLkNFzlkqz314Nj0HWfVJ060hZBqJRy4kxDULuCDT1Mv6SgMJNsKp_KbYSSGpkcvnwecM44nY4xslMSTy_4WcsJeSGWy_LYLXStPeOZEw5Exjs-SRsEJwwmMgrAf-3pUE781pw1A2LBnI2akOHOLZGCjGyMexfPF2ydiCPW2OgqlWOF4Pq0rH2gaBFlPZnvATLNZcInZGAWJcLMiYWUQQe8KkjJi0ZB8Ww29p1UcIzGu55-YGZfKKOPTrcBviiqd13JAW5bx1NzrrQv3NdSzjB0QKfCSdBZ4eooL-gpFHd3u3ujFOB-l__brgshyFxKX7iPIPEA185pL321TV6N_LRkKPyFGEs5dW5mZ-kUZCWcMwQrCQPZ6vlK_0Lr6ebvbviFFnyrFZkMWPfwLlQvJx7EqeF6uGNN0v728FJvRUziD5UpfUciOMr2MklY77oTY0IaOxL3WLfkc6OmlFPdY83d9ANsKmqDd8PXonzKrhLT0Iz-HaqP5-1_G_utEc6qCZqXnz_j_g3J9izz6BqPCv',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZPuNu8',
+    naverUrl: null,
+  },
+  {
+    rank: 6,
+    name: '제임스폴 1+1 남성 자동 벨트 가죽 허리띠 정장 데일리',
+    price: 25890,
+    pros: '지갑과 함께 꾸준히 언급되는 클래식 카테고리. 자동 버클이라 체형 변화에도 계속 사용 가능.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/dYYPToptyCcGi6K2dWlZHd3a3ZgeUD4DKKhP1adBcyOnbdf8_D4HLfgTEw8GkSGcRcY1EAnkLQLt_tvlI4csegdgyE3paC0Ke6K4aEfIhAIj3X5KzLrwkolN1zV_3LKCXZbSW-tuEIAcDJzkAaeEhAQaNzleEMY2fkPOUX6oNAOKF7VAr4jnE6J-ofOepy6FT18YICRR0IBhLGFnkc2hjVikD7LkYafl8CxSKKcIy79aCw56-CFDtw6OiUIEpHNui5ruCtZvWm0is2TpnCbQP_a4bu6hHMGQEmM5ZWDWVMBcfwHtfR7AW4rNlhsp6tElC8fXWn2WjzD4-Fqayz4nvqMmnD1iwfTu8L_0yjf4QYgcwRoYPqBfGAIMb6Y1iLS-hD3NGLX42IZUnWi84yDl49vz7-QargsRba7-RJXOhmNZOxAHU8JKQqmZhbnENbNxrYP9hjxNy_e6B9YRQEhSCqcl2BtsMGHJdU7BUSyvBUrc1qMpaEx6hMgWEnD9J_qATpdru9WHA_pZDxfAQ3OOnrw=',
+    coupangUrl: 'https://link.coupang.com/a/gJ8ZZVa6lE',
+    naverUrl: null,
+  },
 ];
