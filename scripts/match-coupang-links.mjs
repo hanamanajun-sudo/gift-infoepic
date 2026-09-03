@@ -43,11 +43,31 @@ function toQuery(name) {
 
 const norm = s => s.toLowerCase().replace(/[^0-9a-z가-힣]/g, '');
 
-/** 모델 코드로 볼 만한 토큰(숫자 4자리 이상, 또는 영문+숫자 조합) */
+/**
+ * 모델 코드로 볼 만한 토큰.
+ *
+ * 처음엔 "숫자 3자리 이상"으로 잡았다가 크게 틀렸다. 925(은 순도), 100(송이),
+ * 300g(용량) 같은 게 전부 모델번호로 인식돼서 "925실버 눈꽃목걸이"와
+ * "얼음꽃 실버 목걸이"가 확신 매칭으로 붙었다(겹치는 단어가 하나도 없는데도).
+ *
+ * 그래서 두 가지로 좁혔다:
+ *  - 순수 숫자는 4자리 이상만 (21252·11041·31175·42653 같은 레고 세트번호)
+ *  - 영문+숫자 조합 (P31i·G102·SM-R390)
+ * 단위가 붙은 숫자(30ml·300g·125ml·2개)는 제품 사양이지 식별자가 아니라 제외한다.
+ */
 function modelCodes(name) {
-  return (name.match(/\b(?=\w*\d)[A-Za-z]*\d{3,}[A-Za-z]*\b/g) ?? [])
+  const stripped = name.replace(/\d+\s*(ml|g|kg|개|송이|매|인치|cm|mm|p|호)\b/gi, ' ');
+  return (stripped.match(/\b(?=\w*\d)[A-Za-z]*\d+[A-Za-z0-9-]*\b/g) ?? [])
     .map(s => s.toLowerCase())
-    .filter(s => !/^\d{4}$/.test(s) || Number(s) < 1900 || Number(s) > 2100); // 연도 제외
+    .filter(s => {
+      const digitsOnly = /^\d+$/.test(s);
+      if (digitsOnly) {
+        if (s.length < 4) return false;                       // 925·100 같은 건 식별자가 아니다
+        const n = Number(s);
+        return n < 1900 || n > 2100;                          // 연도 제외
+      }
+      return /\d/.test(s) && /[a-z]/.test(s);                 // 영문+숫자 조합만
+    });
 }
 
 function scoreMatch(product, cand) {
@@ -74,21 +94,26 @@ function scoreMatch(product, cand) {
     ? Math.min(product.price, cand.productPrice) / Math.max(product.price, cand.productPrice)
     : 0;
 
-  // 에디션·구성 차이를 나타내는 말이 후보에만 붙어 있으면 다른 SKU로 본다.
-  // 상품명이 짧으면 토큰 비율만으로는 못 걸러진다 — "코리아보드게임즈 할리갈리"와
-  // "코리아보드게임즈 할리갈리 디럭스"는 reverse가 0.67이라 통과해버린다.
-  const VARIANT = /디럭스|딜럭스|스페셜|에디션|리미티드|한정|프리미엄|플러스|미니|대형|특대|확장|리뉴얼|콜라보|기획|증정|[0-9]+개입|[0-9]+세트/;
-  const variantOnlyInCand = VARIANT.test(cand.productName) && !VARIANT.test(product.name);
+  // 에디션·구성 차이를 나타내는 말이 한쪽에만 붙어 있으면 다른 SKU로 본다.
+  // 양방향으로 봐야 한다 — "아떼 립밤 2개 SET"에 단품이 걸리는 것도 같은 문제다.
+  const VARIANT = /디럭스|딜럭스|스페셜|에디션|리미티드|한정|프리미엄|플러스|미니|대형|특대|확장|리뉴얼|콜라보|기획|증정|세트|set|[0-9]+\s*개/i;
+  const variantMismatch = VARIANT.test(cand.productName) !== VARIANT.test(product.name);
 
   let confidence = 'none';
-  if (variantOnlyInCand) confidence = overlap >= 0.45 ? 'review' : 'none';
-  else if (codeHit && ratio >= 0.55 && reverse >= 0.5) confidence = 'high';
+  if (variantMismatch) confidence = overlap >= 0.45 ? 'review' : 'none';
+  // 모델 코드가 맞으면 강한 근거지만, 그래도 이름이 절반은 겹쳐야 한다.
+  // 코드만 믿었다가 "925"로 엉뚱한 목걸이를 붙인 적이 있다.
+  else if (codeHit && overlap >= 0.5 && ratio >= 0.65 && reverse >= 0.5) confidence = 'high';
   else if (codeHit) confidence = 'review';
-  else if (overlap >= 0.6 && ratio >= 0.7 && reverse >= 0.65) confidence = 'high';
+  // 코드가 없으면 이름이 거의 그대로 겹쳐야만 확신으로 본다.
+  // 0.6으로 뒀더니 "존바바토스 125ml"에 용량 불명 제품이, "디올 소바쥬 60ml"에
+  // 100ml짜리가 붙었다. 용량·향·색 차이는 이름 끝에 한두 토큰으로만 나타나서
+  // 기준을 높게 잡지 않으면 전부 통과한다.
+  else if (overlap >= 0.85 && ratio >= 0.7 && reverse >= 0.65) confidence = 'high';
   else if (overlap >= 0.45 && ratio >= 0.55) confidence = 'review';
   else if (overlap >= 0.3) confidence = 'review';
 
-  return { confidence, overlap, reverse, ratio, codeHit, variantOnlyInCand };
+  return { confidence, overlap, reverse, ratio, codeHit, variantMismatch };
 }
 
 async function main() {
