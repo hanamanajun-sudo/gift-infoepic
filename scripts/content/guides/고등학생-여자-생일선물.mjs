@@ -1,137 +1,164 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
 
 export const slug = '고등학생-여자-생일선물';
+export const title = '고등학생 여자 생일선물 추천 TOP6 — 최애 굿즈 대신 고르는 법';
+export const description =
+  '고등학생 여자 생일선물 추천 TOP6. 친구 사이라면 최애 아이돌 굿즈가 최고지만, ' +
+  '부모님이나 친척은 "최애"를 모릅니다. 그럴 때 실패하지 않는 실용템을 정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['딸'];
+export const ageGroup = ['고등학생', '15세', '16세'];
+export const budgetTag = ['3만원이하', '5만원이하', '10만원이하'];
+export const interests = ['K뷰티', '패션', '향기'];
+export const recipientGender = '여성';
+export const priceMin = 9200;
+export const priceMax = 51900;
 
 export const intro =
-  '여고생(16~19세)은 더 이상 아이가 아닌, 자신만의 스타일과 취향이 확고한 청년입니다. ' +
-  '향수와 핸드크림, 다이어리와 방꾸미기까지 감성적이면서도 실용적인 아이템을 좋아합니다. ' +
-  '또래 친구 관계와 수능, 진로 고민으로 바쁜 이 시기에 ' +
-  '센스 있는 선물 하나는 큰 힘이 됩니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 여고생 선물 데이터를 교차 검증해서 ' +
-  '여고생들이 진짜 좋아했던 선물만 골랐습니다.';
+  '고등학생 생일선물 후기를 유튜브 댓글까지 파고들면 흥미로운 사실이 나옵니다. ' +
+  '친구들끼리는 앨범·포토카드 같은 "최애" 아이돌 굿즈가 압도적 1순위입니다. ' +
+  '"굿즈가 진짜 최고", "찐친이랑은 앨범 까는 게 제일 재밌다"는 댓글이 반복됐습니다. ' +
+  '문제는 부모님이나 친척은 자녀가 요즘 누구를 "최애"하는지 정확히 알기 어렵다는 ' +
+  '것입니다. 실제로 최애가 광고한 향수를 선물받았는데 "베르사체 맨" 향수라 ' +
+  '본인도 친구들도 당황했다는 후기도 있었습니다. 그래서 이 글은 최애를 몰라도 ' +
+  '실패하지 않는, 부모·친척 입장에서 안전한 선물로 골랐습니다.';
 
 export const blocks = [
   h2('가격대별로 고르기'),
   table(
-    ['예산', '추천 상품', '이유'],
+    ['예산', '추천', '이럴 때'],
     [
-      ['1만원대', '튜베로즈 향수 / 다이어리 플래너', '첫 향수와 플래너, 부담 없는 가격'],
-      ['3~4만원대', '탬버린즈 핸드크림 / 립글로이밤', '감성+실용, 여고생 선물 베스트'],
-      ['7~8만원대', '우주 무드등', '방꾸미기 취향, 오래 사용'],
+      ['9천원대', '데님 자수 에코백', '가볍게 실용적인 선물을 원할 때'],
+      ['1만원대', '니치 향수 미니어처 3종', '향을 아직 못 정했거나 취향을 모를 때'],
+      ['2만원대', 'PDRN 틴티드 립 앰플', '화장을 시작한 고등학생에게'],
+      ['3만원대', '탬버린즈 퍼퓸 핸드크림 / 캐릭터 무선이어폰', '매일 쓰는 실용템을 원할 때'],
+      ['5만원대', '프리저브드 플라워 무드등', '방을 꾸미는 걸 좋아하는 학생에게'],
     ]
   ),
-  h2('여고생이 진짜 좋아하는 선물 TOP 6'),
-  h3('첫 향수의 설렘 "튜베로즈 여고생 향수"'),
+
+  h2('고등학생 여자 생일선물 추천 TOP6'),
+
+  h3('취향을 몰라도 안전한 "뭉클 니치향수 미니어처 3종"'),
   p(
-    '고등학생이 되면 향수에 관심을 갖기 시작합니다. 튜베로즈 향수는 은은한 장미·자스민 계열로 ' +
-    '첫 향수로 부담 없는 12,000원의 가격이 특징입니다. ' +
-    '블로그에서 "여고생 조카에게 첫 향수 선물했는데 학원 갈 때마다 뿌리고 다닌다"는 후기가 있습니다. ' +
-    '무난한 향이라 호불호가 거의 없어 선물용으로 안전합니다.'
+    '향은 취향을 크게 타는 품목이라 하나만 골라 실패하기 쉽습니다. 실제로 최애가 ' +
+    '광고한 향수를 받았는데 남성용이라 당황했다는 후기도 있었습니다. 미니어처 ' +
+    '3종이면 그중 하나는 맞을 확률이 높아, 취향을 아직 모를 때 안전합니다. ' +
+    '11,970원.'
   ),
-  h3('감성 충전 "탬버린즈 퍼퓸 핸드크림 세트"'),
+
+  h3('화장을 시작한 학생에게 "PDRN 틴티드 립 앰플"'),
   p(
-    '일본과 한국 모두에서 10대·20대 여성 사이에서 핸드크림이 인기 선물아이템입니다. ' +
-    '탬버린즈 퍼퓸 핸드크림은 블루히노키·카모 등 감성적인 향과 고급스러운 패키지로 ' +
-    '"선물용으로 최고"라는 평이 많습니다. ' +
-    '35,000원으로 두 개 세트라 친구와 나눠 쓰거나 하나는 가방에 하나는 책상에 둘 수 있습니다.'
+    '"립" 관련 언급이 가장 많았습니다. 색조를 시작하는 고등학생에게는 진한 립스틱 ' +
+    '보다 촉촉하게 발리는 틴트형 앰플이 부담 없이 받아들여집니다. 22,390원.'
   ),
-  h3('공부 계획의 시작 "다이어리 플래너"'),
+
+  h3('학생들 사이 실제로 인기 있는 "탬버린즈 퍼퓸 핸드크림"'),
   p(
-    '여고생에게 다이어리는 단순한 일정 관리 도구를 넘어 자신만의 취미 공간입니다. ' +
-    '예쁜 다이어리에 스티커를 붙이고 필기하며 꾸미는 "다꾸" 문화는 ' +
-    '여고생들 사이에서 꾸준한 인기입니다. ' +
-    '11,100원으로 부담 없는 가격에 오래 사용할 수 있어 ' +
-    '실용적인 선물을 원한다면 좋은 선택입니다.'
+    '기존에도 이 브랜드가 선물로 쓰이고 있었을 만큼 이 나이대에서 확실히 통하는 ' +
+    '이름입니다. 손을 자주 씻는 학교생활에 실용적이면서 향까지 챙길 수 있습니다. ' +
+    '37,490원.'
   ),
-  h3('가벼운 외출 "캔버스 에코백"'),
+
+  h3('등하교길 필수템 "캐릭터 무선이어폰"'),
   p(
-    '여고생은 등하교와 학원, 친구들과의 약속 등 하루에도 여러 번 가방을 바꿉니다. ' +
-    '7,820원의 부담 없는 캔버스 에코백은 교과서를 넣어도 되고, ' +
-    '가벼운 외출용으로도 사용할 수 있어 활용도가 높습니다. ' +
-    '레터링 디자인이 포인트라 패션 아이템으로도 손색없습니다.'
+    '실용성과 취향을 동시에 잡는 방법은 디자인입니다. 무난한 블랙 대신 캐릭터 ' +
+    '디자인을 고르면 "내 취향을 알아준" 느낌을 줄 수 있습니다. 29,600원.'
   ),
-  h3('립메이크업의 시작 "아떼 립글로이밤 세트"'),
+
+  h3('방 꾸미기 좋아하는 학생에게 "프리저브드 플라워 무드등"'),
   p(
-    '여고생은 수능과 학교생활 중에도 자연스러운 메이크업을 선호합니다. ' +
-    '아떼 립글로이밤은 틴트보다 자연스럽고, 립밤보다 발색이 있는 제품으로, ' +
-    '여고생에게 딱 맞는 립 아이템입니다. ' +
-    '43,900원으로 2개 세트라 하나는 선물용, 하나는 본인용으로 나눌 수 있어 인기입니다.'
+    '시들지 않는 생화를 넣은 무드등으로, 책상이나 침대 옆에 두기 좋습니다. ' +
+    '"생일선물"이라는 문구 그대로 상품화된 제품이라 무난하게 받아들여집니다. ' +
+    '51,900원.'
   ),
-  h3('방꾸미기 취미 "우주 무드등 프로젝터"'),
+
+  h3('가볍게 실용적인 "데님 자수 에코백"'),
   p(
-    '여고생의 방은 단순한 잠자는 공간이 아닌 자신만의 감성 공간입니다. ' +
-    '우주 무드등은 천장에 별과 은하수를 비춰주는 프로젝터로, ' +
-    '79,900원으로 다소 비싸지만 오래 사용할 수 있는 방 인테리어 아이템입니다. ' +
-    '일본에서도 무드등이 여고생 선물로 주목받고 있습니다.'
+    '교과서나 체육복을 따로 담을 때 유용한 서브백입니다. 부담스럽지 않은 가격에 ' +
+    '데일리로 계속 쓸 수 있는 아이템입니다. 9,200원.'
   ),
-  h2('여고생 선물 고르는 법'),
+
+  h2('왜 아이돌 굿즈를 추천하지 않는가'),
   p(
-    '여고생(16~19세)은 감성과 실용을 모두 원합니다. 향수·핸드크림 같은 "감성템"과 ' +
-    '다이어리·에코백 같은 "실용템"의 균형이 중요합니다. ' +
-    '너무 어린 디자인은 피하고, 세련되면서도 부담 없는 아이템이 잘 통합니다.'
+    '친구 사이의 생일선물에서 가장 반응이 좋은 건 명백히 최애 굿즈입니다. 다만 ' +
+    '이건 "이 학생이 지금 누구를 좋아하는지"를 정확히 알아야 성립하는 선물이라, ' +
+    '부모님이나 친척처럼 매일 대화하지 않는 관계에서는 오히려 실패 위험이 큽니다. ' +
+    '그래서 이 글은 최애를 몰라도 통하는 카테고리(향·색조·실용템)로 골랐습니다. ' +
+    '자녀가 좋아하는 아이돌을 안다면, 그 굿즈를 최우선으로 고려하는 게 맞습니다.'
   ),
-  h3('감성·향기에 관심 있다면'), p('튜베로즈 향수나 탬버린즈 핸드크림이 좋습니다. 첫 향수나 핸드크림은 여고생에게 로망입니다.'),
-  h3('공부·생활 밀착형을 원한다면'), p('다이어리 플래너나 캔버스 에코백이 실용적입니다. 매일 쓰는 물건일수록 선물 만족도가 높습니다.'),
-  h3('방꾸미기·취미를 좋아한다면'), p('우주 무드등이나 립글로이밤 세트가 좋습니다. 자신만의 공간과 메이크업에 관심이 많은 여고생에게 딱입니다.'),
+
   h2('이건 사지 마세요'),
-  bullet('초등학생용 캐릭터 상품 — 여고생은 완전히 성인 취향입니다. 어떤 캐릭터 문구세트도 필요 없습니다.'),
-  bullet('사이즈가 중요한 옷·신발 — 여고생은 브랜드와 핏에 매우 민감합니다. 향수·핸드크림·에코백처럼 사이즈 프리한 선물이 안전합니다.'),
-  bullet('문제집·학습지 — 블로그에서 "생일선물로 문제집 받으면 학교 가기 싫어진다"는 후기가 있습니다.'),
+  bullet('한 가지 향으로 확정된 향수 — 취향을 모른다면 미니어처 세트가 안전합니다.'),
+  bullet('진한 색조 화장품 — 아직 색조를 시작하지 않은 학생에게는 부담스러울 수 있습니다.'),
+  bullet('문화상품권만 단독으로 — 성의가 없어 보인다는 반응이 있었습니다. 다른 선물에 곁들이는 용도가 낫습니다.'),
+
   h2('자주 묻는 질문'),
-  h3('여고생 생일선물 예산은 얼마가 적당한가요?'),
-  p('블로그 데이터 기준, 1만원~8만원대까지 다양합니다. 1만원대(향수·다이어리)부터 7~8만원대(무드등)까지 선택할 수 있습니다.'),
-  h3('여고생 향수, 처음인데 어떤 게 좋을까요?'),
-  p('처음 향수를 접하는 여고생에게는 시트러스나 플로럴 계열의 은은한 향이 좋습니다. 진한 향보다 바디스프레이처럼 가벼운 제품이 부담이 없습니다.'),
-  h3('조카 선물로 가장 안전한 선택은?'),
-  p('탬버린즈 핸드크림 세트(35,000원)나 캔버스 에코백(7,820원)이 부담 없는 가격에 실용적입니다.'),
+  h3('용돈이나 상품권은 어떤가요?'),
+  p('단독으로 주면 성의 없어 보일 수 있지만, 작은 선물과 함께 곁들이면 실용적이라는 반응이 많았습니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('9천원대부터 5만원대까지 폭넓게 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+  h3('최애 아이돌을 안다면요?'),
+  p('그 경우엔 이 리스트보다 앨범이나 공식 굿즈가 압도적으로 반응이 좋습니다. 최애를 모를 때만 이 가이드를 참고하세요.'),
+
+  h2('관련 가이드'),
+  bullet('중학생 여자 생일선물: 한 학년 아래 기준'),
+  bullet('고등학생 남자 생일선물: 남학생 기준'),
+  bullet('5만원 이하 선물만 비교하기'),
 ];
 
 export const products = [
   {
-    name: '튜베로즈 장미향수 10대 청소년 여고생 고등학생',
-    price: 12000,
-    naverUrl: 'https://smartstore.naver.com/main/products/13644609236',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9118912/91189120015.jpg',
     rank: 1,
-    pros: '여고생 첫 향수. 12,000원 부담 없는 가격. 은은한 장미·자스민 계열. 호불호 없음.',
+    name: '뭉클 플레르드뽀 니치향수 미니어처 3개 세트 5ml',
+    price: 11970,
+    pros: '향은 취향을 크게 탐. 미니어처 3종이면 그중 하나는 맞을 확률이 높아 취향을 모를 때 안전.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/pp8r9WCCdS1eJchOpkWtiMGWoMAruWwPspWVCJABmpzS6lORlUDaYxvUv1Bzq6eqRaeJz4SoE7dsLzkV2aIsXjBvdntl51pZkUurmMFWei_RCrBCyo3eOeTaYMmRP0ZB-7-5hHtNj7qYyEHZ_jQ6kN2Qtn109K6eGJj1trOUiIjmvaYJ2fgUJaRVWL972aTGqoarWfliX1FinIkb5zn25rAWIvhzxILxDIIH4ZpcgpeFcPKzyLTVTprbCaA7VXBwS2zQlPUxLHYU1vTtJpzxnBFzlkg_aeW2hnh6WuaWHddpwUPXJ4IQ1rSsxj283IJXrYPeIl097vGfU1-sEpOu7Wja70p7TBrcxEh1u96Negxo86q20cL-KMdNJ9JxXuXz8ND5j-nPA-iRz_8F_l87h93Yzk_XrdIQ5_WJzq1H46kNF1CcXSWVL-UDmQsQB_auCcYzlFJWyMOKf0TtkfWTapiTzwIvU4kfO_uyywKeiPoZVISqpXQ6rD-a5LOwTocbZeaDew5vszy_89kMZ8IcO8anZ0GbvrxSqzrgcvj0sGUrmtk=',
+    coupangUrl: 'https://link.coupang.com/a/gKdNAfBiQ8',
+    naverUrl: null,
   },
   {
-    name: '(선물포장) 탬버린즈 퍼퓸 핸드크림 미니 듀오 세트',
-    price: 35000,
-    naverUrl: 'https://smartstore.naver.com/main/products/10002960083',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8754746/87547462356.6.jpg',
     rank: 2,
-    pros: '일본·한국 10~20대 선물 1순위. 감성적인 향+고급 패키지. 2개 세트.',
+    name: '로지킴 PDRN 틴티드 립 앰플',
+    price: 22390,
+    pros: '"립" 언급 최다. 색조를 시작하는 고등학생에게 부담 없는 촉촉한 틴트형.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/AqEIgmPg5VpHchqGAp_wMsq0puJ7578F74QbS3cqOPBlojfkoHAkNHXLZu7tbLxkf_aaNbO5k7MxxpeyHvp9jyt1Ac_OQS8LQ5ACCKTN9Lg2VTFheOF6JCG8tlH2JkbYUJFKkGiDw7WfXkP1S4RPHecBP-0OQg5_u4mOvWv8TxhgihpRli9htJZptjeI2FlfT8jyJrI9Rn6oQYj7iol034Wbq6zBsWZCGeLGuUzZrecTdjJ28WPS5LJGEMfLlAyURd_iPJEPaIO4cPl0Gcf2ujJoqOgwn-BSQlZTSYhcN9hzqHFX5DkKwIYk44DsteDZAfEQTVa_SK3Jn6A7MrLME8jSXi8uM7vhjpZbTqYDlV1mJeyzRPKLcd3QnTk5hf_q0TUMy6-ihcX6w8EB8gL4t1NIz99M6dA-E6t09GRXn3HFWxW8Bfhqstv4SxNX3-d00ZcAz0RlT4gioIvyxpGASGNygASPNqIlYNSKcceUq0tFYuYcAtisZ4Fl8erRtQkwSufwGOxgqssGNyW_DdCbboWj3OotjVmSbxM2nU_DpAtMb5A=',
+    coupangUrl: 'https://link.coupang.com/a/gKdNz1qohM',
+    naverUrl: null,
   },
   {
-    name: '플라워 여성 여고생 다이어리 플래너 데스크테리어 데이지',
-    price: 11100,
-    naverUrl: 'https://smartstore.naver.com/main/products/6663765356',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8420826/84208265678.jpg',
     rank: 3,
-    pros: '여고생 "다꾸" 문화 필수템. 11,100원 가성비. 스티커+필기 취미.',
+    name: '탬버린즈 퍼퓸 핸드크림 라레 30ml',
+    price: 37490,
+    pros: '이 나이대에서 확실히 통하는 브랜드. 학교생활 실용성과 향을 동시에.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/3g3RBUEV5aJD-cEd3mx1CVbOqgcZ81iEWRY-4IALcd-V3RwWxf1IF9xMojqu-OmggbZNYdJCxvI5dq-zGCiPyjmrmcALOAcVHkQqXUM-eqSAS6Dm8Zr4kjTHMF5tKr50VrjQ8lIKqnsz_HgfmjPzA9Z0SMP1TAlKmLdNQfdUOoKowp5gvCY5ESljJ9j0ZpM_hFw_AO61BWfkXsoAcTgyblzfqQyJRuQLQ2f46x1iEZEwvrAOxdMPtzB7nFz5ZXqdpWFENMEinfDUtUOsmImq7ms2fwCgJBUr-DYfHSWEFSRWaCegH4nbLJN_QWCpjZoRxCrb08mercP-hRWX7aZ923XHCMUSlcXVsExB6-pmxdDGx9x7MaWFPxlWXIf6bqoLs92u3QKO-9vxhclVoJl8XEWlQNFOexmgm5fO5Lg1sitkFUB0POV5zTF4GfQSEIPXDFL9Egm4JKY9HppeL9Yv-MULapQEAP3Fqswpl905CwaW5jgK2rvpUdjd30CoYYE18RKQwVHA8BAY87nTWnAI-AiMim4JRMtAcb3H-bUWpktloENz',
+    coupangUrl: 'https://link.coupang.com/a/gKdNzVFAgm',
+    naverUrl: null,
   },
   {
-    name: '넓은 패브릭에코백 대용량 캔버스에코백 레터링 여학생',
-    price: 7820,
-    naverUrl: 'https://smartstore.naver.com/main/products/11483858523',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8902836/89028368888.jpg',
     rank: 4,
-    pros: '7,820원 부담 없는 가격. 등하교·약속 겸용. 패션 아이템으로도 OK.',
+    name: '산리오 블루투스 무선이어폰 (클립형 캐릭터 디자인)',
+    price: 29600,
+    pros: '실용성과 취향을 동시에. 캐릭터 디자인으로 "취향을 알아준" 느낌을 줌.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/bUAtgkHSMdtOwtJTbbewR6edH_b6O42Wz4YWd9mb0HBfOpixpzu4w-uJNdOLJeV4nZSxftxMCwqqcJSziz91ITuSExU_8puIqPUd-MnWBdZSaMHvHUMGSPGJuGgnHGcK8MgibVxMo_eLR6bGPyJlvw0Oy9KLgFu5UI8NTeDv4uH9I12ALYQPfecLDRsWx0JKeOoi5_JGxaMWttRUZEpNfjSyDtpCivgXV09T6HFaw6MwGiE1W1oDO0jDfEISPa8pAyMF4pNqcAspxeCkakeROwv0pTjBa1QFkaw15eotKtMwYe0tucC0h43YRa4VlxJaQzPuxOco9s3PyxbbWlKN0rq-QnLWs0B52QT14OavGzNaTsoWC7fPN5mo1WtH0ALe9Glb2PuVXe8xAWWzf4C99KNIHR_719sB2dMjpSPUQwHeZo9zuX0yjzmWbf1Wy2ebgNbYWAm8uT7Ypo4RiwPjDAJ8esKC3ziVsZL_RWolsqN5cwptT4n4K5gIjFRRxci4yKTT79hN8KGTbnwrffECXl1A_iBBiBe26Qun9LLDq_zIXwd1',
+    coupangUrl: 'https://link.coupang.com/a/gKdNz65fCS',
+    naverUrl: null,
   },
   {
-    name: '아떼 어센틱 립 글로이 밤 3.5g x 2개 SET',
-    price: 43900,
-    naverUrl: 'https://search.shopping.naver.com/catalog/51929499372',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_5192949/51929499372.20241213220754.jpg',
     rank: 5,
-    pros: '틴트보다 자연스럽고 립밤보다 발색. 여고생 메이크업 첫템. 2개 세트.',
+    name: '프리저브드 플라워 유리돔 무드등 (생일 선물용)',
+    price: 51900,
+    pros: '시들지 않는 생화 무드등. 방을 꾸미는 걸 좋아하는 학생에게 인테리어 소품으로.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/kW0Gjtzi6J9sFLoLkaMhNT4Zc5k5Tq_5WsVzdbtWiDMIwkihipv13r_58v90BcvZqES4BWm6nFOgzmGFXkiQ_vI8i2MWrZOb1kc0ACuZ8Quh7mF-etZKSxmEfEgsXPaZiG1GWvyURjbOrMvbT5wrcqlynbu-aFxnxvuOoCJpJ3MHiy4hI_b3Gew_FDVD4xaW_Dto9i7G4GUHWybkIC3ZjcduOgbyLrvJADH9CtWqdRtyAA8C3xmotVNzkzUtmlhy4HZpb46BLiiXFletSXxY_IyFHvwg5lBJ6mtJ21kV40upfawehZ71qHMucI1CAcXJw8zv0pMNkoaJIp89tmHXI8OJi9XrHjPZEagchPsA32lqXe9M1OvDCigXYctYdrw_n3jJfvJZQGHnfgpOzpCZW0fep62quz1MLQDln0LCoY0LjIQNK1RshqPmQ-9F7kSM9TZPa-4XdqI0KTfOFnVgBokZ4sYarQAaSYL-W-LRMb2mFewOf0OzLRFEr-cwR5i-R_4FX-V1IToRd-v4E2-zKdbvo8862lT4gQ==',
+    coupangUrl: 'https://link.coupang.com/a/gKdNAbDWX6',
+    naverUrl: null,
   },
   {
-    name: '아오라 우주빔 우주 무드등 오로라 달 별 은하수 프로젝터',
-    price: 79900,
-    naverUrl: 'https://smartstore.naver.com/main/products/6643111053',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8418761/84187611375.8.jpg',
-    pros: '일본 여고생 방꾸미기 인증. 별·은하수 프로젝터. 오래 사용 가능.',
+    rank: 6,
+    name: '데님 자수 에코백 (숄더백/캔버스백)',
+    price: 9200,
+    pros: '교과서·체육복용 서브백. 부담 없는 가격의 데일리 아이템.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/tnk1fyT3iu-o47-IthPrTmUtD7xTf64o-usPwQkx5drYxeQ1ghQO-CUWbdd73-s_TrCKiIhMLW7tXS-4jPqohHVM5KGoLeqbuB76LmYDt77lyO60VpidnBzOnkpCeWDh7e5AwVh8-xvlf8CNEJkI21epDu1HIOLIcHcsFQwTkNwmitrFjZgwYXAtgR4bMHikkHNFz4XFLFsxOsaQdFJbabV-4UMrrhy2BRRpV5sHpLyMBqEsw-e9FhpnLIbxscyG03E2OpE1QPZcy0ORNGvz44B2206Q5V34Xb9Lc8OZepDSZTVcr_yE_xOfo0rGf2IZM0ZeFt6gy5j22XYVN9JQ5NsI7N2HyQ01K-AemDTru0qSLhOIh23ixCm4E3osYPqTsdcfETuacK1b-ridElUY8C1dChrG1RjdQr5Cqs-Fy3XrZmH6sTgW0S3wKi92jqqIyxlxTHKT7is2gpOzf_l29E3QSd9N2m7J1xVzMAdSKHZQtsAxoQv-c6rdJPeZdg7AEhNzw62bYMxRmUpzvWlJ6Ixb0IhoCg==',
+    coupangUrl: 'https://link.coupang.com/a/gKdNAj9UR2',
+    naverUrl: null,
   },
 ];
