@@ -1,145 +1,161 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
 
 export const slug = '고등학생-남자-생일선물';
+export const title = '고등학생 남자 생일선물 추천 TOP6 — 수험생이라는 걸 잊지 마세요';
+export const description =
+  '고등학생 남자 생일선물 추천 TOP6. "홍삼"·"아이패스" 언급이 가장 많았던 이유는 ' +
+  '이 나이대가 수험생이기 때문입니다. 공부 체력과 집중력을 챙기는 선물부터 ' +
+  '실용템까지 정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['아들', '조카'];
+export const ageGroup = ['고등학생', '15세', '16세'];
+export const budgetTag = ['3만원이하', '5만원이하', '10만원이하'];
+export const interests = ['테크', '생활', '건강'];
+export const recipientGender = '남성';
+export const priceMin = 24800;
+export const priceMax = 88700;
 
 export const intro =
-  '고등학생 남자아이(17~18세, 고2~3학년)는 성인이 되기 직전의 중요한 시기예요. ' +
-  '더 이상 바디스프레이 같은 가벼운 아이템보다는 진짜 향수나 전자기기, ' +
-  '성인 취향의 패션 아이템에 관심을 갖습니다. ' +
-  '수능과 진로, 첫사랑과 친구 관계까지 모든 것이 복잡한 이 나이에 ' +
-  '센스 있는 선물 하나는 큰 힘이 됩니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 고등학생 선물 데이터를 교차 검증해서 ' +
-  '17~18세 남자고등학생이 진짜 좋아했던 선물만 골랐습니다.';
+  '고등학생 남자 생일선물 후기를 모아보면 "홍삼"·"아이패스" 같은 단어가 반복해서 ' +
+  '나옵니다. "공부체력 관리 위한 고등학생 선물", "매일 아침마다 무거운 몸을 이끌고 ' +
+  '학교로"라는 표현이 함께 등장하는 걸 보면, 이 나이대의 생일선물은 취향보다 ' +
+  '"수험생"이라는 현실이 먼저 고려된다는 걸 알 수 있습니다. 노이즈캔슬링 이어폰도 ' +
+  '"집중력 향상"이라는 맥락으로, 독서대도 "공부 효율"이라는 맥락으로 언급됐습니다. ' +
+  '이 글은 그 흐름을 따라 실용성과 취향을 함께 챙긴 선물로 골랐습니다.';
 
 export const blocks = [
   h2('가격대별로 고르기'),
   table(
-    ['예산', '추천 상품', '이유'],
+    ['예산', '추천', '이럴 때'],
     [
-      ['1~2만원대', '보조배터리 20000 / 게이밍 마우스', '대용량+게이밍, 각각 19,800원 가성비 최고'],
-      ['3만원대', '블루투스 헤드폰', '중2~3 게이밍헤드셋과 다른 일상용'],
-      ['4~5만원대', '존바바토스 향수 / 넥밴드 선풍기', '16세 바디스프레이보다 한 단계 위 진짜 향수'],
+      ['2만원대', '고속충전 보조배터리 / 접이식 독서대', '가볍게 실용적인 선물을 원할 때'],
+      ['3만원대', '노이즈캔슬링 이어폰', '집중력이 필요한 수험생에게'],
+      ['3만원대', '게이밍 마우스+패드', '게임을 좋아하는 학생에게'],
+      ['3만원대', '존바바토스 향수', '조금 어른스러운 선물을 원할 때'],
+      ['8만원대', '고3업 홍삼스틱', '수험생 체력이 걱정될 때'],
     ]
   ),
-  h2('고등학생 남자아이가 진짜 좋아하는 선물 TOP 6'),
-  h3('진짜 향수의 시작 "존바바토스 아티산 EDT"'),
+
+  h2('고등학생 남자가 진짜 좋아하는 선물 TOP6'),
+
+  h3('수험생 체력을 챙기는 "정원삼 홍삼스틱 고3업"'),
   p(
-    '고1(16세)에게 바디스프레이가 좋았다면, 고2~3(17~18세)에게는 진짜 향수가 필요합니다. ' +
-    '존바바토스 아티산 EDT는 고등학생부터 대학생까지 가장 인기 있는 입문용 향수로, ' +
-    '시트러스 계열의 은은한 향이 부담 없습니다. ' +
-    '46,900원으로 첫 진짜 향수로 적당한 가격이며, ' +
-    '블로그에서 "고등학생 아들에게 향수 선물했더니 매일 뿌리고 다닌다"는 후기가 있습니다.'
+    '"홍삼"·"아이패스" 언급이 압도적으로 많았습니다. "공부체력 관리"라는 표현이 ' +
+    '반복될 만큼, 고등학생 선물에서 건강은 취향만큼 중요한 기준입니다. 이름 그대로 ' +
+    '수험생을 겨냥한 제품입니다. 88,700원.'
   ),
-  h3('집중력 향상 "블루투스 헤드폰"'),
+
+  h3('집중력을 위한 "필립스 노이즈캔슬링 이어폰"'),
   p(
-    '고2~3학년은 수능 준비로 하루 종일 공부하는 시기입니다. ' +
-    '블루투스 헤드폰은 중2~3의 게이밍 헤드셋(게임 전용)과 달리 ' +
-    '공부할 때 집중력을 높여주는 용도로 사용할 수 있습니다. ' +
-    '32,900원으로 부담 없는 가격에 노이즈 차단 기능까지 갖춰, ' +
-    '도서관이나 학원에서 공부할 때 필수템입니다.'
+    '단순 음악 감상용이 아니라 "집중력 향상"이라는 맥락으로 언급됐습니다. 독서실 ' +
+    '이나 자습 시간에 주변 소음을 차단해주는 실용적인 선물입니다. 33,000원.'
   ),
-  h3('하루 종일 충전 걱정 끝 "보조배터리 20000mAh"'),
+
+  h3('가볍게 취향을 더하는 "존바바토스 아티산 오드뚜왈렛"'),
   p(
-    '고등학생은 스마트폰 사용 시간이 가장 긴 연령대입니다. ' +
-    '13세의 맥세이프 보조배터리(소형·편의성)와 달리 ' +
-    '20000mAh 대용량 보조배터리는 하루 종일 외부에서도 충전 걱정이 없습니다. ' +
-    '4포트 동시 충전에 잔량 표시까지 있어 실용성 최고입니다.'
+    '향수는 조금 더 어른스러운 선물을 원할 때 나오는 카테고리입니다. 국내에서도 ' +
+    '오래 사랑받은 브랜드라 처음 선물하는 향수로도 무난합니다. 38,410원.'
   ),
-  h3('게임은 진짜로 "게이밍 마우스"'),
+
+  h3('게임을 좋아한다면 "로지텍 G102IC 게이밍 마우스"'),
   p(
-    '중2~3에게 게이밍 헤드셋을 추천했다면, 고2~3에게는 게이밍 마우스가 더 적합합니다. ' +
-    '초경량 무선 게이밍 마우스는 FPS 게임의 정밀한 조작에 필수적인 아이템으로, ' +
-    '게임을 좋아하는 고등학생에게 로망입니다. ' +
-    '19,800원으로 고가의 게이밍 장비보다 부담 없는 가격으로 시작할 수 있습니다.'
+    '실용성 위주인 다른 선물들과 달리, 취향이 확실한 학생에게는 게이밍 기어가 ' +
+    '반응이 좋습니다. 마우스패드까지 포함된 구성입니다. 26,900원.'
   ),
-  h3('첫 정장 악세서리 "가죽 벨트"'),
+
+  h3('공부 효율을 높이는 "코믈리 높이조절 독서대"'),
   p(
-    '고등학생은 졸업사진, 면접, 예식 등 정장을 입을 일이 생기기 시작합니다. ' +
-    '가죽 벨트는 16세의 실버팔찌(패션 악세서리)보다 더 성인 취향의 아이템으로, ' +
-    '중학교 때 착용하던 캐주얼 벨트와는 다른 ' +
-    '"어른스러운" 느낌을 줍니다. ' +
-    '9,600원으로 부담 없는 가격에 첫 정장 악세서리로 딱입니다.'
+    '"인스타 대란템"으로 언급될 만큼 최근 학생들 사이에서 자리 잡은 아이템입니다. ' +
+    '책상 위 각도를 조절해 목과 허리 부담을 줄여줍니다. 26,990원.'
   ),
-  h3('무더위 필수템 "넥밴드 선풍기"'),
+
+  h3('언제든 유용한 "고속충전 대용량 보조배터리"'),
   p(
-    '고등학생은 등하교·야자·학원으로 하루 종일 바쁩니다. ' +
-    '넥밴드 선풍기는 손이 자유로운 넥밴드 디자인으로 ' +
-    '무더운 여름철 등하교와 야외 활동에 필수템입니다. ' +
-    '41,300원으로 다소 비싸지만, 고급스러운 디자인과 긴 배터리 시간으로 만족도가 높습니다. ' +
-    '친구들 사이에서 "센스 있는 선물"로 통합니다.'
+    '등하교와 학원을 오가는 생활 패턴상 배터리 관리가 늘 화두입니다. 20,000mAh ' +
+    '대용량에 고속충전까지 지원해 실사용 만족도가 높습니다. 24,800원.'
   ),
-  h2('고등학생 남자아이 선물 고르는 법'),
+
+  h2('왜 수험생 맥락이 중요한가'),
   p(
-    '17~18세(고2~3학년)는 성인으로 가는 마지막 단계입니다. ' +
-    '16세(고1)보다 더 성숙한 취향을 가지며, "어른 대접"을 받고 싶어 합니다. ' +
-    '중학생 때와 달리 패션·향수·전자기기 등 완전한 성인 취향의 아이템을 선택하는 것이 중요합니다.'
+    '중학생과 달리 고등학생은 대부분 입시를 준비하는 시기입니다. 그래서 생일선물 ' +
+    '후기에도 "체력"·"집중력"·"공부 효율" 같은 단어가 자연스럽게 섞여 있습니다. ' +
+    '같은 이어폰이라도 "음악용"이 아니라 "집중용"으로, 같은 건강식품이라도 ' +
+    '"수험생용"으로 소개되는 경우가 많았습니다. 취향만 보고 고르기보다, 이 맥락을 ' +
+    '함께 고려하면 더 잘 맞는 선물을 고를 수 있습니다.'
   ),
-  h3('향수·패션에 관심 있다면'),
-  p('존바바토스 향수나 가죽 벨트가 좋습니다. 더 이상 바디스프레이가 아닌, 진짜 향수와 정장 악세서리로 성인 취향을 만족시켜주세요.'),
-  h3('공부·생활 밀착형을 원한다면'),
-  p('블루투스 헤드폰이나 보조배터리가 가장 실용적입니다. 수능 준비로 바쁜 고등학생에게 공부에 도움 되는 선물은 최고입니다.'),
-  h3('게임·취미를 좋아한다면'),
-  p('게이밍 마우스가 가장 좋습니다. 게임용 장비 업그레이드는 고등학생 게이머에게 최고의 선물입니다.'),
+
   h2('이건 사지 마세요'),
-  bullet('중학생용 아이템 — 고등학생은 고등학생용 선물이 필요합니다. 바디스프레이·게이밍 헤드셋 등은 이미 16세·중2~3에서 다뤘습니다.'),
-  bullet('사이즈가 중요한 옷·신발 — 고등학생은 브랜드와 디자인에 매우 민감합니다. 향수·벨트·헤드폰처럼 사이즈 프리한 선물이 안전합니다.'),
-  bullet('학습지·문제집 — 어떤 고등학생도 생일선물로 문제집을 받고 싶어하지 않습니다.'),
+  bullet('사이즈가 있는 옷·신발 — 브랜드와 핏 취향이 갈리기 쉽습니다.'),
+  bullet('문화상품권만 단독으로 — 성의가 없어 보인다는 반응이 있었습니다.'),
+  bullet('과도하게 화려한 향수 — 아직 향에 익숙하지 않은 나이라 가벼운 농도가 안전합니다.'),
+
   h2('자주 묻는 질문'),
-  h3('고등학생 남자아이 생일선물 예산은 얼마가 적당한가요?'),
-  p('블로그 데이터 기준, 1만원~5만원대가 무난합니다. 1~2만원대(게이밍 마우스, 보조배터리)부터 4~5만원대(향수, 넥밴드 선풍기)까지 다양하게 구성할 수 있습니다.'),
-  h3('16세(고1) 선물과 어떻게 다른가요?'),
-  p('16세(고1)는 바디스프레이·무선충전기·실버팔찌처럼 "첫 경험" 중심입니다. 17~18세는 진짜 향수·블루투스 헤드폰·가죽 벨트처럼 더 성숙하고 완성된 아이템이 잘 맞습니다.'),
-  h3('조카 선물로 가장 안전한 선택은?'),
-  p('블루투스 헤드폰(32,900원)이나 보조배터리(19,800원)가 부담 없는 가격에 실용적입니다.'),
+  h3('조카 선물과 아들 선물이 다른가요?'),
+  p('큰 차이는 없지만, 자주 안 보는 조카라면 취향보다 실용성(보조배터리·독서대) 위주가 실패 확률이 낮습니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('2만원대부터 8만원대까지 고르게 후기가 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+  h3('중학생 선물과 뭐가 다른가요?'),
+  p('중학생은 게임·취미 위주였다면, 고등학생은 수험생 체력·집중력 관련 아이템 비중이 뚜렷하게 늘어납니다.'),
+
+  h2('관련 가이드'),
+  bullet('중학생 남자 생일선물: 한 학년 아래 기준'),
+  bullet('고등학생 여자 생일선물: 여학생 기준'),
+  bullet('5만원 이하 선물만 비교하기'),
 ];
 
 export const products = [
   {
-    name: '존바바토스 아티산 오드뚜왈렛 EDT 125ml',
-    price: 46900,
-    naverUrl: 'https://smartstore.naver.com/main/products/726335696',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_1137312/11373128176.4.jpg',
     rank: 1,
-    pros: '고등학생 첫 진짜 향수. 16세 바디스프레이(12,800)와 차별화. 시트러스 계열 은은함.',
+    name: '정원삼 홍삼스틱 고3업',
+    price: 88700,
+    pros: '"홍삼"·"아이패스" 언급 압도적. "공부체력 관리"라는 맥락으로 반복 등장.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/t7XerGxfJNoMO8V1t23dpoYZupgHi1gxh92uSn-AIhb2kr36h7OBBcSjQHtfdN6EKQvLZGAf86B6vvlzipn2aqYzL3rfCv9P22qKzYJJhyVdiycXKmn8RRLNzq1vKoEa4C-5OVKLQYcjTBrj6NTe1PM-_EBo6sCe83uGM0UsonvEYTXPfrUN1jmXgzTJMbTmIhUpOTQKJfLKmO2WKYDR6HKFq96qbjRcdaPuzMk9KMvZBToZ_fg8WpO0GFD3YErdX_PIYXNTI_WI7L7cBLdZOZ4atmmfecOHW1pv8g-eP-TDQMf102RDf-LM2SP85oW_gNpZ7ygAIvHWyJQsAW00R4aEoxEKjugiqtex_K83X1AWIBqb3Jg8_BpsBtapni5FtDDOkR9nnNAuWGnRyR9UMQqAKpDt6cEoUcuq_oqsKjlHXpP1_DmiMhIq-Did8bkjjjlFvZmYqW9h6Lx1kKRreuvDrddLC9tqFqrvqlnNT7SijbW0-xGDJ1smAHVWL-ic6D-skKGCIlJX-2pinn66',
+    coupangUrl: 'https://link.coupang.com/a/gKevbFLv40',
+    naverUrl: null,
   },
   {
-    name: '필립스 블루투스 헤드폰 TAH2000',
-    price: 32900,
-    naverUrl: 'https://search.shopping.naver.com/catalog/58722993180',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_5872299/58722993180.20260130134704.jpg',
     rank: 2,
-    pros: '중2~3 게이밍헤드셋과 다른 일상용. 공부 집중력 향상. 수능 준비 필수템.',
+    name: '필립스 ANC 노이즈캔슬링 무선 블루투스 이어폰',
+    price: 33000,
+    pros: '"집중력 향상" 맥락으로 언급. 독서실·자습 시간 소음 차단에 실용적.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/Y1vlmbST8KQl45PeY3SsXLgyuMkJNpe2xuGvwnbCLZzaJVRC_iHNSyrAQnAOuwDiL80qslFL118qUGKhqzb6bgCb_Lx1anI3SdnUw90ApsFRfEsFtGRf9EnqYX2gczEcSaHwpeAXAbe0VkiooviF6KpqhmT2kZvmbp7uAYjY0FtJwFO4-I42TA56B3yTuTYeJm0C1C87n_Z2eOLyIt-jZ3F1mNIhc838_GV_NMBUOQEshWTWM6OT6CJbmxWejAqc14BvUGNQ4bVFYOTX_R64JttPJsM0TSlwFa13nbRXH9V7icWddrOOo9wfJ00GD9Cf9Epqo0lS9yOU_uLgjZGNcvPcSK6c9ZVQDZCTfklmVfSwlQrhcA-OpHjWZKw8C7AM2vvUjMPcl8QYUNcPn1MUzxQs8J9chVecur5MC9y1JZptl9Ywa8pTn2iFQK7OS698nXEsC-AIBR01xaSTApiGymKfPaAjG4M_ZJkmS_3vNIgOkQjed1mllEvOkLZfB0ya',
+    coupangUrl: 'https://link.coupang.com/a/gKevbLMTiC',
+    naverUrl: null,
   },
   {
-    name: '로랜텍 대용량 4포트 보조배터리 20000mAh',
-    price: 19800,
-    naverUrl: 'https://search.shopping.naver.com/catalog/54113601417',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_5411360/54113601417.20250411143606.jpg',
     rank: 3,
-    pros: '13세 맥세이프(소형)와 차별화된 대용량. 4포트+잔량표시. 하루 종일 외부 충전 가능.',
+    name: '존바바토스 아티산 오 드 뚜왈렛',
+    price: 38410,
+    pros: '조금 어른스러운 선물을 원할 때. 오래 사랑받은 브랜드라 처음 선물해도 무난.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/6Wn7SPFsog47GC9g6eACBXF_EPbD6RFyB3VUEkXs3FOeVNVUEL6kjfLgp1kon3hlHNpCasOHNGH9L91DwD3u1YYO5aXxcnEBYzggw5Du01S6QT-tOhJ-Bpmgiv7TSYwqc61i3H-HVbwrqLfZGscxyR9jGlIBrVcRFDKqnqPzciUgl60UViy1_7N1EKsgPg1VegR7F6oojoRsIEpcbq9GIPHl3-UQOP3V9VqPGYkSdjfeDzacjW54pyLD0u2hxWkkn5C7PXGhAab3aOvk6czRENTNE0HwemPOoK6c2PcB1P1JDI17dHRWbBxBPbAGYcQ3J1DGda8Asad9hzKHGIbBxDZPRdSsNUTDTwPI18rlNozzqYb9WkuGJKyp2mwnmoZMBksCiGLVw6glF9Luk2YJ3GYKM7IU9VzUHMSHU1lEQRDaBM-vRlUZBofJvI9S22BIbvfaIHy6H9PzvPNS_WDe9ByaPaA2zS3n-qsAirkGeNP1EP74du0S_YRTmFJN1L8gO3WQQCLExDVKLLn6s9qBhmdl3YrzO_bzn0rAwLRa-XG2t7r8UJ0=',
+    coupangUrl: 'https://link.coupang.com/a/gKevbRKnHE',
+    naverUrl: null,
   },
   {
-    name: '로지텍 G102 2세대 LIGHTSYNC 게이밍 마우스',
-    price: 21490,
-    naverUrl: 'https://search.shopping.naver.com/catalog/56640377100',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_5664037/56640377100.20250908152301.jpg',
     rank: 4,
-    pros: '중2~3 게이밍헤드셋과 다른 게이밍 장비. 로지텍 브랜드. FPS 게임 필수템.',
+    name: '로지텍 G102IC LIGHTSYNC 2세대 게이밍 마우스 (+마우스패드)',
+    price: 26900,
+    pros: '취향이 확실한 학생에게 반응 좋은 게이밍 기어. 마우스패드 포함 구성.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/DkqRnvPI7AHMNPIMDpjFFLMLCiizHcPA8XL6CwMFFWJHsmsINe4whyZzSJwjk5yE4iKgXmr84eT5dVWA7yU3TUALIEWmjNmgKPooGzPMpUke8qBUBfQM9PcAdz444O80n2Yc7NjHOUdje-vZpJp7fArUAXswbzNOM9SHyrvx-9QnKs0hHXmbv9zZphzDCW5kS4iDOsPQalJsraMVvVBPKc_fx0oG-7aHq0Ze-ZbbmMAuV2KYvpFj67PKFJc6sKV06QZXtrFwOMq6eGpS8BlYkvLLp-aAgvmJ-TzcFEC3NWsqbofhFsQ2sYjvk0gPTChbf7qyL7ZSOVzW5nBYUVWO-csKtS6nSOmGZAafztK14HHtvp8fkQK7ZRY99wxp_BlEQTeqCFZqpenKXpbU_h26nRehSNmAQkZm0ZAUEJMlpy1awSowtp9Btg2LWYAC0PcVzP7eAivrY55NgPCwiQGVOzIMDR4c9OFuPuqNR9wVfGzsSk188y96bosP9ytTDi6IxN3ZhX0XxtXgwuYMOGd4qKETSUyF4Lzq6rHNnT4wjWtnhEU=',
+    coupangUrl: 'https://link.coupang.com/a/gKevbWNrSS',
+    naverUrl: null,
   },
   {
-    name: '교체용 소가죽 벨트띠 자동 벨트끈 남성',
-    price: 9600,
-    naverUrl: 'https://smartstore.naver.com/main/products/11919210488',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8946372/89463721176.jpg',
     rank: 5,
-    pros: '첫 정장 악세서리. 16세 실버팔찌(패션)와 차별화. 면접·졸업식 필수.',
+    name: '코믈리 다용도 높이 조절 접이식 독서대',
+    price: 26990,
+    pros: '"인스타 대란템"으로 언급되는 학생 필수템. 책상 위 각도 조절로 목·허리 부담 감소.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/8PsDmlRAc4IzZGBV8CjUeJc1rJqCIHfOESpdhSXV8Re7rVBfPQWeW5Mqdvsi2Met4s4LWJoWfBPt4avbEmRGUN8d57JpFXSlhRBJJAFpvEgkcKj-SIjIMnALcIGfWc4pLpoG9vtB134_cMha3BzZJ14BsHHYfCUVr11uX57hc4X7q2tZdzPDqD_Dpwin8Mj9UujeArqvqG3nPKuZMTAiPZXo7e9_-sM1F0Tjkz3inCp6lC1Q0f3cWNZI_i8sXoyq3vyFj3rM2U8oOubU-NqlUQnTsXHEf6j69XJjMzCWEJUurdPGorE09RfOWCciq6Yo3KmIII41F9DGpR4OxhvSWJKY4P9ioYvBmmc6JlONvx4LThpUdH83p9fSdhrts7oA10AbBjEO9dQ7WBcRbW89Gt0ydIAPAcRFyV2qv73DGBDGgSqkLv6ZODgXHqBInqEGav05juZ7hS6kx3GgZlBg0U7Zj_YegIaVaDGUnAc4Mgb75yD523pZQ7XuB8DKLysxVtycCMrNF80jK9TsUjMKptWBYNpRa0eIA7t8-Hb-9fzVy_U=',
+    coupangUrl: 'https://link.coupang.com/a/gKevb26qey',
+    naverUrl: null,
   },
   {
-    name: '칙스 디센느 아이스 넥밴드 선풍기 DSF002',
-    price: 41300,
-    naverUrl: 'https://search.shopping.naver.com/catalog/53806100560',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_5380610/53806100560.20260701090329.jpg',
     rank: 6,
-    pros: '고등학생 하절기 등하교 필수. 손 자유로운 넥밴드 디자인. 센스 있는 선물.',
+    name: '22.5W 고속충전 대용량 보조배터리 20000mAh',
+    price: 24800,
+    pros: '등하교·학원 이동 많은 생활 패턴에 필수. 대용량 고속충전.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/qh_V10e5v7Ik8ZhLqmrFFK-0pN4U3sISu7jUyqX5K7tgP6FFYYuM6P_su3v_Mih3mnpG_xaEIFEdjTNOzEX6LdyVlpNbR5LB4XHTOiHwmrza-Y8Gk555kBemzZNJUm1CmCJCikoYmZmvpnHs0KFyfJcg_xxFAJZrYLeW1HxYj_qoWnOVzNqNo5C_LXTDmPBo022oqrjXfpXVjJ6afFZnSM35Wk462u6SfYLVh1KWQi1qUyRyKZkMiSYRSUmjihOyyebNQD7nBTfNJHsU5-Pv8Ptwbk-s8uBBYK9FF7HByMKrXy6LRoDjIYyg1QkxLsAQupjifoH7aNIi94yQy7lGM7po_1j1jvhfd7OqrIYFQipeN4A8QhdyYRDuwJkH-pp4LdIBBqTrmVGo7mZDr1jMGzk5eNPe_w56KeO7fsMNdq_RxWpPH-SBlIaon8rY6qwRkfl1B8_SnWzqFmTZRllri8STWuja7AUtyXSyroEBhDdnzhGwsB1yDGANRB0HAF5-qvPX7WCBfvvZPev1qUeiw668vPTljs_NEyX7WqcoBiaDQg==',
+    coupangUrl: 'https://link.coupang.com/a/gKevb7WDnw',
+    naverUrl: null,
   },
 ];
