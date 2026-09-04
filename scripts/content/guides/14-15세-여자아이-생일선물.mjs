@@ -1,138 +1,163 @@
 import { h2, h3, p, bullet, table } from '../lib.mjs';
 
 export const slug = '14-15세-여자아이-생일선물';
+export const title = '14~15세 여자아이 생일선물 추천 TOP6 — 최애를 몰라도 되는 것들';
+export const description =
+  '14~15세 여자아이 생일선물 추천 TOP6. 아이돌 굿즈가 친구 사이에선 최고지만, ' +
+  '부모님은 최애를 모릅니다. 그래도 실패하지 않는 실용템과 취미 아이템으로 ' +
+  '정리했습니다.';
+export const occasion = ['생일'];
+export const relation = ['딸'];
+export const ageGroup = ['14세', '15세', '중학생'];
+export const budgetTag = ['3만원이하', '5만원이하'];
+export const interests = ['K뷰티', '패션'];
+export const recipientGender = '여아';
+export const priceMin = 9450;
+export const priceMax = 45900;
 
 export const intro =
-  '중학교 2~3학년(14~15세) 여자아이는 13살(중1) 시절의 유치함을 벗고 ' +
-  '본격적인 10대의 취향이 자리잡는 시기예요. ' +
-  '더 이상 키링 인형이나 스티커에 열광하지 않고, 향기로운 바디케어와 ' +
-  '스마트폰 악세서리, 아이돌 굿즈와 포토카드 수집 같은 ' +
-  '더 성숙하고 전문화된 취미에 빠집니다. ' +
-  '네이버 블로그와 유튜브 댓글, 일본 여중생 선물 데이터를 교차 검증해서 ' +
-  '14~15세 여자아이들이 진짜 좋아했던 선물만 골랐습니다.';
+  '14~15세 여자아이 생일선물 후기를 모아보면 "가방"(15회)이 가장 많이 ' +
+  '언급되지만, 그중 상당수는 생일이 아니라 "입학선물"용 책가방이었습니다. ' +
+  '순수 생일선물 맥락에서는 립·다이어리·이어폰이 골고루 나왔고, 앨범·아이돌· ' +
+  '굿즈를 합치면 12회로 친구들 사이 "최애" 문화도 뚜렷했습니다. 다만 ' +
+  '최애 아이돌은 부모님이 정확히 알기 어려운 영역이라, 이 글은 최애를 몰라도 ' +
+  '통하는 카테고리로 골랐습니다.'
+;
 
 export const blocks = [
   h2('가격대별로 고르기'),
   table(
-    ['예산', '추천 상품', '이유'],
+    ['예산', '추천', '이럴 때'],
     [
-      ['1만원대', '에어팟케이스 / 스마트톡 / 포카바인더', '13세 키링·스티커보다 성숙한 실용템'],
-      ['2~3만원대', '바디밀크 퍼퓸로션', '13세 향수 첫템→중2~3 바디케어로 업그레이드'],
+      ['9천원대', '조개 진주 무드등', '방 꾸미기를 좋아하는 아이에게'],
+      ['1만원대', '워터 틴트 / 캐릭터 파우치', '가볍게 실용적인 선물을 원할 때'],
+      ['1만원대후반', '스터디 플래너', '공부·자기관리를 시작한 아이에게'],
+      ['3만원대', '포토카드 콜렉트북', '포토카드 모으는 걸 좋아하는 아이에게'],
+      ['4만원대', '산리오 캐릭터 무선 헤드셋', '조금 특별한 테크 아이템을 원할 때'],
     ]
   ),
-  h2('중2~3 여자아이가 진짜 좋아하는 선물 TOP 6'),
-  h3('향기로운 바디케어 "퍼퓸 바디밀크 로션"'),
+
+  h2('14~15세 여자아이 생일선물 추천 TOP6'),
+
+  h3('처음 색조를 시작하는 아이에게 "첨벙첨벙 워터 틴트"'),
   p(
-    '13세(중1)가 태닝키티와 가방 키링에 열광한다면, 14~15세(중2~3)는 ' +
-    '향기로운 바디케어에 관심을 갖기 시작합니다. 퍼퓸 바디밀크는 ' +
-    '여고생의 진짜 향수(튜베로즈)보다 가벼운 바디로션 타입이라 부담 없이 바를 수 있습니다. ' +
-    '25,800원으로 향수를 처음 접하는 중학생에게 부담 없는 가격이며, ' +
-    '끈적이지 않는 보습력으로 등드럼·건조한 피부에도 좋습니다.'
+    '진한 립스틱보다 촉촉하게 발리는 워터 타입이라 처음 색조를 접하는 이 ' +
+    '나이대에 부담이 적습니다. 10,060원.'
   ),
-  h3('스마트폰 필수 악세서리 "에어팟 케이스"'),
+
+  h3('자기관리를 시작하는 "컬러미블루 스터디 플래너"'),
   p(
-    '중학생이 되면서 에어팟이나 무선 이어폰을 갖는 아이들이 많아집니다. ' +
-    '귀여운 디자인의 에어팟 케이스는 13세의 다꾸 스티커보다 실용적이고, ' +
-    '여고생의 에코백보다 캐주얼한 아이템입니다. ' +
-    '13,800원으로 키링까지 달려 있어 가방에 걸어도 예쁩니다.'
+    '중학생이 되면서 스스로 일정을 관리하기 시작하는 시기입니다. 100일 구성 ' +
+    '스터디 플래너로 학습 습관을 챙길 수 있습니다. 15,700원.'
   ),
-  h3('아이돌 덕후 필수 "포토카드 바인더 앨범"'),
+
+  h3('취향과 실용을 동시에 "산리오 정품 뮤즈 시리즈 헤드셋"'),
   p(
-    '중2~3 여자아이는 아이돌 팬덤 문화에 깊이 빠져드는 시기입니다. ' +
-    '포토카드(포카) 수집은 현재 10대 여아 사이에서 가장 핫한 취미 중 하나입니다. ' +
-    '포카 바인더는 수집한 포토카드를 정리·보관하는 필수템으로, ' +
-    '8,800원이라는 가성비 최고의 가격에 취미 생활을 시작할 수 있습니다.'
+    '무선 헤드셋은 등하교·자습 시간에 꾸준히 쓰는 실용템이면서, 캐릭터 ' +
+    '디자인으로 취향까지 챙길 수 있습니다. 정품 라이선스 제품입니다. 45,900원.'
   ),
-  h3('방 인테리어 시작 "아이돌 브로마이드 포스터"'),
+
+  h3('방 꾸미기 좋아하는 아이에게 "조개 진주 무드등"'),
   p(
-    '14~15세 여자아이는 방 벽을 자신만의 갤러리로 꾸미기 시작합니다. ' +
-    '아이돌 브로마이드 포스터는 13세의 감성 포스터(24,000원)보다 가벼운 2,900원으로, ' +
-    '좋아하는 아이돌의 얼굴로 방 분위기를 바꿀 수 있습니다. ' +
-    '저렴한 가격이라 여러 장을 사서 계절마다 바꿔 붙이는 재미도 있습니다.'
+    '책상이나 침대 옆에 두기 좋은 인테리어 소품입니다. 은은한 조명이라 ' +
+    '취침등으로도 무난합니다. 9,450원.'
   ),
-  h3('핸드폰 감성 업 "스마트톡 그립"'),
+
+  h3('포토카드 모으기 취미에 "포토카드 콜렉트북 (대용량)"'),
   p(
-    '맥세이프 호환 스마트톡은 중2~3 여자아이의 스마트폰에 포인트를 주는 아이템입니다. ' +
-    '13세의 보조배터리(실용)와 달리 디자인과 감성이 중요한 아이템이며, ' +
-    '12,900원으로 가격도 부담 없습니다. ' +
-    '친구들 사이에서 "어디서 샀는지" 물어보는 인기 아이템입니다.'
+    '특정 아이돌의 앨범이나 포토카드를 사는 대신, 이미 모으고 있는 포토카드를 ' +
+    '정리할 수 있는 바인더입니다. 최애를 몰라도 안전하게 취미를 응원할 수 ' +
+    '있습니다. 29,900원.'
   ),
-  h3('방 분위기 체인지 "미니 무드등"'),
+
+  h3('가볍게 실용적인 "키티 캐릭터 필통 겸 파우치"'),
   p(
-    '여고생의 대형 우주 무드등(79,900원)보다 가벼운 미니 무드등은 ' +
-    '14~15세 여자아이에게 더 적합합니다. 침실 책상 위에 두고 ' +
-    '공부할 때나 잠잘 때 은은한 불빛을 내주는 아이템으로, ' +
-    '방 꾸미기에 관심이 생기기 시작한 중학생에게 좋은 첫 선물입니다.'
+    '학용품과 화장품을 함께 담을 수 있는 다용도 파우치입니다. 부담 없는 ' +
+    '가격에 데일리로 계속 쓸 수 있습니다. 12,900원.'
   ),
-  h2('중2~3 여자아이 선물 고르는 법'),
+
+  h2('왜 최애 굿즈를 직접 추천하지 않는가'),
   p(
-    '14~15세(중2~3) 여자아이는 13세(중1)와 여고생 사이에서 독특한 취향을 갖습니다. ' +
-    '13세의 키링인형·스티커보다 성숙하지만, 여고생의 진짜 향수·고급 핸드크림보다는 ' +
-    '가벼운 아이템을 선호합니다. 바디로션·케이스·포카 같은 10대 문화 아이템이 잘 통합니다.'
+    '친구 사이의 생일선물에서 가장 반응이 좋은 건 명백히 최애 굿즈입니다. ' +
+    '다만 이건 "이 아이가 지금 누구를 좋아하는지"를 정확히 알아야 성립하는 ' +
+    '선물이라, 매일 대화하지 않는 관계에서는 오히려 실패 위험이 큽니다. ' +
+    '그래서 이 글은 최애를 몰라도 통하는 카테고리(색조·이어폰·무드등· ' +
+    '포카바인더)로 골랐습니다. 아이가 좋아하는 아이돌을 정확히 안다면, 그 ' +
+    '굿즈를 최우선으로 고려하는 게 맞습니다.'
   ),
-  h3('아이돌·팬덤 문화를 좋아한다면'), p('포카 바인더나 아이돌 포스터가 최고의 선물입니다. 덕질을 인정해주는 센스!'),
-  h3('패션·악세서리에 관심 있다면'), p('에어팟 케이스나 스마트톡이 좋습니다. 스마트폰을 꾸미는 재미를 선물하세요.'),
-  h3('향기·바디케어에 관심 있다면'), p('퍼퓸 바디밀크 로션이 첫 향수보다 부담 없고 실용적입니다.'),
+
   h2('이건 사지 마세요'),
-  bullet('13세용 키링인형·스티커 — 중2~3은 이미 그 단계를 지났습니다.'),
-  bullet('여고생용 고급 향수·핸드크림 — 아직 이릅니다. 바디로션처럼 가벼운 아이템부터 시작하세요.'),
-  bullet('사이즈가 중요한 옷·신발 — 10대 여성은 브랜드와 핏에 민감합니다.'),
+  bullet('특정 아이돌 앨범·포토카드 — 최애를 모른다면 오히려 실패 위험이 큽니다.'),
+  bullet('진한 색조 화장품 — 아직 색조를 시작하지 않았다면 부담스러울 수 있습니다.'),
+  bullet('문화상품권만 단독으로 — 성의가 없어 보인다는 반응이 있었습니다.'),
+
   h2('자주 묻는 질문'),
-  h3('중2~3 여자아이 생일선물 예산은 얼마가 적당한가요?'),
-  p('블로그 데이터 기준, 1만원~3만원대가 가장 무난합니다. 1만원대(에어팟케이스·포카바인더·스마트톡)부터 2~3만원대(바디로션)까지 다양합니다.'),
-  h3('13세(중1)와 14~15세(중2~3) 선물이 어떻게 다른가요?'),
-  p('13세는 키링·스티커·립밤(캐릭터+취미) 중심이라면, 14~15세는 바디로션·에어팟케이스·포카바인더(실용+덕질)로 업그레이드됩니다.'),
-  h3('조카 선물로 가장 안전한 선택은?'),
-  p('에어팟 케이스(13,800원)나 스마트톡(12,900원)이 부담 없는 가격에 실용적입니다.'),
+  h3('입학선물과 생일선물, 뭐가 다른가요?'),
+  p('입학선물은 책가방·학용품 같은 필수품 위주지만, 생일선물은 취향을 반영한 아이템(무드등·헤드셋·색조)이 더 잘 통했습니다.'),
+  h3('예산은 얼마가 적당한가요?'),
+  p('9천원대부터 4만원대까지 고르게 후기가 나뉘어 있어, 관계의 가까운 정도로 정하면 됩니다.'),
+  h3('최애 아이돌을 안다면요?'),
+  p('그 경우엔 이 리스트보다 앨범이나 공식 굿즈가 압도적으로 반응이 좋습니다. 최애를 모를 때만 이 가이드를 참고하세요.'),
+
+  h2('관련 가이드'),
+  bullet('고등학생 여자 생일선물: 한 학년 위 기준'),
+  bullet('16세 남자아이 생일선물: 남자아이 기준'),
+  bullet('5만원 이하 선물만 비교하기'),
 ];
 
 export const products = [
   {
-    name: '오프온 퍼퓸 바디밀크 보습제 향좋은 바디로션',
-    price: 25800,
-    naverUrl: 'https://smartstore.naver.com/main/products/6712037180',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8425653/84256537502.19.jpg',
     rank: 1,
-    pros: '13세 태닝키티보다 성숙한 선택. 첫 바디케어. 끈적이지 않는 보습력. 은은한 향.',
+    name: '뷰티피플 첨벙첨벙 물 장구별 워터 틴트',
+    price: 10060,
+    pros: '촉촉한 워터 타입이라 처음 색조를 접하는 나이대에 부담이 적음.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/V8A8OFbxPxhuS059V-SCKRiOh_2c3nq6cgE-cl8GYUvADkjmo1Eb-EUds27TkOKYlObQnOqxGoEn4yfwRzKel8LJgWuzK9SOUJa-W428bX32tYLLh28oyEhXVbV9WZiaBaz-959tv3Saly5lhHclwh0P3VsTb1kC9I3et3ttp7zHAxYPmgDJqsV7vCVfgXiFAGfusNIKD6_Dl44lJCuqMuWWGoamkJQysrNvKCYs-z_-qKbSkcb1s1iTWnYZIULKrU3gfaczEs6W0AnKbm78G8X-UTlnhqj2dR735xqbO1qigh6SgGAy5LYw9U27hSDCCwou2M1XnooXG6V3mRbzThhKUk8tMmXp0iAdJeHav2Eq9GmfNfhhCA7HAYEzmkEGJwW7yKAIbAkIPnh3NCXMzjFA999PgXJVY8trjmbCDlQow4eu8PxaoxTgWr9bId72q7NGGm8nP68ybEaayrW1QxR1FFdzNDaJtgBkTfhyfNgutpbGdwGjtX7PfzaEgGm-XGTNzt5Uo91g',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrqNYSO',
+    naverUrl: null,
   },
   {
-    name: '에어팟4 케이스 키링 애플 이어폰 커버 젤리 투명',
-    price: 13800,
-    naverUrl: 'https://smartstore.naver.com/main/products/12674305005',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9021881/90218815911.8.jpg',
     rank: 2,
-    pros: '13세 다꾸스티커보다 실용적. 에어팟 보유 중2~3 필수. 키링으로 가방에도.',
+    name: '컬러미블루 따옴 스터디 플래너 (100일용)',
+    price: 15700,
+    pros: '스스로 일정을 관리하기 시작하는 시기에 실용적. 100일 구성으로 학습 습관 형성.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/cIW_8HNb_oVkH1iPcD_RVARe2VTQ7vtAQHz4av8ihN4A2Hpc5glulLcjILZs9CQPKxgGK_fzvVF7xvsn6oLaVQc3z6SY6v7ZCOwPDKbf0ULx7Fjm_9AH2JnGwkQPzJTTi_nruO0g3c8jAeBe9VDaZFHP-GkwzLEgRfM9sVjhxlYybP0hPEN29jNIJaf_Tmz-E_2ZX9XVwq91M-jiPLWMPPNke_doOCckapMFK2_xI-8okjF7-a7sDCZrurHpYSJGimk2loS_otZOckBVLeKCiNNhuyks_C8q_ifzZsEavA59qu7QBTI7tzyZSAPROQZSAuIkqWRF4lu5nxFoqtYYD_57k0DzWLxBcZuHfs3vjbwTD2ZzThYVAPNBIj4n4GdseaqZB7BaxX1rZr9MJAVmE5ENuBVOBa-NDRLV6DCKfnthuBC8rnTY4d1iomj7BAIAgaoinT6lLwueHrAwUDCnX9xZIJDkXRGjrVCIhzGYdQ0zlbCBAO79X2gSTFrltzMWLd2Su9pRtjQLfWZFle8QFUcRhQq4wWt-buk=',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrwtLLo',
+    naverUrl: null,
   },
   {
-    name: '프롬아블 포카바인더 마시멜로 포토카드 바인더',
-    price: 8800,
-    naverUrl: 'https://smartstore.naver.com/main/products/10187237127',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8773174/87731740538.6.jpg',
     rank: 3,
-    pros: '10대 덕후 문화 핫템. 8,800원 가성비. 포토카드 수집 필수템.',
+    name: '산리오 정품 뮤즈 시리즈 무선 헤드셋 (여학생용)',
+    price: 45900,
+    pros: '등하교·자습 시간 실용템이면서 캐릭터 디자인으로 취향까지 챙김. 정품 라이선스.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/yAS99I0IzpbouBHUyHJq7IOzpD1YMjmL78oZ8gaCojA77XVS9AalvvAXOTH6q9aU0mlO1PFSzQpw8yR-6cuGLDBP8pXLFBFba3AlxsRwOBG7jqquKfX-7x9_CyHYgJ87IdqNhdYq_XpikbLqfVAu7ZU604aq7M64cO-2mKET2VOfX0f8WWtgHPi5LrgJoEuofTUuMscaaxcU7uhHzD6fPzF02UxMhu_C74h1s8FwB8URDz4fXgFCPlqor9kd_TPMbNc75SyPsCFTj5nrfaa-N3cHp5ZoqWgYTf3biFWSRZO8PBNBM3yu3CBVPvjCe0vZhHRubo5ng9q97YwyhwwPzCtrQ2MN1HrzRXVHpHtlyb2F3BOCMX4zHr2r6CHGZ0HgJpQfz2Sth0uue0qYnkUD6m3MXBCAvqKDFcZcieQbo6bsSf7mDp6Kr7gJxAtPTPnk55ZKzxteFqHCYfZKNIKsEn68u6EpjA4HCcuvD63xJZKagrFSV1PCbhWzyBm-vDa9eEkOEfPjH8dLe_OQSGmAHEIIy_9yCl54I3Cs_xI1t47IRBM=',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrAFXd6',
+    naverUrl: null,
   },
   {
-    name: 'BTS 앨범 굿즈 브로마이드 포스터 MAP OF THE SOUL',
-    price: 2900,
-    naverUrl: 'https://smartstore.naver.com/main/products/5547073601',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8309156/83091569356.1.jpg',
     rank: 4,
-    pros: '방꾸미기 시작하는 중2~3에 딱. 2,900원 초가성비. 아이돌 포스터.',
+    name: '조개 진주 무드등 (여학생방 인테리어)',
+    price: 9450,
+    pros: '책상이나 침대 옆에 두기 좋은 소품. 은은한 조명으로 취침등 겸용.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/8-nEWckkOGbt0vOO8xSRMUtByFwpJFi-OfOdI8TiKkQFs3Pg2EeC8_woBRogQRX8Q8DJA0fY8kuGbt8wdKqH0A0UP0AtB25TO6CNGtqVaBqzP2wu9jZDbheYbGOXg-D9aeXzFKlQaMtnDAwjroCZWbGYzIQdFNzPehw1B094apwENXF8kvHzx3IjgNnH6bdF1ZEXknroJT9qlrcBWxdud2EGoGDF-WG4ABeiHEbrhNixvV1QaNWfU5zYZ7Y9634YEnJIraNuybvZKgHQzPAQp_hcQd16dI2lQ-S9bEzs6KnSDpFM9yKwjfAXUilmXi9kIMMFKhgSIt5nz4Fc-QKVbQyOungUw8vbsDXzRbFrEHSYuholXtjZQmAS0I9sPP72GMGohl579aabTPtFd4fQeGINQi8--K6TaBrof_8C0lKdkNHdvsCAi0A1QeLz36zrYbAvU_sYfS6iRtz-UA7zdHdWI7vz_d-g_cFsuDD7RbXQhSBqC7rf8LCD1K3SzhWeaqAf0gxaq5auaGU7mdkazIeIptw8QoJXkgixN20Ff-x5Hw==',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrH0v8u',
+    naverUrl: null,
   },
   {
-    name: '두들잇 맥세이프 그립톡 M9 스마트톡 홀더',
-    price: 12900,
-    naverUrl: 'https://smartstore.naver.com/main/products/6854347440',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_8439884/84398847762.6.jpg',
     rank: 5,
-    pros: '13세 보조배터리(실용)와 다른 감성템. 폰꾸미기 취향. 12,900원 가성비.',
+    name: '포토카드 콜렉트북 대용량 (900장, 포카 바인더)',
+    price: 29900,
+    pros: '특정 앨범이 아닌 바인더 자체라 최애를 몰라도 안전. 이미 모으는 포토카드 취미를 응원.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/t4C8T73mEGXaWfrat-2xWIUmqX0C9rHDjTx1C8J5cWM4Z8F9CEdWYJ8udmU9eaBm6wZL1huejL7S_zJFJ9jryuuDlacJVxbActpGgKqxRvQEWb1MIbyZdterh03GbEScuxCj2LDTmwyUDCivTemSUoICA43IoA4y6u0KQiSreIjk4n6B87A7FPhX9QjWcxRBJJSTr9WtTcn9jaRbfw1umfE3o7mgPIMfL8HVJ9ben9yq4Hzw8GGRpY618NJjIqrERD86gYr-iy1BXU4Xq5I--EVbf4ahV-K8HnVDIvlzpClCdmd8DoRHkeB5Cz6INP7UFiPuPu4Bfh1okPMkgjuHhiMfGExvxqPZALswesWd17flFDFCPTFavCFkLqGAxi4dQT4qQBrPNUKlIf6X1IWozjQn83EGR6ynrOmgpz9RtZMC6XmTBeP1PZOecCPvfwbCBiekjRSRkSKV8zMlf9FhvH9vuKWCZKO0_g1W9jrBhKeb9OLkFhCBZQX7csrEYuyLeb_vlzYMM1NKBUXkDkeV3MiWZhVD6nE=',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrNJvc4',
+    naverUrl: null,
   },
   {
-    name: '감성미니무드등 침실수면등 인테리어램프 밝기조절',
-    price: 29000,
-    naverUrl: 'https://smartstore.naver.com/main/products/13639780815',
-    imageUrl: 'https://shopping-phinf.pstatic.net/main_9118429/91184291524.jpg',
     rank: 6,
-    pros: '여고생 대형무드등(79,900)보다 가벼운 입문용. 방꾸미기 첫템.',
+    name: '키티 캐릭터 필통 겸 화장품 파우치',
+    price: 12900,
+    pros: '학용품과 화장품을 함께 담는 다용도 아이템. 부담 없는 가격의 데일리템.',
+    imageUrl: 'https://ads-partners.coupang.com/image1/zzbo10cja6tswgFnzzvezRDUHK3rI0bXXuS5vnpm4Y0cWgDqMhaS60pmpR4GKedQ6NA6VLOtTZ-FU9sn_Hu2YA6i2J3tSGORwbM3jCaERyNdnyELkHRx--L9I0TriDqm9w5cEv1wEP8cs-obXclUyfzBkl9HsIBC841q6secAwSD89WpZHs-mszEUz7HkRIUW0WsjvOSfZVXQxX6mJbGXK4wwofY5kT7SEUPbYn5b_hQKufAOlMED966cDA6vDG03O5SEzpXVE9Tc8dsI31HivdC3qpWX-iS0nuBiHHVSulX19H-Ix2YAhjPvZakK4b6LTjsPDPfF-YVS4v7bjGap-TDW9Zyw4EmafWXOokTgY3TbYKYWwYAD4dVMF4ETdFf6ar5h4jY2zhkHkaH_bE1vMiH5HIWAYt4g76a22mBblOK7_kSd6Mubdwv9WFte8InZ2_A_qEuDeZD1H2j-4uK1yOwY3imZMXx3DfRR4icTu0lhgrsoFeMwJEyvIgAfXs2_F_qg7Miuc5NZ-kDgSPbkQSnjbOAHAg=',
+    coupangUrl: 'https://link.coupang.com/a/gLdHrS4Sc0',
+    naverUrl: null,
   },
 ];
