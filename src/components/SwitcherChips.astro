@@ -8,9 +8,11 @@ interface Chip {
 interface Props {
   label: string;
   chips: Chip[];
+  from?: string;
+  position: string;
 }
 
-const { label, chips } = Astro.props;
+const { label, chips, from = '', position } = Astro.props;
 ---
 
 {chips.length > 0 && (
@@ -21,7 +23,11 @@ const { label, chips } = Astro.props;
         chip.active ? (
           <span class="switcher-chip active" aria-current="page">{chip.label}</span>
         ) : (
-          <a href={chip.href} class="switcher-chip">{chip.label}</a>
+          <a
+            href={chip.href}
+            class="switcher-chip"
+            onclick={`gtag('event','internal_link',{'from':'${from}','to':'${chip.href}','position':'${position}'})`}
+          >{chip.label}</a>
         )
       ))}
     </div>

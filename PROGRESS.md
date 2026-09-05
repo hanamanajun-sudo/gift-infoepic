@@ -1,3 +1,40 @@
+## 2026-09-05 (11) TIER 5 1단계 완료 — 죽은 링크 자동화 + TOPn 동기화 + internal_link 이벤트
+
+성장 기획서 TIER 5 1단계(새는 곳 막기) 3개를 전부 처리했다.
+
+**1-a. 107개 죽은 "관련 가이드" 링크 → 방식 C(빌드 시 자동 링크화)로 처리.**
+`src/lib/notion.ts`에 `resolveGuideSlug`/`linkifyRelatedBullet` 추가 — heading_2가
+"관련 가이드"로 시작하는 섹션 안의 bulleted_list_item만 골라, 콜론 앞 텍스트를
+슬러그 후보로 변환해보고 실패하면 제목 접두 매칭까지 시도한다. "A · B: 설명"
+콤보 표기도 처리. `cacheBlocksToHtml`/`blocksToHtml`/`getGuideContent`에
+`allGuides`를 스레딩하고, `[slug].astro`에서 이미 갖고 있던 `allGuides`를 넘겨줬다.
+
+자동 해석 테스트 결과 158개 불릿 중 156개(98.7%)가 규칙만으로 풀렸고, 남은 2개는
+진짜 콘텐츠 문제였다 — `14-15세-여자아이-생일선물`이 이번 세션에 병합된
+"16세 남자아이 생일선물"을 참조하고 있었고(→ 나이대가 맞는 "중학생 남자
+생일선물"로 교체), `고등학생-여자-생일선물`은 아예 존재하지 않는 "중학생 여자
+생일선물"을 참조하고 있었다(→ 이미 이 세션에 재작성한 "14-15세 여자아이
+생일선물"로 교체, 상호 참조가 되도록). 두 콘텐츠를 Notion에서 직접 고친 뒤
+재빌드하니 158/158 전부 링크화됨.
+
+**1-b. TOPn 불일치 13개 중 예산 허브 4개(3단계 재작성 예정) 제외 9개 숫자 동기화.**
+어린이날·어버이날·친구·30대-엄마(TOP10→TOP3), 텀블러·돌잔치·집들이·스승의날·
+30대-아빠(TOP8→TOP3) — 전부 실제 상품 수(3개)에 맞춤. 1/3/5/10만원이하는
+곧 전면 재작성되므로 숫자만 고치지 않고 보류.
+
+**1-c. `internal_link` GA4 이벤트 신설.** `product_click`과 같은 패턴으로
+`GiftCard`(관련가이드 카드 전부 — related-age/occasion/audience/item, hub-relation/
+age/occasion/budget/item, home, guide-index), `SwitcherChips`(switcher-age/budget),
+`초보` 허브 카드(hub-beginner), 그리고 신규 관련가이드 링크(related-bullet)에
+`{from, to, position}`을 실어 보낸다. 이제 "자동 카드 vs 본문 문맥 링크" 중
+뭐가 눌리는지 3~4주 뒤 GA4로 확인 가능.
+
+검증: 빌드 176페이지 정상, 관련가이드 링크 158/158, TOPn 타이틀 확인,
+internal_link 이벤트가 4가지 위치(related-bullet/related-*/hub-*/switcher-*)
+전부에서 from/to/position 포함해 정상 렌더.
+
+---
+
 ## 2026-09-05 (10) 성장 기획서 작성 + STRATEGY 문서 우선순위 갱신
 
 3주 캠페인이 끝나면서 STRATEGY-2026-09.md의 §0 수치(9/2 기준)가 낡아

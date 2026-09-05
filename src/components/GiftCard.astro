@@ -4,9 +4,12 @@ import { formatPriceRange } from '../lib/notion';
 
 interface Props {
   guide: GiftGuide;
+  from?: string;
+  position?: string;
 }
 
-const { guide } = Astro.props;
+const { guide, from = '', position = 'card' } = Astro.props;
+const trackClick = `gtag('event','internal_link',{'from':'${from}','to':'${guide.slug}','position':'${position}'})`;
 
 const thumbBg =
   guide.recipientGender?.includes('여') ? '#FCE7F3' :
@@ -60,7 +63,7 @@ const priceRange = formatPriceRange(guide.priceMin, guide.priceMax);
     </div>
 
     <h2 class="card-title">
-      <a href={`/선물/${guide.slug}/`}>{guide.title}</a>
+      <a href={`/선물/${guide.slug}/`} onclick={trackClick}>{guide.title}</a>
     </h2>
 
     {guide.intro && (
@@ -74,7 +77,7 @@ const priceRange = formatPriceRange(guide.priceMin, guide.priceMax);
           {priceRange}
         </span>
       )}
-      <a href={`/선물/${guide.slug}/`} class="card-cta" aria-label={`${guide.title} 자세히 보기`}>
+      <a href={`/선물/${guide.slug}/`} class="card-cta" aria-label={`${guide.title} 자세히 보기`} onclick={trackClick}>
         보기 <i class="ti ti-arrow-right" aria-hidden="true"></i>
       </a>
     </div>

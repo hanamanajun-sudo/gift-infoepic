@@ -29,7 +29,7 @@ const coupangKeyword = [
 const coupangAutoSectionEnabled = import.meta.env.COUPANG_AUTO_SECTION_ENABLED === 'true';
 
 const [{ html: content, headings }, products, coupangProducts] = await Promise.all([
-  getGuideContent(guide.id),
+  getGuideContent(guide.id, allGuides),
   getProducts(guide.id),
   coupangAutoSectionEnabled ? searchCoupangProducts(coupangKeyword) : Promise.resolve([]),
 ]);
@@ -113,8 +113,8 @@ const pairedCount = Math.min(products.length, productSections.length);
 
 <GuideLayout guide={guide} headings={headings} products={products.slice(0, pairedCount)}>
   <Fragment slot="chips">
-    <SwitcherChips label="비슷한 나이는" chips={ageChips} />
-    <SwitcherChips label="예산을 바꿔서 보기" chips={budgetChips} />
+    <SwitcherChips label="비슷한 나이는" chips={ageChips} from={guide.slug} position="switcher-age" />
+    <SwitcherChips label="예산을 바꿔서 보기" chips={budgetChips} from={guide.slug} position="switcher-budget" />
   </Fragment>
 
   <!-- ── 추천 상품 섹션 (통합형) ── -->
@@ -278,7 +278,7 @@ const pairedCount = Math.min(products.length, productSections.length);
         <div class="related-group">
           <h3 class="related-group-title">{group.label}</h3>
           <div class="related-grid">
-            {group.guides.map(g => <GiftCard guide={g} />)}
+            {group.guides.map(g => <GiftCard guide={g} from={guide.slug} position={`related-${group.axis}`} />)}
           </div>
         </div>
       ))}

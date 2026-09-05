@@ -203,11 +203,68 @@ function slugify(text: string): string {
     .slice(0, 60);
 }
 
-function cacheBlocksToHtml(blocks: any[]): { html: string; headings: Heading[] } {
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/**
+ * "관련 가이드" 섹션 불릿("여자친구 생일선물: 선물보다 편지가 중요한 이유")을
+ * 실제 가이드 슬러그로 역해석한다. 콜론 앞부분을 후보 슬러그로 변환해보고,
+ * 실패하면 제목 접두 매칭까지 시도한다. 105개 샘플 기준 96% 해석 성공 —
+ * 나머지는 병합·미발행 등 콘텐츠 쪽 문제라 링크화하지 않는 게 안전하다
+ * (틀린 링크를 보여주느니 텍스트로 두는 게 낫다).
+ */
+function resolveGuideSlug(head: string, slugSet: Set<string>, guides: { slug: string; title: string }[]): string | null {
+  const candidates = [
+    head,
+    head.replace(/\s*가이드$/, ""),
+    head.replace(/^(\d+만원)\s*이하\s*선물만\s*비교하기$/, "$1이하 선물"),
+    head.replace(/\s*보기$/, ""),
+  ];
+  for (const c of candidates) {
+    const s = c.trim().replace(/\s+/g, "-");
+    if (slugSet.has(s)) return s;
+  }
+  const m = guides.find((g) => g.title.startsWith(head));
+  return m ? m.slug : null;
+}
+
+function trackedLink(toSlug: string, label: string, fromSlug: string): string {
+  const onclick = `gtag('event','internal_link',{'from':'${fromSlug}','to':'${toSlug}','position':'related-bullet'})`;
+  return `<a href="/선물/${toSlug}/" onclick="${onclick}">${label}</a>`;
+}
+
+function linkifyRelatedBullet(richText: any[], guides: { slug: string; title: string }[], fromSlug: string): string {
+  const text = plainText(richText);
+  if (!text.trim()) return richTextToHtml(richText);
+  const slugSet = new Set(guides.map((g) => g.slug));
+
+  const colonIdx = text.indexOf(":");
+  const head = (colonIdx >= 0 ? text.slice(0, colonIdx) : text).trim();
+  const rest = colonIdx >= 0 ? text.slice(colonIdx) : "";
+
+  // "여자친구 생일선물 · 남자친구 생일선물: 연인 사이 기준" 같은 콤보 표기
+  if (head.includes("·")) {
+    const parts = head.split("·").map((p) => p.trim());
+    const resolved = parts.map((p) => resolveGuideSlug(p, slugSet, guides));
+    if (resolved.every(Boolean)) {
+      const linked = parts.map((p, i) => trackedLink(resolved[i]!, escapeHtml(p), fromSlug)).join(" · ");
+      return `${linked}${escapeHtml(rest)}`;
+    }
+    return richTextToHtml(richText);
+  }
+
+  const slug = resolveGuideSlug(head, slugSet, guides);
+  if (!slug) return richTextToHtml(richText);
+  return `${trackedLink(slug, escapeHtml(head), fromSlug)}${escapeHtml(rest)}`;
+}
+
+function cacheBlocksToHtml(blocks: any[], guides: { slug: string; title: string }[] = [], fromSlug = ""): { html: string; headings: Heading[] } {
   let html = "";
   const headings: Heading[] = [];
   let inBulletList = false;
   let inNumberedList = false;
+  let inRelatedSection = false;
 
   for (const block of blocks) {
     if (inBulletList && block.type !== "bulleted_list_item") {
@@ -227,12 +284,14 @@ function cacheBlocksToHtml(blocks: any[]): { html: string; headings: Heading[] }
       }
       case "heading_2": {
         const text = plainText(block.heading_2?.rich_text ?? []);
+        inRelatedSection = text.startsWith("관련 가이드");
         const id = slugify(text);
         headings.push({ id, text, level: 2 });
         html += `<h2 id="${id}">${richTextToHtml(block.heading_2?.rich_text ?? [])}</h2>\n`;
         break;
       }
       case "heading_3": {
+        inRelatedSection = false;
         const text = plainText(block.heading_3?.rich_text ?? []);
         const id = slugify(text);
         headings.push({ id, text, level: 3 });
@@ -241,7 +300,9 @@ function cacheBlocksToHtml(blocks: any[]): { html: string; headings: Heading[] }
       }
       case "bulleted_list_item": {
         if (!inBulletList) { html += "<ul>\n"; inBulletList = true; }
-        html += `<li>${richTextToHtml(block.bulleted_list_item?.rich_text ?? [])}</li>\n`;
+        const bulletRt = block.bulleted_list_item?.rich_text ?? [];
+        const bulletHtml = inRelatedSection ? linkifyRelatedBullet(bulletRt, guides, fromSlug) : richTextToHtml(bulletRt);
+        html += `<li>${bulletHtml}</li>\n`;
         break;
       }
       case "numbered_list_item": {
@@ -288,11 +349,12 @@ function cacheBlocksToHtml(blocks: any[]): { html: string; headings: Heading[] }
   return { html, headings };
 }
 
-async function blocksToHtml(blocks: any[], notion: Client): Promise<{ html: string; headings: Heading[] }> {
+async function blocksToHtml(blocks: any[], notion: Client, guides: { slug: string; title: string }[] = [], fromSlug = ""): Promise<{ html: string; headings: Heading[] }> {
   let html = "";
   const headings: Heading[] = [];
   let inBulletList = false;
   let inNumberedList = false;
+  let inRelatedSection = false;
 
   for (const block of blocks) {
     if (inBulletList && block.type !== "bulleted_list_item") {
@@ -312,12 +374,14 @@ async function blocksToHtml(blocks: any[], notion: Client): Promise<{ html: stri
       }
       case "heading_2": {
         const text = plainText(block.heading_2?.rich_text ?? []);
+        inRelatedSection = text.startsWith("관련 가이드");
         const id = slugify(text);
         headings.push({ id, text, level: 2 });
         html += `<h2 id="${id}">${richTextToHtml(block.heading_2?.rich_text ?? [])}</h2>\n`;
         break;
       }
       case "heading_3": {
+        inRelatedSection = false;
         const text = plainText(block.heading_3?.rich_text ?? []);
         const id = slugify(text);
         headings.push({ id, text, level: 3 });
@@ -326,7 +390,9 @@ async function blocksToHtml(blocks: any[], notion: Client): Promise<{ html: stri
       }
       case "bulleted_list_item": {
         if (!inBulletList) { html += "<ul>\n"; inBulletList = true; }
-        html += `<li>${richTextToHtml(block.bulleted_list_item?.rich_text ?? [])}</li>\n`;
+        const bulletRt = block.bulleted_list_item?.rich_text ?? [];
+        const bulletHtml = inRelatedSection ? linkifyRelatedBullet(bulletRt, guides, fromSlug) : richTextToHtml(bulletRt);
+        html += `<li>${bulletHtml}</li>\n`;
         break;
       }
       case "numbered_list_item": {
@@ -428,13 +494,16 @@ export async function getGiftGuideBySlug(slug: string): Promise<GiftGuide | null
   return null;
 }
 
-export async function getGuideContent(pageId: string): Promise<{ html: string; headings: Heading[] }> {
+export async function getGuideContent(pageId: string, allGuides: GiftGuide[] = []): Promise<{ html: string; headings: Heading[] }> {
+  const guideRefs = allGuides.map((g) => ({ slug: g.slug, title: g.title }));
+  const fromSlug = allGuides.find((g) => g.id === pageId)?.slug ?? "";
+
   // 1) 캐시에서 블록 찾기
   const cache = loadCache();
   if (cache) {
     const entry = cache.guides.find((g: any) => g.id === pageId);
     if (entry && entry.blocks && entry.blocks.length > 0) {
-      return cacheBlocksToHtml(entry.blocks);
+      return cacheBlocksToHtml(entry.blocks, guideRefs, fromSlug);
     }
   }
 
@@ -453,7 +522,7 @@ export async function getGuideContent(pageId: string): Promise<{ html: string; h
         allBlocks = [...allBlocks, ...response.results];
         cursor = response.next_cursor ?? undefined;
       } while (cursor);
-      if (allBlocks.length > 0) return await blocksToHtml(allBlocks, notion);
+      if (allBlocks.length > 0) return await blocksToHtml(allBlocks, notion, guideRefs, fromSlug);
       if (attempt < 2) continue;
       return { html: "", headings: [] };
     } catch (err) {

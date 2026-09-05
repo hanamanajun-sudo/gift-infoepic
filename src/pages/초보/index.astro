@@ -30,7 +30,11 @@ const beginnerGuides = guides.filter(g => beginnerSlugs.includes(g.slug));
 
     <div class="guide-grid">
       {beginnerGuides.map(guide => (
-        <a href={`/선물/${guide.slug}/`} class="guide-card">
+        <a
+          href={`/선물/${guide.slug}/`}
+          class="guide-card"
+          onclick={`gtag('event','internal_link',{'from':'','to':'${guide.slug}','position':'hub-beginner'})`}
+        >
           <article>
             <h2 class="guide-card-title">{guide.title}</h2>
             {guide.intro && <p class="guide-card-desc">{guide.intro}</p>}

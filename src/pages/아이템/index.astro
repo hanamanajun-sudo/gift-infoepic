@@ -60,7 +60,7 @@ const items = [
 
     {itemGuides.length > 0 ? (
       <div class="guide-grid">
-        {itemGuides.map(guide => <GiftCard guide={guide} />)}
+        {itemGuides.map(guide => <GiftCard guide={guide} position="hub-item" />)}
       </div>
     ) : (
       <div class="empty-state">
