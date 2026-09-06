@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '30대-여성-생일선물';
 export const title = '30대 여성 생일선물 추천 TOP6 — 왜 이제 시계가 필요해질까요';
@@ -90,6 +90,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('블로그에 자주 나오는 초고가 명품 시계·목걸이 — 이름만 보고 검색하면 대부분 예산 밖이거나 가품 위험이 있는 마켓입니다.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('사이즈가 있는 옷·신발 — 브랜드와 핏 취향이 갈리기 쉬운 나이입니다.'),
   bullet('반지 — 사이즈를 모르면 착용 자체가 불가능합니다.'),
 

@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '20만원이하-선물';
 export const title = '20만원 이하 선물 추천 TOP6 — 내가 사긴 아깝고 받으면 제일 좋은 것들';
@@ -89,6 +89,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('마켓플레이스의 초고가 해외 명품 — 이 가격대에도 가품 위험이 있는 카테고리가 있습니다. 브랜드 공식몰에서 진위를 확인하세요.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('용도가 겹치는 전자기기 — 이미 쓰고 있는 스피커·보조배터리가 있는지 먼저 확인하세요.'),
   bullet('사이즈가 필요한 신발·의류를 사이즈 확인 없이 구매 — 반품 부담이 큽니다.'),
   bullet('너무 개인 취향을 타는 인테리어 소품 — 받는 사람의 공간 스타일을 모른다면 무난한 디자인을 고르세요.'),

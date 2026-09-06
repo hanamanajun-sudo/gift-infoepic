@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '중학생-남자-생일선물';
 export const title = '중학생 남자 생일선물 추천 TOP6 — 가방을 "꾸미는" 나이입니다';
@@ -92,6 +92,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('저렴한 "지샥" — 4만원 미만이면 대부분 가품입니다. 정품은 15만원대부터 시작합니다.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('사이즈가 있는 옷·신발 — 브랜드와 핏 취향이 갈리기 쉽습니다.'),
   bullet('문화상품권만 단독으로 — 성의가 없어 보인다는 반응이 있었습니다.'),
 

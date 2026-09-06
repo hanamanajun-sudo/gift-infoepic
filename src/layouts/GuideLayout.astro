@@ -94,6 +94,11 @@ const jsonLd = products.length > 0 ? {
               공유하기
             </button>
           </div>
+          <p class="guide-criteria">
+            <i class="ti ti-clipboard-check" aria-hidden="true"></i>
+            쿠팡·네이버쇼핑 등 판매처에 공개된 실제 상품 정보와 후기를 기준으로 골랐습니다.
+            <a href="/about/#추천-기준">선정 기준 자세히 보기</a>
+          </p>
         </header>
 
         <slot />
@@ -199,6 +204,20 @@ const jsonLd = products.length > 0 ? {
     display: flex;
     align-items: center;
     gap: var(--space-2);
+  }
+
+  .guide-criteria {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-basis: 100%;
+    margin-top: var(--space-1);
+  }
+  .guide-criteria a {
+    color: var(--color-link);
+    white-space: nowrap;
   }
 
   .share-btn {

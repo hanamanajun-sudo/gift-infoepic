@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '지갑-선물-추천';
 export const title = '지갑 선물 고르는 법 — 타입부터 정하고 브랜드는 그다음입니다';
@@ -87,6 +87,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('마켓플레이스의 해외 명품 지갑 — 샤넬·구찌·에르메스 등 고가 브랜드는 가품 위험이 있는 카테고리입니다. 진품은 백화점이나 브랜드 공식몰에서 구매하세요.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('이미 쓰고 있는 지갑과 같은 타입 — 카드지갑을 쓰는 사람에게 장지갑을 선물하면 활용도가 낮을 수 있습니다.'),
   bullet('색상만 보고 고른 선물 — 무채색 계열이 활용도가 높습니다.'),
   bullet('선물 포장이 안 되는 저가 상품만 고르기 — 지갑은 포장 여부에 따라 선물 느낌이 크게 달라집니다.'),

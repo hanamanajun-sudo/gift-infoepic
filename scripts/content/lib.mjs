@@ -5,10 +5,22 @@ export const GUIDES_DB_ID = process.env.NOTION_GUIDES_DB_ID;
 export const PRODUCTS_DB_ID = process.env.NOTION_PRODUCTS_DB_ID;
 
 export const rt = (text, opts = {}) => [{ type: 'text', text: { content: text }, annotations: opts }];
+export const link = (text, url) => ({ type: 'text', text: { content: text, link: { url } } });
 export const h2 = (text) => ({ object: 'block', type: 'heading_2', heading_2: { rich_text: rt(text) } });
 export const h3 = (text) => ({ object: 'block', type: 'heading_3', heading_3: { rich_text: rt(text) } });
 export const p = (text) => ({ object: 'block', type: 'paragraph', paragraph: { rich_text: rt(text) } });
+// segments: 문자열 또는 link()로 만든 rich_text 세그먼트를 섞어서 한 문단 안에 링크를 넣을 때 사용
+export const pMixed = (...segments) => ({
+  object: 'block',
+  type: 'paragraph',
+  paragraph: { rich_text: segments.map((s) => (typeof s === 'string' ? { type: 'text', text: { content: s } } : s)) },
+});
 export const bullet = (text) => ({ object: 'block', type: 'bulleted_list_item', bulleted_list_item: { rich_text: rt(text) } });
+export const bulletMixed = (...segments) => ({
+  object: 'block',
+  type: 'bulleted_list_item',
+  bulleted_list_item: { rich_text: segments.map((s) => (typeof s === 'string' ? { type: 'text', text: { content: s } } : s)) },
+});
 
 export function table(headerRow, rows) {
   const toRow = (cells) => ({

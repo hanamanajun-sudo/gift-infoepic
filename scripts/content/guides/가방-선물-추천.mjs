@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '가방-선물-추천';
 export const title = '가방 선물 추천 TOP6 — 진짜 명품백 대신 이걸 고르는 이유';
@@ -88,6 +88,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('마켓플레이스의 고가 브랜드 가방 — 가품 위험이 있습니다. 진품은 공식 매장에서 구매하세요.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('너무 작거나 큰 사이즈 — 평소 소지품 양을 모른다면 중간 크기가 무난합니다.'),
   bullet('강한 원색 — 무채색이나 톤다운된 색상이 활용도가 높습니다.'),
 

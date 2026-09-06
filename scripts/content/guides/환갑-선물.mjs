@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '환갑-선물';
 export const title = '환갑 선물 추천 TOP6 — 용돈 이벤트가 유독 사랑받는 이유';
@@ -91,6 +91,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('마켓플레이스의 명품 가방·지갑 — 환갑 선물로 명품을 알아보다가 가품을 선물했다가 가족 간 갈등으로 번진 사례가 실제로 있습니다. 진품은 백화점·공식몰에서 구매하세요.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('취향을 모르는 의류·액세서리 — "받은 선물을 아무데나 두었다"는 후기가 반복됩니다. 확신이 없다면 용돈·건강 선물이 안전합니다.'),
   bullet('이미 드시고 있는 영양제와 겹치는 건강기능식품 — 미리 확인하고 겹치지 않는 걸로 고르세요.'),
   bullet('환갑 잔치·이벤트 없이 선물만 덜렁 — 짧은 손편지나 축하 메시지를 함께 준비하면 만족도가 크게 달라집니다.'),

@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '화장품-선물-추천';
 export const title = '화장품 선물 추천 TOP6 — 나이대에 따라 완전히 다른 걸 찾습니다';
@@ -93,6 +93,7 @@ export const blocks = [
   bullet('피부 타입을 모르는데 고기능성(안티에이징·미백) 제품 — 트러블이 날 수 있습니다. 핸드크림처럼 무난한 것부터 시작하세요.'),
   bullet('향이 강한 제품 — 향에 민감한 사람이 의외로 많습니다.'),
   bullet('마켓플레이스의 초고가 해외 럭셔리 브랜드(라메르·라프레리 등) — 가품 위험이 있고 정가 자체도 매우 높습니다. 국내 프리미엄 라인이 더 안전한 대안입니다.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('유통기한이 임박한 특가 상품 — 화장품은 구매 전 유통기한을 꼭 확인하세요.'),
 
   h2('자주 묻는 질문'),

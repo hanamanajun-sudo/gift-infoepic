@@ -1,4 +1,4 @@
-import { h2, h3, p, bullet, table } from '../lib.mjs';
+import { h2, h3, p, bullet, bulletMixed, link, table } from '../lib.mjs';
 
 export const slug = '10만원이하-선물';
 export const title = '10만원 이하 선물 추천 TOP6 — "스몰럭셔리"라는 말에 속지 마세요';
@@ -84,6 +84,7 @@ export const blocks = [
 
   h2('이건 사지 마세요'),
   bullet('"명품"이라는 이름만 붙은 마켓플레이스 초저가 상품 — 정가와 지나치게 차이 나면 가품 위험을 의심하세요.'),
+  bulletMixed(link('가품 위험 안내', 'https://gift.infoepic.com/가품-위험-안내/'), '에서 카테고리별 위험도와 확인 방법을 더 자세히 볼 수 있습니다.'),
   bullet('가격표만 보고 용량을 확인하지 않은 향수·화장품 — 미니 사이즈인지 정품 사이즈인지 꼭 확인하세요.'),
   bullet('노이즈캔슬링 이어폰을 사이즈·착용감 확인 없이 구매 — 귀 모양에 따라 착용감 차이가 큽니다.'),
   bullet('술을 온라인으로 직접 구매 — 위스키 스톤 같은 관련 용품으로 대신하세요.'),
