@@ -3,6 +3,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import GiftCard from '../../components/GiftCard.astro';
 import { getGiftGuides, getGiftGuideBySlug, getGuideContent, getProducts } from '../../lib/notion';
+import type { Product } from '../../lib/notion';
 import { searchCoupangProducts } from '../../lib/coupang';
 import { getRelatedGroups, getInlineSuggestion, getAgeSwitcherChips, getBudgetSwitcherChips } from '../../lib/related';
 import SwitcherChips from '../../components/SwitcherChips.astro';
@@ -109,6 +110,18 @@ if (products.length > 0 && content) {
 
 // 상품-설명 페어링 개수만큼만 상품 표시
 const pairedCount = Math.min(products.length, productSections.length);
+
+// ── 상품 클릭 링크 ──
+// 방문자는 작은 버튼보다 큰 이미지·상품명을 먼저 누르므로 셋 다 같은 링크로 보낸다.
+// 수수료가 붙는 쿠팡을 우선하고, 쿠팡 링크가 없을 때만 네이버로 보낸다.
+// cta 파라미터로 어느 요소를 눌렀는지 구분해 이미지·상품명 링크의 효과를 잰다.
+const hasUrl = (url: string) => !!url && url !== '#';
+const productClick = (product: Product, channel: string, cta: string) =>
+  `gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'${channel}','cta':'${cta}'})`;
+const primaryLink = (product: Product) =>
+  hasUrl(product.coupangUrl) ? { href: product.coupangUrl, channel: 'coupang', rel: 'noopener noreferrer sponsored' }
+  : hasUrl(product.naverUrl) ? { href: product.naverUrl, channel: 'naver', rel: 'noopener noreferrer nofollow' }
+  : null;
 ---
 
 <GuideLayout guide={guide} headings={headings} products={products.slice(0, pairedCount)}>
@@ -130,6 +143,12 @@ const pairedCount = Math.min(products.length, productSections.length);
         {products.slice(0, pairedCount).map((product, i) => {
           const section = productSections[i];
           const showInline = i === 2 && inlineSuggestion;
+          const primary = primaryLink(product);
+          // 이미지 링크는 바로 아래 상품명 링크와 목적지가 같으므로 키보드·스크린리더에서는 건너뛴다
+          const ImgWrap = primary ? 'a' : 'div';
+          const imgLinkAttrs = primary
+            ? { href: primary.href, target: '_blank', rel: primary.rel, onclick: productClick(product, primary.channel, 'image'), tabindex: '-1', 'aria-hidden': 'true' }
+            : {};
           return (
             <Fragment>
             <article class="merged-product-card" id={`product-${i + 1}`}>
@@ -138,14 +157,14 @@ const pairedCount = Math.min(products.length, productSections.length);
 
               <!-- 상품 이미지 (크게) -->
               {product.imageUrl && (
-                <div class="product-hero-img">
+                <ImgWrap class="product-hero-img" {...imgLinkAttrs}>
                   <img
                     src={product.imageUrl}
                     alt={product.name}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
-                </div>
+                </ImgWrap>
               )}
 
               <!-- 상품 설명 (H3 문구) -->
@@ -157,7 +176,16 @@ const pairedCount = Math.min(products.length, productSections.length);
               <!-- 상품 정보 카드 -->
               <div class="product-meta">
                 <div class="product-meta-header">
-                  <h4 class="product-meta-name">{product.name}</h4>
+                  <h4 class="product-meta-name">
+                    {primary ? (
+                      <a
+                        href={primary.href}
+                        target="_blank"
+                        rel={primary.rel}
+                        onclick={productClick(product, primary.channel, 'name')}
+                      >{product.name}</a>
+                    ) : product.name}
+                  </h4>
                   {product.price && (
                     <span class="product-meta-price">
                       {product.price.toLocaleString('ko-KR')}원
@@ -178,7 +206,7 @@ const pairedCount = Math.min(products.length, productSections.length);
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                         class="product-link-btn naver"
-                        onclick={`gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'naver'})`}
+                        onclick={productClick(product, 'naver', 'button')}
                       >
                         <i class="ti ti-external-link" aria-hidden="true"></i>
                         네이버 쇼핑 최저가 확인
@@ -190,7 +218,7 @@ const pairedCount = Math.min(products.length, productSections.length);
                         target="_blank"
                         rel="noopener noreferrer sponsored"
                         class="product-link-btn coupang"
-                        onclick={`gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'coupang'})`}
+                        onclick={productClick(product, 'coupang', 'button')}
                       >
                         <i class="ti ti-shopping-cart" aria-hidden="true"></i>
                         쿠팡 최저가 확인
@@ -346,6 +374,7 @@ const pairedCount = Math.min(products.length, productSections.length);
 
   /* 이미지 (전체 20% 축소, 비율 유지) */
   .product-hero-img {
+    display: block;
     width: 80%;
     margin: var(--space-4) auto 0;
     aspect-ratio: 16/9;
@@ -401,6 +430,13 @@ const pairedCount = Math.min(products.length, productSections.length);
     line-height: var(--leading-snug);
     margin: 0;
   }
+  .product-meta-name a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+  }
+  .product-meta-name a:hover { text-decoration-color: currentColor; }
   .product-meta-price {
     font-size: var(--text-lg);
     font-weight: var(--font-weight-bold);
