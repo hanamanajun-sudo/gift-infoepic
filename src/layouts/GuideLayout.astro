@@ -150,13 +150,15 @@ const jsonLd = products.length > 0 ? {
 
   .guide-layout {
     display: grid;
-    grid-template-columns: 1fr;
+    /* 1fr은 minmax(auto,1fr)이라 줄바꿈 안 되는 자식(칩 스크롤·표 등)이 있으면
+       열이 그 폭까지 늘어나 모바일에서 레이아웃이 680px로 넓어진다. 최소 0을 명시한다. */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-10);
   }
 
   @media (min-width: 1024px) {
     .guide-layout {
-      grid-template-columns: 1fr 220px;
+      grid-template-columns: minmax(0, 1fr) 220px;
       align-items: start;
     }
   }
