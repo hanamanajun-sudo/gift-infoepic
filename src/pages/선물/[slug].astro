@@ -117,7 +117,7 @@ const pairedCount = Math.min(products.length, productSections.length);
 // cta 파라미터로 어느 요소를 눌렀는지 구분해 이미지·상품명 링크의 효과를 잰다.
 const hasUrl = (url: string) => !!url && url !== '#';
 const productClick = (product: Product, channel: string, cta: string) =>
-  `gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'${channel}','cta':'${cta}'})`;
+  `gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'${channel}','cta':'${cta}','transport_type':'beacon'})`;
 const primaryLink = (product: Product) =>
   hasUrl(product.coupangUrl) ? { href: product.coupangUrl, channel: 'coupang', rel: 'noopener noreferrer sponsored' }
   : hasUrl(product.naverUrl) ? { href: product.naverUrl, channel: 'naver', rel: 'noopener noreferrer nofollow' }
@@ -244,6 +244,19 @@ const primaryLink = (product: Product) =>
       </div>
     </section>
   )}
+
+  <!-- 터치 기기에서는 상품 링크를 같은 탭에서 연다.
+       쿠팡 모바일 링크는 중간 페이지가 coupang:// 로 앱을 먼저 열어보고 실패하면 웹으로 넘어가는데,
+       새 탭(_blank)이면 앱 실행 실패 시 탭이 통째로 닫혀 웹 폴백이 실행되지 못한다
+       (앱 미설치 크롬에서 실측: 허용/허용안함 모두 사이트로 복귀). is:inline 필수. -->
+  <script is:inline>
+    (function () {
+      if (!window.matchMedia || !window.matchMedia('(pointer: coarse)').matches) return;
+      document.querySelectorAll('.merged-products a[target="_blank"]').forEach(function (a) {
+        a.setAttribute('target', '_self');
+      });
+    })();
+  </script>
 
   <!-- ── 나머지 본문 (가격대별표, 선택법, 사지마세요, FAQ 등) ── -->
   {remainingHtml && remainingHtml.trim() && (
