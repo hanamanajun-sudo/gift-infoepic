@@ -119,7 +119,7 @@ const hasUrl = (url: string) => !!url && url !== '#';
 const productClick = (product: Product, channel: string, cta: string) =>
   `gtag('event','product_click',{'guide':'${guide.slug}','product':'${product.name.replace(/'/g,"")}','price':${product.price},'channel':'${channel}','cta':'${cta}','transport_type':'beacon'})`;
 const primaryLink = (product: Product) =>
-  hasUrl(product.coupangUrl) ? { href: product.coupangUrl, channel: 'coupang', rel: 'noopener noreferrer sponsored' }
+  hasUrl(product.coupangUrl) ? { href: product.coupangUrl, channel: 'coupang', rel: 'noopener sponsored' }
   : hasUrl(product.naverUrl) ? { href: product.naverUrl, channel: 'naver', rel: 'noopener noreferrer nofollow' }
   : null;
 ---
@@ -216,7 +216,7 @@ const primaryLink = (product: Product) =>
                       <a
                         href={product.coupangUrl}
                         target="_blank"
-                        rel="noopener noreferrer sponsored"
+                        rel="noopener sponsored"
                         class="product-link-btn coupang"
                         onclick={productClick(product, 'coupang', 'button')}
                       >
