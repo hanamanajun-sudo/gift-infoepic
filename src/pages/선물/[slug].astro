@@ -146,6 +146,11 @@ const primaryLink = (product: Product) =>
     <SwitcherChips label="예산을 바꿔서 보기" chips={budgetChips} from={guide.slug} position="switcher-budget" />
   </Fragment>
 
+  <!-- 대가성(경제적 이해관계) 표시는 제목·본문 첫 부분에 있어야 하므로 요약·상품 섹션보다 위에 1회만 둔다 -->
+  {displayCount > 0 && (
+    <p class="affiliate-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 일정액의 수수료를 제공받을 수 있습니다.</p>
+  )}
+
   <!-- ── 첫 화면 요약: 핵심 추천 1~3위 (내부 앵커만) ── -->
   {summaryItems.length >= 2 && (
     <nav class="top-summary" aria-label="핵심 추천 요약">
@@ -166,13 +171,13 @@ const primaryLink = (product: Product) =>
           </li>
         ))}
       </ol>
+      <p class="top-summary-note">표시 가격은 변동될 수 있습니다. 현재 가격은 판매처에서 확인하세요.</p>
     </nav>
   )}
 
   <!-- ── 추천 상품 섹션 (통합형) ── -->
   {displayCount > 0 && (
     <section class="merged-products" aria-labelledby="products-heading">
-      <p class="affiliate-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 일정액의 수수료를 제공받을 수 있습니다.</p>
       <h2 id="products-heading" class="products-title">
         <i class="ti ti-star-filled" aria-hidden="true"></i>
         추천 선물 TOP{displayCount}
@@ -408,6 +413,11 @@ const primaryLink = (product: Product) =>
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
+  }
+  .top-summary-note {
+    margin: var(--space-3) 0 0;
+    font-size: var(--text-xs);
+    color: var(--color-text-light);
   }
   .top-summary-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
   .top-summary-item {
